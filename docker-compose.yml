@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16
+    restart: on-failure
+    volumes:
+      - ./data/database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - ca-network
+
+  django:
+    build: ./django/
+    restart: on-failure
+    volumes:
+      - ./data/images:/app/images
+    environment:
+      - PYTHONUNBUFFERED=${PYTHONUNBUFFERED}
+    ports:
+      - "8000:8000"
+    networks:
+      - ca-network
+    depends_on:
+      - db
+
+networks:
+  ca-network:
+    driver: bridge
