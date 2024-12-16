@@ -1,0 +1,78 @@
+POST http://localhost:8884/tesseract
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="options"
+Content-Type: application/json
+
+{
+  "languages": ["eng","deu"]
+}
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="sample.jpg"
+
+< sample.jpg
+--WebAppBoundary--
+
+###
+
+POST http://localhost:8884/tesseract
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="options"
+Content-Type: application/json
+
+{
+  "languages": ["deu","eng"]
+}
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="sample.jpg"
+
+< sample.jpg
+--WebAppBoundary--
+
+###
+
+
+POST http://localhost:8884/tesseract
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="options"
+Content-Type: application/json
+
+{
+  "languages": ["deu","eng"],
+  "configParams": {
+    "tessedit_create_hocr": "1",
+    "hocr_font_info": "1"
+  }
+}
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="sample.jpg"
+
+< sample.jpg
+--WebAppBoundary--
+
+###
+
+POST http://localhost:8884/tesseract
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="options"
+Content-Type: application/json
+
+{
+  "languages": ["deu","eng"],
+  "configParams": {
+    "hocr_font_info": "1",
+    "tessedit_create_hocr": "1"
+  }
+}
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="sample.jpg"
+
+< sample.jpg
+--WebAppBoundary--

@@ -1,16 +1,4 @@
 services:
-  db:
-    image: postgres:16
-    restart: on-failure
-    volumes:
-      - ./data/database:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    networks:
-      - ca-network
-
   django:
     build: ./django/
     restart: on-failure
@@ -24,6 +12,27 @@ services:
       - ca-network
     depends_on:
       - db
+      - tesseract
+
+  db:
+    image: postgres:16
+    restart: on-failure
+    volumes:
+      - ./data/database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - ca-network
+
+  tesseract:
+    build: ./llm/tesseract/tesseract-server-master #tesseract-ocr-5.5.0-r0
+    restart: on-failure
+    ports:
+      - "8884:8884"
+    networks:
+      - ca-network
 
 networks:
   ca-network:
