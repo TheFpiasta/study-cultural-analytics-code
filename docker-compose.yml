@@ -13,6 +13,16 @@ services:
     depends_on:
       - db
 #      - tesseract
+    develop:
+      watch:
+        - action: sync
+          path: "./django-app/scraper"
+          target: "/app/scraper"
+          ignore:
+            - "*.pyc"
+            - "__pycache__"
+        - action: rebuild
+          path: ./django-app/requirements.txt
 
   db:
     image: postgres:16
