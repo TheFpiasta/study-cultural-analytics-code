@@ -1,6 +1,6 @@
 services:
   django:
-    build: ./django/
+    build: ./djangoApp/
     restart: on-failure
     volumes:
       - ./data/images:/app/images
@@ -12,7 +12,7 @@ services:
       - ca-network
     depends_on:
       - db
-      - tesseract
+#      - tesseract
 
   db:
     image: postgres:16
@@ -26,13 +26,13 @@ services:
     networks:
       - ca-network
 
-  tesseract:
-    build: ./llm/tesseract/tesseract-server-master #tesseract-ocr-5.5.0-r0
-    restart: on-failure
-    ports:
-      - "8884:8884"
-    networks:
-      - ca-network
+#  tesseract:
+#    build: ./llm/tesseract/tesseract-server-master #tesseract-ocr-5.5.0-r0
+#    restart: on-failure
+#    ports:
+#      - "8884:8884"
+#    networks:
+#      - ca-network
 
 networks:
   ca-network:
