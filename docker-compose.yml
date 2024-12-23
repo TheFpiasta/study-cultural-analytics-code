@@ -4,6 +4,7 @@ services:
     restart: on-failure
     volumes:
       - ./data/images:/app/images
+      - ./django-app/scraper/migrations:/app/scraper/migrations
     environment:
       - PYTHONUNBUFFERED=${PYTHONUNBUFFERED}
     ports:
@@ -21,6 +22,7 @@ services:
           ignore:
             - "*.pyc"
             - "__pycache__"
+            - "migrations/*"
         - action: rebuild
           path: ./django-app/requirements.txt
 

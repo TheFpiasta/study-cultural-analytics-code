@@ -1,0 +1,9 @@
+{% if latest_batch_list %}
+    <ul>
+    {% for batch in latest_batch_list %}
+        <li><a href="/scraper/{{ batch.id }}/">{{ batch.created_at }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No batches are available!</p>
+{% endif %}

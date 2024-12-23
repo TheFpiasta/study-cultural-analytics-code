@@ -2,8 +2,8 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import ScrapeData
-from .models import ScrapeBatch
+from .models import ScrapeData, ScraperRun, ScrapeBatch
 
-admin.site.register(ScrapeData)
+admin.site.register(ScraperRun)
 admin.site.register(ScrapeBatch)
+admin.site.register(ScrapeData)
