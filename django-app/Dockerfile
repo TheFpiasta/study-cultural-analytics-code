@@ -10,8 +10,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD echo "waiting 15sec to startup db .." && \
-    sleep 15 && \
+CMD echo "waiting 5sec to startup db .." && \
+    sleep 5 && \
     python manage.py makemigrations scraper && \
     python manage.py migrate && \
     python manage.py runserver 0.0.0.0:8000

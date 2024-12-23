@@ -1,6 +1,6 @@
 services:
   django:
-    build: ./djangoApp/
+    build: django-app/
     restart: on-failure
     volumes:
       - ./data/images:/app/images
