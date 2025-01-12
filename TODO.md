@@ -1,0 +1,7 @@
+- add scraping view with simple scraping btn and live feedback:
+  - start/ stop btn
+  - input: scraping count, end Date, start_cursor
+  - out: scraped data & downloaded pictures (new dir foreach scrape)
+- modify database with new tabel: ScrapeImage (id, ScrapeData.id, url, image_path, date, ???)
+- test scraping (img url's expires after some time!!)
+- ...
