@@ -23,8 +23,9 @@ services:
           ignore:
             - "*.pyc"
             - "__pycache__"
-            - "migrations/*"
-            - "sqlite/*"
+            - "migrations/"
+            - "sqlite/"
+            - "scraper/models.py"
         - action: rebuild
           path: ./django-app/requirements.txt
 
