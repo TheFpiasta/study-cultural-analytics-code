@@ -1,31 +1,44 @@
+from datetime import datetime, date
+
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.serializers import serialize
 from django.http import JsonResponse
+
 
 def validate_run_status(value):
     valid_statuses = ["created", "running", "error", "finished"]
     if value not in valid_statuses:
         raise ValidationError(f'{value} is not a valid status of {valid_statuses}.')
 
+
 class ScraperRun(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    total_count = models.IntegerField()
+
     name = models.CharField(max_length=100)
+    profile_id = models.BigIntegerField()
     start_cursor = models.TextField(null=True, blank=True)
+
+    scrape_max_date = models.DateField(default=date.min)
+    scrape_max_notes = models.IntegerField()
+    scrape_max_batches = models.SmallIntegerField()
+    scrape_notes_per_batch = models.SmallIntegerField()
+
     status = models.CharField(max_length=100, validators=[validate_run_status])
+    total_data_count = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.id}: {self.name}, {self.total_count}, {self.status}, {self.start_cursor}, {self.created_at}"
+        return f"{self.id}: {self.name} ({self.status}) - {self.created_at}"
 
     def to_json(self):
         return JsonResponse(serialize('json', [self]), safe=False)
 
+
 class ScrapeBatch(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     scraper_run_id = models.ForeignKey(ScraperRun, on_delete=models.CASCADE)
-    size = models.SmallIntegerField()
+    notes_in_batch = models.SmallIntegerField()
     has_next_page = models.BooleanField()
     end_cursor = models.TextField(null=True, blank=True)
     status = models.TextField()
@@ -37,6 +50,7 @@ class ScrapeBatch(models.Model):
 
     def to_json(self):
         return JsonResponse(serialize('json', [self]), safe=False)
+
 
 class ScrapeData(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
