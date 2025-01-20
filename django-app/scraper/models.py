@@ -11,6 +11,11 @@ def validate_run_status(value):
     if value not in valid_statuses:
         raise ValidationError(f'{value} is not a valid status of {valid_statuses}.')
 
+def validate_img_status(value):
+    valid_statuses = ["success", "failed"]
+    if value not in valid_statuses:
+        raise ValidationError(f'{value} is not a valid status of {valid_statuses}.')
+
 
 class ScraperRun(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
@@ -70,6 +75,7 @@ class ScrapeData(models.Model):
     display_width = models.IntegerField()
     display_url = models.TextField()
     img_name = models.TextField(null=True, blank=True)
+    img_download_status = models.CharField(max_length=100, validators=[validate_img_status], null=True, blank=True)
 
     likes_count = models.IntegerField()
     owner_id = models.BigIntegerField()
