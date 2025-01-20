@@ -25,9 +25,9 @@ def start(request):
         profile_id = req_data.get("profile_id", 0)
         start_cursor = req_data.get("start_cursor", "")  # optional
         scrape_to_date = req_data.get("scrape_to_date", "01.01.2025-0:0:0")  # optional
-        scrape_max_notes = req_data.get("scrape_max_notes", 99999)  # optional
+        scrape_max_nodes = req_data.get("scrape_max_nodes", 99999)  # optional
         scrape_max_batches = req_data.get("scrape_max_batches", 200)  # optional
-        scrape_notes_per_batch = req_data.get("scrape_notes_per_batch", 10)  # optional
+        scrape_nodes_per_batch = req_data.get("scrape_nodes_per_batch", 10)  # optional
 
         if name == "":
             return JsonResponse({"error": "name is required"}, status=400)
@@ -43,9 +43,9 @@ def start(request):
                               profile_id=profile_id,
                               start_cursor=start_cursor,
                               scrape_max_date=scrape_to_date,
-                              scrape_max_notes=scrape_max_notes,
+                              scrape_max_nodes=scrape_max_nodes,
                               scrape_max_batches=scrape_max_batches,
-                              scrape_notes_per_batch=scrape_notes_per_batch,
+                              scrape_nodes_per_batch=scrape_nodes_per_batch,
                               status="created",
                               total_data_count=0)
         curr_run.save()
@@ -55,20 +55,19 @@ def start(request):
                 next_cursor = start_cursor
 
                 scraped_bates = 0
-                scraped_notes = 0
+                scraped_nodes = 0
                 date_in_range = True
 
                 dir_ext = re.sub(r'[^a-zA-Z0-9\-]', '', name.lower().replace(" ", "-"))
                 img_dir = f"{int(datetime.now().timestamp())}-{dir_ext}"
 
                 # todo mkdir img_dir
-                # todo refactor note to node
 
                 def get_graphql_url(cursor=""):
                     after = ""
                     if cursor != "":
                         after = f',"after":"{cursor}"'
-                    return f'https://www.instagram.com/graphql/query/?query_id={query_id}&variables={{"id":"{profile_id}","first":{scrape_notes_per_batch}{after}}}'
+                    return f'https://www.instagram.com/graphql/query/?query_id={query_id}&variables={{"id":"{profile_id}","first":{scrape_nodes_per_batch}{after}}}'
 
                 def update_run_started(total_data_count):
                     curr_run.status = "running"
@@ -114,7 +113,7 @@ def start(request):
                         update_run_started(insta_data_media["count"])
 
                     curr_batch = ScrapeBatch(scraper_run_id=curr_run.id,
-                                             notes_in_batch=len(insta_data_media["edges"]),
+                                             nodes_in_batch=len(insta_data_media["edges"]),
                                              has_next_page=insta_data_media["page_info"]["has_next_page"],
                                              end_cursor=insta_data_media["page_info"]["end_cursor"],
                                              status=insta_data["status"],
@@ -126,15 +125,15 @@ def start(request):
 
                     return len(insta_data_media["edges"])
 
-                while scraped_bates < scrape_max_batches and scraped_notes < scrape_max_notes:
-                    scraped_notes += process_batch()
+                while scraped_bates < scrape_max_batches and scraped_nodes < scrape_max_nodes:
+                    scraped_nodes += process_batch()
                     scraped_bates += 1
 
                     print(
-                        f"scraped_bates:{scraped_bates}, scraped_notes:{scraped_notes}")
+                        f"scraped_bates:{scraped_bates}, scraped_nodes:{scraped_nodes}")
                     yield json.dumps({
                         "scraped_bates": scraped_bates,
-                        "scraped_notes": scraped_notes
+                        "scraped_nodes": scraped_nodes
                     }) + "\n"
 
             except Exception as err:
