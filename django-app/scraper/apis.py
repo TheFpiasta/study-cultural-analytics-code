@@ -1,7 +1,9 @@
 import json
+import os
 import re
 import traceback
-from datetime import datetime, date, timedelta
+from datetime import datetime
+
 import requests
 
 from django.http import StreamingHttpResponse, JsonResponse
@@ -56,12 +58,20 @@ def start(request):
 
                 scraped_bates = 0
                 scraped_nodes = 0
-                date_in_range = True
+                # date_in_range = True
 
-                dir_ext = re.sub(r'[^a-zA-Z0-9\-]', '', name.lower().replace(" ", "-"))
+                dir_ext = re.sub(r'[^a-zA-Z0-9\-]', '', name.lower().replace(" ", "-")[0:16])
                 img_dir = f"{int(datetime.now().timestamp())}-{dir_ext}"
 
-                # todo mkdir img_dir
+                img_path = os.path.join(os.getcwd(), 'data', 'images', img_dir)
+                os.mkdir(img_path)
+
+                curr_run.img_dir = img_path
+                curr_run.status = "running"
+                curr_run.save()
+
+                if not os.path.exists(img_path):
+                    Exception("img path creation failed for: ", img_path)
 
                 def get_graphql_url(cursor=""):
                     after = ""
@@ -74,13 +84,34 @@ def start(request):
                     curr_run.total_data_count = total_data_count
                     curr_run.save()
 
-                def save_img(img_url):
-                    # todo downloade and save img in db and dir
+                def download_img(img_url, post_timestamp):
+                    try:
 
-                    return None
+                        img_response = requests.get(img_url)
+
+                        if img_response.status_code == 200:
+                            image_content = img_response.content
+                            image_type = \
+                            img_response.headers.get("Content-Type", "application/octet-stream").split("/")[-1]
+                            image_path = f"data/images/{post_timestamp}.{image_type}"
+
+                            with open(image_path, "wb") as file:
+                                file.write(image_content)
+
+                            return f"{post_timestamp}.{image_type}"
+
+                        print(f"[img_download]: {post_timestamp} failed with status: {img_response.status_code}")
+                        return False
+
+                    except Exception as d_e:
+                        print(f"[img_download]: {post_timestamp} failed with Exception: ", str(d_e))
+                        return False
 
                 def process_node(node, scrape_batch_id):
                     img_url = node["display_url"]
+                    post_timestamp = node["taken_at_timestamp"]
+                    img_name = download_img(img_url, post_timestamp)
+
                     curr_node = ScrapeData(scraper_run_id=curr_run.id,
                                            scrape_batch_id=scrape_batch_id,
                                            node_id=node["id"],
@@ -89,7 +120,7 @@ def start(request):
                                            shortcode=node["shortcode"],
                                            comment_count=node["edge_media_to_comment"]["count"],
                                            comments_disabled=node["comments_disabled"],
-                                           taken_at_timestamp=node["taken_at_timestamp"],
+                                           taken_at_timestamp=post_timestamp,
                                            display_height=node["dimensions"]["height"],
                                            display_width=node["dimensions"]["width"],
                                            display_url=img_url,
@@ -97,10 +128,14 @@ def start(request):
                                            owner_id=node["owner"]["id"],
                                            thumbnail_url=node["thumbnail_url"],
                                            thumbnail_resources=json.dumps(node["thumbnail_resources"]),
-                                           is_video=node["is_video"], )
+                                           is_video=node["is_video"],
+                                           img_name=img_name,
+                                           img_download_status="success", )
+
+                    if not img_name:
+                        curr_node.img_download_status = "failed"
 
                     curr_node.save()
-                    save_img(img_url)
 
                 def process_batch():
                     graphql_url = get_graphql_url(next_cursor)
@@ -136,7 +171,12 @@ def start(request):
                         "scraped_nodes": scraped_nodes
                     }) + "\n"
 
+                curr_run.status = "finished"
+                curr_run.save()
+
             except Exception as err:
+                curr_run.status = "error"
+                curr_run.save()
                 yield json.dumps({"error": str(err) + " " + str(traceback.print_exc())}) + "\n"
 
         response = StreamingHttpResponse(stream_output(), content_type="application/json")
