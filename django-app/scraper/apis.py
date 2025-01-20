@@ -76,8 +76,6 @@ def start(request):
                     curr_run.save()
 
                 def save_img(img_url):
-                    # todo add column "img_name" to ScrapeData
-                    # todo add column "img_dir" to ScrapeBatch
                     # todo downloade and save img in db and dir
 
                     return None

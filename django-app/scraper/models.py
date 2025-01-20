@@ -27,6 +27,7 @@ class ScraperRun(models.Model):
     status = models.CharField(max_length=100, validators=[validate_run_status])
     total_data_count = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
+    img_dir = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.id}: {self.name} ({self.status}) - {self.created_at}"
@@ -68,6 +69,7 @@ class ScrapeData(models.Model):
     display_height = models.IntegerField()
     display_width = models.IntegerField()
     display_url = models.TextField()
+    img_name = models.TextField(null=True, blank=True)
 
     likes_count = models.IntegerField()
     owner_id = models.BigIntegerField()
