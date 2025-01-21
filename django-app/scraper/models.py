@@ -52,7 +52,7 @@ class ScrapeBatch(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.id}: {self.scraper_run_id}, {self.size}, {self.has_next_page}, {self.end_cursor}, {self.status}, {self.extensions}, {self.created_at}"
+        return f"{self.id}: run:{self.scraper_run_id}, {self.status}"
 
     def to_json(self):
         return JsonResponse(serialize('json', [self]), safe=False)
@@ -88,7 +88,7 @@ class ScrapeData(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.id}: {self.scraper_run_id}, {self.scrape_batch_id}, {self.node_id}, {self.type}, {self.text[:16]}..., {self.shortcode}, {self.comment_count}, {self.comments_disabled}, {self.taken_at_timestamp}, {self.display_height}, {self.display_width}, {self.display_url[:16]}..., {self.likes_count}, {self.owner_id}, {self.thumbnail_src[:16]}..., {self.thumbnail_resources[:16]}..., {self.is_video}, {self.created_at}"
+        return f"{self.id}: run:{self.scraper_run_id}, batch:{self.scrape_batch_id}, shortcode:{self.shortcode}, {self.img_name}, {self.img_download_status}"
 
     def to_json(self):
         return JsonResponse(serialize('json', [self]), safe=False)
