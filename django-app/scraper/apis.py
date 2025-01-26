@@ -14,6 +14,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 from scraper.models import ScraperRun, ScrapeBatch, ScrapeData
 
+logger = logging.getLogger("django")
+logger.setLevel(logging.INFO)
+
 class ScraperStats:
     def __init__(self):
         self.failed_images = 0
@@ -22,10 +25,10 @@ class ScraperStats:
     def on_failed_images(self):
         self.failed_images += 1
 
-    def add_node_type(self, type):
+    def add_node_type(self, new_node_types):
         if type not in self.node_types:
-            self.node_types[type] = 0
-        self.node_types[type] += 1
+            self.node_types[new_node_types] = 0
+        self.node_types[new_node_types] += 1
 
 
 @csrf_exempt
@@ -70,7 +73,7 @@ def start(request):
                               total_data_count=0)
         curr_run.save()
 
-        logging.info("create scraper run ...")
+        logger.info("create scraper run ...")
 
         def stream_output():
             try:
@@ -95,7 +98,7 @@ def start(request):
                 curr_run.img_dir = img_path
                 curr_run.save()
 
-                logging.info("start scraper run ...")
+                logger.info("start scraper run ...")
 
                 def get_graphql_url(cursor=""):
                     after = ""
@@ -110,7 +113,7 @@ def start(request):
 
                 def download_img(img_url, img_prefix):
                     try:
-                        logging.info("downloading img ...")
+                        logger.info("downloading img ...")
                         img_response = requests.get(img_url)
 
                         if img_response.status_code == 200:
@@ -122,15 +125,15 @@ def start(request):
                             with open(image_path, "wb") as file:
                                 file.write(image_content)
 
-                            logging.info(f"saved img {image_path}")
+                            logger.info(f"saved img {image_path}")
                             return f"{image_path}"
 
-                        logging.warning(f"! [img_download]: {img_prefix} failed with status: {img_response.status_code}")
+                        logger.warning(f"! [img_download]: {img_prefix} failed with status: {img_response.status_code}")
                         scraper_stats.on_failed_images()
                         return False
 
                     except Exception as d_e:
-                        logging.error(f"! [img_download]: {img_prefix} failed with Exception: ",
+                        logger.error(f"! [img_download]: {img_prefix} failed with Exception: ",
                               str(d_e) + " " + str(traceback.print_exc()))
                         return False
 
@@ -138,7 +141,7 @@ def start(request):
                     img_url = node["display_url"]
                     img_name = download_img(img_url, f"{time.time_ns()}_{node["shortcode"]}")
 
-                    logging.info(f"saving node {node["id"]}...")
+                    logger.info(f"saving node {node["id"]}...")
                     scraper_stats.add_node_type(node["__typename"])
 
                     curr_node = ScrapeData(scraper_run_id=curr_run,
@@ -204,7 +207,7 @@ def start(request):
                                              extensions=json.dumps(insta_data["extensions"]), )
                     curr_batch.save()
 
-                    logging.info(f"process batch {curr_batch.id}...")
+                    logger.info(f"process batch {curr_batch.id}...")
 
                     scraped_edges = 0
                     for edge in insta_data_media["edges"]:
@@ -229,7 +232,7 @@ def start(request):
                     scraped_bates += 1
                     next_cursor = batch_result["next_cursor"]
 
-                    logging.info(
+                    logger.info(
                         f"scraped_bates:{scraped_bates} / {scrape_max_batches}, scraped_nodes:{scraped_nodes} / {scrape_max_nodes}\n\n")
 
                     yield json.dumps({
@@ -240,10 +243,10 @@ def start(request):
                 if no_error:
                     curr_run.status = "error"
                     curr_run.error_msg = "graphql response error"
-                    logging.warning("finished with error")
+                    logger.warning("finished with error")
                 else:
-                    logging.info("finished")
-                    logging.info(f"scraped_bates:{scraped_bates}, scraped_nodes:{scraped_nodes}, failed_images: {scraper_stats.failed_images}, types: {scraper_stats.node_types}")
+                    logger.info("finished")
+                    logger.info(f"scraped_bates:{scraped_bates}, scraped_nodes:{scraped_nodes}, failed_images: {scraper_stats.failed_images}, types: {scraper_stats.node_types}")
                     curr_run.status = "finished"
 
                 curr_run.save()
@@ -252,12 +255,12 @@ def start(request):
                 curr_run.status = "error"
                 curr_run.error_msg = str(err) + " " + str(traceback.print_exc())
                 curr_run.save()
-                logging.error(str(err) + " " + str(traceback.print_exc()))
+                logger.error(str(err) + " " + str(traceback.print_exc()))
                 yield json.dumps({"! [scraper] error": str(err) + " " + str(traceback.print_exc())}) + "\n"
 
         response = StreamingHttpResponse(stream_output(), content_type="application/json")
         return response
 
     except Exception as e:
-        logging.error(str(e) + " " + str(traceback.print_exc()))
+        logger.error(str(e) + " " + str(traceback.print_exc()))
         return JsonResponse({"! [general] error": str(e) + " " + str(traceback.print_exc())}, status=500)
