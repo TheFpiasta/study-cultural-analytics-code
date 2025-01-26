@@ -86,7 +86,7 @@ def start(request):
                 # date_in_range = True
 
 
-                dir_ext = re.sub(r'[^a-zA-Z0-9\-]', '', name.lower().replace(" ", "-")[0:16])
+                dir_ext = re.sub(r'[^a-zA-Z0-9\-]', '', name.lower().replace(" ", "-"))
                 img_dir = f"{int(datetime.now().timestamp())}-{dir_ext}"
 
                 img_path = os.path.join(os.getcwd(), 'images', img_dir + "/")
@@ -126,7 +126,7 @@ def start(request):
                                 file.write(image_content)
 
                             logger.info(f"saved img {image_path}")
-                            return f"{image_path}"
+                            return image_path
 
                         logger.warning(f"! [img_download]: {img_prefix} failed with status: {img_response.status_code}")
                         scraper_stats.on_failed_images()
