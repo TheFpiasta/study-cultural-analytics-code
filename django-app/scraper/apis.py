@@ -81,7 +81,6 @@ def start(request):
 
                 scraped_bates = 0
                 scraped_nodes = 0
-                node_types = {}
                 no_error = True
                 # date_in_range = True
 
