@@ -18,6 +18,7 @@
       <excludeFolder url="file://$MODULE_DIR$/data/images" />
       <excludeFolder url="file://$MODULE_DIR$/django-app/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/data/database/postgresql" />
+      <excludeFolder url="file://$MODULE_DIR$/data/log" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.13 (study-cultural-analytics-code)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
