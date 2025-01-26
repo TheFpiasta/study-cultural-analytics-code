@@ -1,2 +1,3 @@
 database/postgresql/
-images
+#images
+log/*

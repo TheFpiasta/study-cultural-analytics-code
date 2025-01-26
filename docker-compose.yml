@@ -4,6 +4,7 @@ services:
     restart: on-failure
     volumes:
       - ./data/images:/app/images
+      - ./data/log:/app/log
       - ./data/database/sqlite:/app/sqlite
       - ./django-app/scraper/migrations:/app/scraper/migrations
     environment:
