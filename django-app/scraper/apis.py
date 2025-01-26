@@ -125,7 +125,7 @@ def start(request):
                                 file.write(image_content)
 
                             logger.info(f"saved img {image_path}")
-                            return image_path
+                            return f"{img_prefix}.{image_type}"
 
                         logger.warning(f"! [img_download]: {img_prefix} failed with status: {img_response.status_code}")
                         scraper_stats.on_failed_images()
