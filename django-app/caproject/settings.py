@@ -153,7 +153,7 @@ LOGGING = {
         "file": {
             "level": "WARNING",
             "class": "logging.FileHandler",
-            "filename": "/log/debug.log",
+            "filename": "/app/log/debug.log",
         },
     },
     "loggers": {
