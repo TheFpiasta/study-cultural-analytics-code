@@ -62,6 +62,7 @@ def start(request):
 
                 scraped_bates = 0
                 scraped_nodes = 0
+                no_error = True
                 # date_in_range = True
 
                 dir_ext = re.sub(r'[^a-zA-Z0-9\-]', '', name.lower().replace(" ", "-")[0:16])
@@ -150,6 +151,26 @@ def start(request):
 
                     insta_response = requests.get(graphql_url)
                     insta_data = insta_response.json()
+
+                    status = insta_data["status"]
+                    curr_batch = ScrapeBatch(scraper_run_id=curr_run,
+                                             status=status, )
+
+                    if status != "ok":
+                        curr_batch.nodes_in_batch = 0
+                        curr_batch.has_next_page = False
+                        curr_batch.end_cursor = ""
+                        curr_batch.extensions = 0
+                        curr_batch.response_on_error = insta_data
+
+                        curr_batch.save()
+
+                        return {
+                            "count": 0,
+                            "next_cursor": "",
+                            "error": True
+                        }
+
                     insta_data_media = insta_data["data"]["user"]["edge_owner_to_timeline_media"]
 
                     if scraped_bates == 0:
@@ -159,7 +180,7 @@ def start(request):
                                              nodes_in_batch=len(insta_data_media["edges"]),
                                              has_next_page=insta_data_media["page_info"]["has_next_page"],
                                              end_cursor=insta_data_media["page_info"]["end_cursor"],
-                                             status=insta_data["status"],
+                                             status=status,
                                              extensions=json.dumps(insta_data["extensions"]), )
                     curr_batch.save()
 
@@ -174,11 +195,16 @@ def start(request):
 
                     return {
                         "count": scraped_edges,
-                        "next_cursor": insta_data_media["page_info"]["end_cursor"]
+                        "next_cursor": insta_data_media["page_info"]["end_cursor"],
+                        "error": False
                     }
 
-                while (scraped_bates < scrape_max_batches) and (scraped_nodes < scrape_max_nodes):
+                while no_error and (scraped_bates < scrape_max_batches) and (scraped_nodes < scrape_max_nodes):
                     batch_result = process_batch()
+
+                    if batch_result["error"]:
+                        no_error = False
+
                     scraped_nodes += batch_result["count"]
                     scraped_bates += 1
                     next_cursor = batch_result["next_cursor"]
@@ -191,11 +217,19 @@ def start(request):
                         "scraped_nodes": scraped_nodes
                     }) + "\n"
 
-                curr_run.status = "finished"
+                if no_error:
+                    curr_run.status = "error"
+                    curr_run.error_msg = "graphql response error"
+                    print("finished with error")
+                else:
+                    print("finished")
+                    curr_run.status = "finished"
+
                 curr_run.save()
 
             except Exception as err:
                 curr_run.status = "error"
+                curr_run.error_msg = str(err) + " " + str(traceback.print_exc())
                 curr_run.save()
                 yield json.dumps({"! [scraper] error": str(err) + " " + str(traceback.print_exc())}) + "\n"
 

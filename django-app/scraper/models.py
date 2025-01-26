@@ -30,6 +30,7 @@ class ScraperRun(models.Model):
     scrape_nodes_per_batch = models.SmallIntegerField()
 
     status = models.CharField(max_length=100, validators=[validate_run_status])
+    error_msg = models.TextField(null=True, blank=True)
     total_data_count = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     img_dir = models.TextField(null=True, blank=True)
@@ -49,6 +50,7 @@ class ScrapeBatch(models.Model):
     end_cursor = models.TextField(null=True, blank=True)
     status = models.TextField()
     extensions = models.TextField()
+    response_on_error = models.JSONField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
