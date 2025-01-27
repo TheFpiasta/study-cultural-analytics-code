@@ -249,16 +249,17 @@ def start(request):
                     }) + "\n"
 
                 if no_error:
-                    curr_run.status = "error"
-                    curr_run.error_msg = "graphql response error"
-                    # logger.warning("finished with error")
-                    print("finished with error")
-                else:
                     # logger.info("finished")
                     # logger.info(f"scraped_bates:{scraped_bates}, scraped_nodes:{scraped_nodes}, failed_images: {scraper_stats.failed_images}, types: {scraper_stats.node_types}")
                     print("finished!")
-                    print(f"scraped_bates:{scraped_bates}, scraped_nodes:{scraped_nodes}, failed_images: {scraper_stats.failed_images}, types: {scraper_stats.node_types}")
                     curr_run.status = "finished"
+                else:
+                    curr_run.status = "error"
+                    curr_run.error_msg = "graphql batch response error"
+                    # logger.warning("finished with error")
+                    print("finished with error")
+
+                print(f"scraped_bates:{scraped_bates}, scraped_nodes:{scraped_nodes}, failed_images: {scraper_stats.failed_images}, types: {scraper_stats.node_types}")
 
                 curr_run.save()
 
