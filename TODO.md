@@ -1,3 +1,4 @@
-- test scraper 
 
-- test stop scraping then about signal occurs
+```sqlite
+select type, count() from scraper_scrapedata group by type;
+```
