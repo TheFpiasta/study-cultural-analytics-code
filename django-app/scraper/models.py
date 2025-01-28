@@ -54,7 +54,7 @@ class ScrapeBatch(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.id}: run:{self.scraper_run_id}, {self.status}"
+        return f"{self.id}: run:{self.scraper_run_id_id}, {self.status}"
 
     def to_json(self):
         return JsonResponse(serialize('json', [self]), safe=False)
@@ -90,7 +90,7 @@ class ScrapeData(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.id}: run:{self.scraper_run_id}, batch:{self.scrape_batch_id}, shortcode:{self.shortcode}, {self.img_name}, {self.img_download_status}"
+        return f"{self.id}: run:{self.scraper_run_id_id}, batch:{self.scrape_batch_id_id}, shortcode:{self.shortcode}, {self.img_name}, {self.img_download_status}"
 
     def to_json(self):
         return JsonResponse(serialize('json', [self]), safe=False)
