@@ -17,10 +17,21 @@ from scraper.models import ScraperRun, ScrapeBatch, ScrapeData
 logger = logging.getLogger("django")
 logger.setLevel(logging.INFO)
 
+
 class ScraperStats:
     def __init__(self):
         self.failed_images = 0
         self.node_types = {}
+        self.failed_nodes = []
+
+    def on_failed_node(self, node):
+        self.failed_nodes.append(node)
+
+    def get_failed_nodes(self):
+        return self.failed_nodes
+
+    def reset_failed_nodes(self):
+        self.failed_nodes = []
 
     def on_failed_images(self):
         self.failed_images += 1
@@ -85,7 +96,6 @@ def start(request):
                 no_error = True
                 # date_in_range = True
 
-
                 dir_ext = re.sub(r'[^a-zA-Z0-9\-]', '', name.lower().replace(" ", "-"))
                 img_dir = f"{int(datetime.now().timestamp())}-{dir_ext}"
 
@@ -144,37 +154,49 @@ def start(request):
                         return False
 
                 def process_node(node, scrape_batch):
-                    img_url = node["display_url"]
-                    img_name = download_img(img_url, f"{time.time_ns()}_{node["shortcode"]}")
+                    try:
+                        img_url = node["display_url"]
+                        img_name = download_img(img_url, f"{time.time_ns()}_{node["shortcode"]}")
 
-                    # logger.info(f"saving node {node["id"]}...")
-                    print(f"saving node {node["id"]}...")
-                    scraper_stats.add_node_type(node["__typename"])
+                        # logger.info(f"saving node {node["id"]}...")
+                        print(f"saving node {node["id"]}...")
+                        scraper_stats.add_node_type(node["__typename"])
 
-                    curr_node = ScrapeData(scraper_run_id=curr_run,
-                                           scrape_batch_id=scrape_batch,
-                                           node_id=node["id"],
-                                           type=node["__typename"],
-                                           text=node["edge_media_to_caption"]["edges"][0]["node"]["text"],
-                                           shortcode=node["shortcode"],
-                                           comment_count=node["edge_media_to_comment"]["count"],
-                                           comments_disabled=node["comments_disabled"],
-                                           taken_at_timestamp=node["taken_at_timestamp"],
-                                           display_height=node["dimensions"]["height"],
-                                           display_width=node["dimensions"]["width"],
-                                           display_url=img_url,
-                                           likes_count=node["edge_media_preview_like"]["count"],
-                                           owner_id=node["owner"]["id"],
-                                           thumbnail_src=node["thumbnail_src"],
-                                           thumbnail_resources=json.dumps(node["thumbnail_resources"]),
-                                           is_video=node["is_video"],
-                                           img_name=img_name,
-                                           img_download_status="success", )
+                        text = ""
+                        if len(node["edge_media_to_caption"]["edges"]) != 0:
+                            text = node["edge_media_to_caption"]["edges"][0]["node"]["text"]
+                        else:
+                            scraper_stats.on_failed_node({"list index edges out of range": node})
 
-                    if not img_name:
-                        curr_node.img_download_status = "failed"
+                        curr_node = ScrapeData(scraper_run_id=curr_run,
+                                               scrape_batch_id=scrape_batch,
+                                               node_id=node["id"],
+                                               type=node["__typename"],
+                                               text=text,
+                                               shortcode=node["shortcode"],
+                                               comment_count=node["edge_media_to_comment"]["count"],
+                                               comments_disabled=node["comments_disabled"],
+                                               taken_at_timestamp=node["taken_at_timestamp"],
+                                               display_height=node["dimensions"]["height"],
+                                               display_width=node["dimensions"]["width"],
+                                               display_url=img_url,
+                                               likes_count=node["edge_media_preview_like"]["count"],
+                                               owner_id=node["owner"]["id"],
+                                               thumbnail_src=node["thumbnail_src"],
+                                               thumbnail_resources=json.dumps(node["thumbnail_resources"]),
+                                               is_video=node["is_video"],
+                                               img_name=img_name,
+                                               img_download_status="success", )
 
-                    curr_node.save()
+                        if not img_name:
+                            curr_node.img_download_status = "failed"
+
+                        curr_node.save()
+                    except Exception as n_e:
+                        # node error is not critical to stop scraping
+                        scraper_stats.on_failed_node({f"{n_e}": node})
+                        print(f"!##### [process node] failed with Exception: ",
+                              str(n_e) + " " + str(traceback.print_exc()))
 
                 def process_batch():
                     graphql_url = get_graphql_url(next_cursor)
@@ -223,6 +245,13 @@ def start(request):
                         if scraped_edges + scraped_nodes >= scrape_max_nodes:
                             break
 
+                    if len(scraper_stats.failed_nodes) != 0:
+                        # save none critical errors
+                        curr_batch.status = "node_errors"
+                        curr_batch.response_on_error = scraper_stats.get_failed_nodes()
+                        curr_batch.save()
+                        scraper_stats.reset_failed_nodes()
+
                     return {
                         "count": scraped_edges,
                         "next_cursor": insta_data_media["page_info"]["end_cursor"],
@@ -241,7 +270,8 @@ def start(request):
 
                     # logger.info(
                     #     f"scraped_bates:{scraped_bates} / {scrape_max_batches}, scraped_nodes:{scraped_nodes} / {scrape_max_nodes}\n\n")
-                    print(f"scraped_bates:{scraped_bates} / {scrape_max_batches}, scraped_nodes:{scraped_nodes} / {scrape_max_nodes}\n\n")
+                    print(
+                        f"scraped_bates:{scraped_bates} / {scrape_max_batches}, scraped_nodes:{scraped_nodes} / {scrape_max_nodes}\n\n")
 
                     yield json.dumps({
                         "scraped_bates": scraped_bates,
@@ -259,7 +289,8 @@ def start(request):
                     # logger.warning("finished with error")
                     print("finished with error")
 
-                print(f"scraped_bates:{scraped_bates}, scraped_nodes:{scraped_nodes}, failed_images: {scraper_stats.failed_images}, types: {scraper_stats.node_types}")
+                print(
+                    f"scraped_bates:{scraped_bates}, scraped_nodes:{scraped_nodes}, failed_images: {scraper_stats.failed_images}, types: {scraper_stats.node_types}")
 
                 curr_run.save()
 
