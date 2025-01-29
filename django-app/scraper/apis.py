@@ -17,6 +17,7 @@ from scraper.models import ScraperRun, ScrapeBatch, ScrapeData
 logger = logging.getLogger("django")
 logger.setLevel(logging.INFO)
 
+
 class ScraperStats:
     def __init__(self):
         self.failed_images = 0
@@ -25,6 +26,12 @@ class ScraperStats:
 
     def on_failed_node(self, node):
         self.failed_nodes.append(node)
+
+    def get_failed_nodes(self):
+        return self.failed_nodes
+
+    def reset_failed_nodes(self):
+        self.failed_nodes = []
 
     def on_failed_images(self):
         self.failed_images += 1
@@ -88,7 +95,6 @@ def start(request):
                 scraped_nodes = 0
                 no_error = True
                 # date_in_range = True
-
 
                 dir_ext = re.sub(r'[^a-zA-Z0-9\-]', '', name.lower().replace(" ", "-"))
                 img_dir = f"{int(datetime.now().timestamp())}-{dir_ext}"
@@ -160,8 +166,7 @@ def start(request):
                         if len(node["edge_media_to_caption"]["edges"]) != 0:
                             text = node["edge_media_to_caption"]["edges"][0]["node"]["text"]
                         else:
-                            scraper_stats.on_failed_node({"list index edges out of range" : node})
-
+                            scraper_stats.on_failed_node({"list index edges out of range": node})
 
                         curr_node = ScrapeData(scraper_run_id=curr_run,
                                                scrape_batch_id=scrape_batch,
@@ -189,7 +194,7 @@ def start(request):
                         curr_node.save()
                     except Exception as n_e:
                         # node error is not critical to stop scraping
-                        scraper_stats.on_failed_node({f"{n_e}" : node})
+                        scraper_stats.on_failed_node({f"{n_e}": node})
                         print(f"!##### [process node] failed with Exception: ",
                               str(n_e) + " " + str(traceback.print_exc()))
 
@@ -241,10 +246,11 @@ def start(request):
                             break
 
                     if len(scraper_stats.failed_nodes) != 0:
+                        # save none critical errors
                         curr_batch.status = "node_errors"
-                        curr_batch. response_on_error = json.dumps(insta_data.failed_nodes)
+                        curr_batch.response_on_error = scraper_stats.get_failed_nodes()
                         curr_batch.save()
-                        insta_data.failed_nodes = []
+                        scraper_stats.reset_failed_nodes()
 
                     return {
                         "count": scraped_edges,
@@ -264,7 +270,8 @@ def start(request):
 
                     # logger.info(
                     #     f"scraped_bates:{scraped_bates} / {scrape_max_batches}, scraped_nodes:{scraped_nodes} / {scrape_max_nodes}\n\n")
-                    print(f"scraped_bates:{scraped_bates} / {scrape_max_batches}, scraped_nodes:{scraped_nodes} / {scrape_max_nodes}\n\n")
+                    print(
+                        f"scraped_bates:{scraped_bates} / {scrape_max_batches}, scraped_nodes:{scraped_nodes} / {scrape_max_nodes}\n\n")
 
                     yield json.dumps({
                         "scraped_bates": scraped_bates,
@@ -282,7 +289,8 @@ def start(request):
                     # logger.warning("finished with error")
                     print("finished with error")
 
-                print(f"scraped_bates:{scraped_bates}, scraped_nodes:{scraped_nodes}, failed_images: {scraper_stats.failed_images}, types: {scraper_stats.node_types}")
+                print(
+                    f"scraped_bates:{scraped_bates}, scraped_nodes:{scraped_nodes}, failed_images: {scraper_stats.failed_images}, types: {scraper_stats.node_types}")
 
                 curr_run.save()
 
