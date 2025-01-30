@@ -8,6 +8,12 @@ py -m venv .venv
 pip install -r requirements.txt
 ```
 
+## start docker
+
+````shell
+docker compose up --build --watch
+````
+
 ## helpfully commands inside of docker
 
 ### write packages to requirements.txt
