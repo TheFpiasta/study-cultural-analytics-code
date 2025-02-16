@@ -94,182 +94,25 @@ def ocr_process_stream(request):
     """Handles OCR streaming response."""
     
     def event_stream():
-        yield "data: 🚀 OCR process started...\n\n"
+        start_time = time.time()  # Start the timer
+        
+        yield "data: 🚀 Analyzing process started...\n\n"
 
-        AnalyzerResult.objects.using("analyzer_db").all().delete()
-        yield "data: 🗑 Cleared previous OCR results...\n\n"
+        # Clear previous results
+        # AnalyzerResult.objects.using("analyzer_db").all().delete()
+        # yield "data: 🗑 Cleared previous results from DB...\n\n"
 
         # Start image processing (passing the function as a callback)
         for message in process_images(yield_event):  
             yield message  # Directly yield the processed message
         
-        yield "data: 🎉 OCR processing complete!\n\n"
+        # Calculate and print the elapsed time
+        elapsed_time = time.time() - start_time
+        yield f"data: ⏱️ Processing complete! Elapsed time: {elapsed_time:.2f} seconds.\n\n"
+
+        yield "data: 🎉 Analyzing processing complete!\n\n"
 
     return StreamingHttpResponse(event_stream(), content_type='text/event-stream')
-
-
-# def ocr_process_stream(request):
-#     # Variable to control if images should be annotated and stored
-#     annotate_images = False  # Set to False to skip image annotation and storage
-
-#     def event_stream():
-#         # Yield initial message
-#         yield "data: 🚀 OCR process started...\n\n"
-        
-#         # Simulate initialization message
-#         yield "data: 🔍 Initializing OCR engine (this may take a while)...\n\n"
-        
-#         # Initialize OCR reader
-#         reader = easyocr.Reader(['de'])  # Initialize OCR reader (this will take time on CPU)
-#         yield "data: OCR engine initialized.\n\n"
-
-#         # Detect environment (Docker or Local)
-#         base_dir = '/app' if os.path.exists('/app') else os.path.dirname(settings.BASE_DIR)
-#         images_base_folder = os.path.join(base_dir, "images")
-#         analyzed_base_folder = os.path.join(base_dir, "annotated_images")
-        
-#         # Creating the folder for annotated images if it's not created
-#         os.makedirs(analyzed_base_folder, exist_ok=True)
-
-#         if annotate_images:
-#             yield "data: 📝 Annotated images will be saved.\n\n"
-#         else:
-#             yield "data: 🗑 Annotated images will not be saved.\n\n"
-
-#         # Process image folders
-#         for folder_name in os.listdir(images_base_folder):
-#             folder_path = os.path.join(images_base_folder, folder_name)
-#             if not os.path.isdir(folder_path):
-#                 continue
-
-#             if annotate_images:
-#                 output_folder = os.path.join(analyzed_base_folder, folder_name)
-#                 os.makedirs(output_folder, exist_ok=True)
-
-#             image_files = [f for f in os.listdir(folder_path) if f.lower().endswith(('.jpg', '.jpeg'))][:4]  # Limiting to first 3 images
-#             if not image_files:
-#                 yield f"data: ⚠ No JPEG images found in {folder_name}. Skipping...\n\n"
-#                 continue
-
-#             yield f"data: 📂 Processing {len(image_files)} images in '{folder_name}'...\n\n"
-
-#             for image_file in image_files:
-#                 image_path = os.path.join(folder_path, image_file)
-
-#                 # **CHECK IF IMAGE WAS ALREADY PROCESSED**
-#                 existing_entry = AnalyzerResult.objects.filter(img_name=image_file).first()
-#                 if existing_entry:
-#                     yield f"data: ⏭ Skipping {image_file} (already processed)...\n\n"
-#                     continue  # Skip this image and move to the next one
-
-#                 # Skip the annotation and image saving if annotate_images is False
-#                 if annotate_images:
-#                     annotated_path = os.path.join(output_folder, f"annotated_{image_file}")
-#                 else:
-#                     annotated_path = None  # No annotation saved, not needed
-
-#                 yield f"data: 🖼 Processing image: {image_file}...\n\n"
-
-#                 try:
-#                     # Run OCR on the image
-#                     results = reader.readtext(image_path)
-                    
-#                     # Initialize variables
-#                     recognized_text = ""
-#                     total_confidence = 0
-#                     num_confidences = 0
-
-#                     # If we are annotating, proceed with the image annotation
-#                     if annotate_images:
-#                         img = Image.open(image_path)
-#                         draw = ImageDraw.Draw(img)
-
-#                         try:
-#                             font = ImageFont.truetype("arial.ttf", size=16)
-#                         except IOError:
-#                             font = ImageFont.load_default()
-
-#                         for (bbox, text, confidence) in results:
-#                             if confidence <= 0.5:
-#                                 continue
-#                             (top_left, _, bottom_right, _) = bbox
-#                             top_left = tuple(map(int, top_left))
-#                             bottom_right = tuple(map(int, bottom_right))
-#                             draw.rectangle([top_left, bottom_right], outline="red", width=3)
-#                             draw.text((top_left[0], top_left[1] - 20), text, fill="blue", font=font)
-                            
-#                             recognized_text += text + "\n"
-#                             total_confidence += confidence
-#                             num_confidences += 1
-
-#                         if num_confidences > 0:
-#                             avg_confidence = total_confidence / num_confidences
-#                         else:
-#                             avg_confidence = 0
-
-#                         # Save annotated image if required
-#                         img.save(annotated_path)  # Save the annotated image
-#                     else:
-#                         bounding_boxes = []
-
-#                         # Just process the text and confidence without annotating or saving the image
-#                         for (bbox, text, confidence) in results:
-#                             if confidence <= 0.5:
-#                                 continue
-#                             recognized_text += text + "\n"
-#                             total_confidence += confidence
-#                             num_confidences += 1
-
-#                             bbox = [(int(coord[0]), int(coord[1])) for coord in bbox]
-
-#                             # Save the bounding box coordinates (you can store as a list of tuples or JSON string)
-#                             bounding_boxes.append({
-#                                 'text': text,
-#                                 'bbox': bbox
-#                             })
-
-#                         if num_confidences > 0:
-#                             avg_confidence = total_confidence / num_confidences
-#                         else:
-#                             avg_confidence = 0
-
-
-#                         avg_color = get_average_color(image_path)
-#                         avg_color_hex = '#{:02x}{:02x}{:02x}'.format(*avg_color)  # Convert RGB to Hex format
-
-#                         # ✅ **SAVE TO analyzer_db**
-#                         ocr_result = AnalyzerResult(
-#                             img_name=image_file,
-#                             created=timezone.now(),
-#                             scraper_datum_id=None,  # Change this based on your logic
-#                             ocr_text=recognized_text,
-#                             box_cord=json.dumps(bounding_boxes),
-#                             textfarben=avg_color_hex,
-#                             font_size=None,  # Change this based on font size detection logic
-#                             hintergrundfarben=None,  # Change this if needed
-#                             textstimmung=None  # Change this if needed
-#                         )
-#                         ocr_result.save(using="analyzer_db")  # ✅ Save in analyzer_db
-
-
-
-#                     yield f"data: ✅ Processed: {image_file}\n\n"
-
-#                 except Exception as e:
-#                     yield f"data: ❌ Error processing {image_file}: {str(e)}\n\n"
-#                     raise e  # Stop execution immediately
-
-#         # Final message
-#         yield "data: 🎉 OCR processing complete!\n\n"
-
-#     return StreamingHttpResponse(event_stream(), content_type='text/event-stream')
-
-
-
-
-
-
-
 
 # Start OCR process triggered by the button click
 def start_ocr_process(request):

@@ -29,7 +29,7 @@ def process_images(yield_event):
         if not os.path.isdir(folder_path): 
             continue
 
-        image_files =  [f for f in os.listdir(folder_path) if f.lower().endswith(('.jpg', '.jpeg'))][:2] # Limit
+        image_files =  [f for f in os.listdir(folder_path) if f.lower().endswith(('.jpg', '.jpeg'))][:100] # Limit
         
         if not image_files:
             yield yield_event(f"❌ No images found in {folder_name}")
