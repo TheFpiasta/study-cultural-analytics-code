@@ -4,9 +4,11 @@ services:
     restart: on-failure
     volumes:
       - ./data/images:/app/images
+      - ./data/annotated_images:/app/annotated_images  # Mount this so you can see changes
       - ./data/log:/app/log
       - ./data/database/sqlite:/app/sqlite
       - ./django-app/scraper/migrations:/app/scraper/migrations
+      - ./data:/app/data
     environment:
       - PYTHONUNBUFFERED=${PYTHONUNBUFFERED}
     ports:
@@ -19,8 +21,8 @@ services:
     develop:
       watch:
         - action: sync
-          path: "./django-app/scraper"
-          target: "/app/scraper"
+          path: "./django-app"
+          target: "/app"
           ignore:
             - "*.pyc"
             - "__pycache__"
