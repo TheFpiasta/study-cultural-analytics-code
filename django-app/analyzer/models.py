@@ -7,7 +7,7 @@ class AnalyzerResult(models.Model):
     ocr_text = models.TextField(blank=True, null=True)
     box_cord = models.TextField(blank=True, null=True)
     textfarben = models.CharField(max_length=30, blank=True, null=True)  # Increased for flexibility
-    font_size = models.FloatField(blank=True, null=True)
+    font_size = models.TextField(blank=True, null=True)
     hintergrundfarben = models.CharField(max_length=30, blank=True, null=True)  # Increased
     textstimmung = models.TextField(blank=True, null=True)  # Increased
 

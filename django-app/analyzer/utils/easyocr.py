@@ -34,4 +34,4 @@ def run_ocr(image_path, reader):
     else:
         avg_confidence = 0
 
-    return recognized_text, bounding_boxes
+    return recognized_text.strip(), bounding_boxes

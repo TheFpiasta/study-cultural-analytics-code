@@ -1,18 +1,23 @@
 import os
 import json
 import easyocr
+# import torch
+
 from django.utils import timezone
 from analyzer.utils.easyocr import run_ocr
 from analyzer.utils.color_analysis import get_average_color
 from analyzer.utils.text_colors import extract_text_colors
-from analyzer.utils.text_sentiment import analyze_text_sentiment
+from analyzer.utils.text_sentiments import analyze_text_sentiment
+from analyzer.utils.vaderSentiment import analyze_text_sentiment_vader
+from analyzer.utils.font_size import estimate_font_size_opencv
 from analyzer.models import AnalyzerResult
 
 def process_images(yield_event):
     yield yield_event("🔍 Starting image processing...")
 
     # Initialize EasyOCR Reader once (outside the loop)
-    reader = easyocr.Reader(['de'])
+    # reader = easyocr.Reader(['de'])
+    reader = easyocr.Reader(['de'], gpu=True)
 
     base_dir = '/app' if os.path.exists('/app') else os.path.dirname(settings.BASE_DIR)
 
@@ -24,7 +29,7 @@ def process_images(yield_event):
         if not os.path.isdir(folder_path): 
             continue
 
-        image_files =  [f for f in os.listdir(folder_path) if f.lower().endswith(('.jpg', '.jpeg'))][:1] # Limit
+        image_files =  [f for f in os.listdir(folder_path) if f.lower().endswith(('.jpg', '.jpeg'))][:2] # Limit
         
         if not image_files:
             yield yield_event(f"❌ No images found in {folder_name}")
@@ -58,20 +63,28 @@ def process_single_image(image_path, image_file, yield_event, reader):
         # Extract dominant colors for each text region
         text_colors = extract_text_colors(image_path, bounding_boxes)
 
-        # Store text colors as JSON (so each text segment has its corresponding color)
-        text_colors_json = json.dumps(text_colors)
+        # Clean extracted text for sentiment analysis (remove line breaks)
+        cleaned_text_for_sentiment = " ".join(extracted_text.splitlines())
+        
+        # Perform sentiment analysis on the cleaned text (without line breaks)
+        # polarity, subjectivity = analyze_text_sentiment(cleaned_text_for_sentiment)
 
-        # Store the results in the database (AnalyzerResult model)
+        # Perform sentiment analysis on the cleaned text (without line breaks)
+        polarity, sentiment = analyze_text_sentiment_vader(cleaned_text_for_sentiment)
+
+        font_sizes = estimate_font_size_opencv(image_path, bounding_boxes)
+
+        # Store the results in the database
         ocr_result = AnalyzerResult(
             img_name=image_file,
             created=timezone.now(),
             scraper_datum_id=None,
             ocr_text=extracted_text,
             box_cord=json.dumps(bounding_boxes),
-            textfarben=text_colors_json,
-            font_size=None,
+            textfarben=json.dumps(text_colors),
+            font_size=json.dumps(font_sizes),  # Store filtered font sizes
             hintergrundfarben=avg_color_hex,
-            textstimmung=None
+            textstimmung=json.dumps({"polarity": polarity, "sentiment": sentiment})
         )
         ocr_result.save(using="analyzer_db")
 
