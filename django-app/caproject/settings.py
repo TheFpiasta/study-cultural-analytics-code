@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "debug_toolbar",
-    'easyocr_app',
+    'analyzer',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'caproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,7 +82,12 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / 'sqlite' / 'caprojectdb',
-    }
+    },
+    "analyzer_db": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / 'sqlite' / 'analyzerdb',
+    },
+
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': 'caprojectdb',
@@ -92,6 +97,8 @@ DATABASES = {
     #     "PORT": "5432",
     # }
 }
+
+DATABASE_ROUTERS = ['caproject.database_router.AnalyzerRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

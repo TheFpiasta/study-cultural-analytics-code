@@ -21,7 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('easyocr_app/', include('easyocr_app.urls')),
+    path('analyzer/', include('analyzer.urls')),
     path("scraper/", include("scraper.urls")),
     path("admin/", admin.site.urls),
 ]
