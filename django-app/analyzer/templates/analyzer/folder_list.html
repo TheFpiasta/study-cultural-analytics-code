@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Start OCR Process{% endblock %}
+
+{% block content %}
+    <style>
+        /* Main container */
+        .container {
+            margin-top: 40px;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            max-height: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .folder-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .folder-item {
+            background-color: #722222;
+            padding: 20px;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .folder-item:hover {
+            background-color: #9e1212;
+        }
+
+        /* Add some space below the list */
+        .load-more {
+            margin-top: 20px;
+            background-color: #722222;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .load-more:hover {
+            background-color: #9e1212;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Image Folders</h1>
+        <div class="folder-list">
+            {% for folder in folders %}
+                <div class="folder-item">
+                    <a href="{% url 'folder_images' folder_name=folder %}" style="color: white; text-decoration: none;">
+                        {{ folder }}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if folders.has_next %}
+            <button class="load-more" onclick="window.location.href='?page={{ folders.next_page_number }}'">Load More</button>
+        {% endif %}
+    </div>
+
+{% endblock %}
