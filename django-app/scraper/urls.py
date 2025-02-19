@@ -10,4 +10,5 @@ urlpatterns = [
     # API calls
 
     path("start/", apis.start, name="start"),
+    path("generate-tags/", apis.generateTags, name="generateTags"),
 ]

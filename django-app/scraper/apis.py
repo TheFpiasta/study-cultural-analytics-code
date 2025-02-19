@@ -43,6 +43,49 @@ class ScraperStats:
 
 
 @csrf_exempt
+def generateTags(request):
+    req_data = []
+
+    if request.method == "GET":
+        req_data = request.args
+
+    if request.method == "POST":
+        req_data = json.loads(request.body.decode("utf-8"))
+
+    try:
+        run_ids = req_data.get("run_ids", [])  # if array empty, all runs will be selected
+
+        if run_ids.length == 0:
+            runs = ScraperRun.objects.all()
+        else:
+            runs = ScraperRun.objects.filter(id__in=run_ids)
+
+        def stream_output():
+            for run in runs:
+                print(f"Generate Tags for Run {run.name}")
+                all_entries = ScrapeData.objects.filter(scraper_run_id=run.id)
+                entry_count = 0
+
+                for entry in all_entries:
+                    if entry_count % 100 == 0:
+                        print(f"{entry_count} / {len(all_entries)}")
+                        yield JsonResponse({"status": f"{entry_count} / {len(all_entries)}"})
+
+                    text = entry.text
+                    hashtags = re.findall(r"#(\w+)", text)
+
+                    # todo save hashtags to database
+                    print(f"{entry.id}: {json.dumps(hashtags)}")
+                    entry_count += 1
+
+        response = StreamingHttpResponse(stream_output(), content_type="application/json")
+        return response
+    except Exception as e:
+        print(str(e) + " " + str(traceback.print_exc()))
+        return JsonResponse({"! [general] error": str(e) + " " + str(traceback.print_exc())}, status=500)
+
+
+@csrf_exempt
 def start(request):
     req_data = []
 
