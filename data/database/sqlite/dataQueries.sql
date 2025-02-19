@@ -30,3 +30,40 @@ GROUP BY type;
 SELECT type, COUNT(*)
 FROM scraper_scrapedata
 GROUP BY type;
+
+-- get hashtags distribution count by type
+SELECT 'no_hashtags' as hashtags, type, count(*)
+FROM scraper_scrapedata
+WHERE extracted_hashtags = '[]'
+GROUP BY type
+UNION ALL
+SELECT 'has_hashtags' as hashtags, type, count(*)
+FROM scraper_scrapedata
+WHERE extracted_hashtags != '[]'
+GROUP BY type;
+
+-- get hashtags distribution count by news portal
+SELECT 'no_hashtags' as hashtags, scraper_scraperrun.profile_id, count(*)
+FROM scraper_scrapedata
+JOIN scraper_scraperrun ON scraper_scrapedata.scraper_run_id_id = scraper_scraperrun.id
+WHERE extracted_hashtags = '[]'
+GROUP BY scraper_scraperrun.profile_id
+UNION ALL
+SELECT 'has_hashtags' as hashtags, scraper_scraperrun.profile_id, count(*)
+FROM scraper_scrapedata
+JOIN scraper_scraperrun ON scraper_scrapedata.scraper_run_id_id = scraper_scraperrun.id
+WHERE extracted_hashtags != '[]'
+GROUP BY scraper_scraperrun.profile_id;
+
+-- get hashtags distribution count by news portal and type
+SELECT 'no_hashtags' as hashtags, scraper_scraperrun.profile_id, type, count(*)
+FROM scraper_scrapedata
+JOIN scraper_scraperrun ON scraper_scrapedata.scraper_run_id_id = scraper_scraperrun.id
+WHERE extracted_hashtags = '[]'
+GROUP BY scraper_scraperrun.profile_id, type
+UNION ALL
+SELECT 'has_hashtags' as hashtags, scraper_scraperrun.profile_id, type, count(*)
+FROM scraper_scrapedata
+JOIN scraper_scraperrun ON scraper_scrapedata.scraper_run_id_id = scraper_scraperrun.id
+WHERE extracted_hashtags != '[]'
+GROUP BY scraper_scraperrun.profile_id, type;

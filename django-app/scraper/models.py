@@ -87,6 +87,8 @@ class ScrapeData(models.Model):
 
     is_video = models.BooleanField()
 
+    extracted_hashtags = models.JSONField(null=True, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
