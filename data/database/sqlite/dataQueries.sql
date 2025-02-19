@@ -31,6 +31,15 @@ SELECT type, COUNT(*)
 FROM scraper_scrapedata
 GROUP BY type;
 
+-- get hashtags count
+SELECT 'no_hashtags' as hashtags, count(*)
+FROM scraper_scrapedata
+WHERE extracted_hashtags = '[]'
+UNION ALL
+SELECT 'has_hashtags' as hashtags, count(*)
+FROM scraper_scrapedata
+WHERE extracted_hashtags != '[]';
+
 -- get hashtags distribution count by type
 SELECT 'no_hashtags' as hashtags, type, count(*)
 FROM scraper_scrapedata
@@ -67,3 +76,16 @@ FROM scraper_scrapedata
 JOIN scraper_scraperrun ON scraper_scrapedata.scraper_run_id_id = scraper_scraperrun.id
 WHERE extracted_hashtags != '[]'
 GROUP BY scraper_scraperrun.profile_id, type;
+
+
+-- list and count all hashtags
+WITH extracted AS (
+  SELECT json_each.value as tag
+  FROM scraper_scrapedata, json_each(scraper_scrapedata.extracted_hashtags)
+)
+SELECT
+  tag,
+  COUNT(*) as count
+FROM extracted
+GROUP BY tag
+ORDER BY count DESC;
