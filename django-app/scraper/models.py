@@ -1,6 +1,6 @@
 from datetime import datetime, date
 
-from django.db import models
+from django.db import models, connection
 from django.core.exceptions import ValidationError
 from django.core.serializers import serialize
 from django.http import JsonResponse
@@ -96,3 +96,24 @@ class ScrapeData(models.Model):
 
     def to_json(self):
         return JsonResponse(serialize('json', [self]), safe=False)
+
+    @classmethod
+    def get_hashtag_counts(cls):
+        """"
+        gets all unique hashtags
+        used lowercased hashtags to prevent e.g. "Munich" and "munich" to be returned each. Because these are technically the same words
+        """
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                    WITH extracted AS (
+                      SELECT LOWER(json_each.value) as tag
+                      FROM scraper_scrapedata, json_each(scraper_scrapedata.extracted_hashtags)
+                    )
+                    SELECT
+                      tag,
+                      COUNT(*) as count
+                    FROM extracted
+                    GROUP BY tag
+                    ORDER BY count DESC;
+                """)
+            return cursor.fetchall()

@@ -89,3 +89,17 @@ SELECT
 FROM extracted
 GROUP BY tag
 ORDER BY count DESC;
+
+-- list and count all lowercased hashtags
+WITH extracted AS (
+  SELECT LOWER(json_each.value) as tag
+  FROM scraper_scrapedata, json_each(scraper_scrapedata.extracted_hashtags)
+)
+SELECT
+  tag,
+  COUNT(*) as count
+FROM extracted
+GROUP BY tag
+ORDER BY count DESC;
+
+

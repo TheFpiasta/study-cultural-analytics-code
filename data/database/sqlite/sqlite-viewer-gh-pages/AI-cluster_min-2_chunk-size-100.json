@@ -1,0 +1,4098 @@
+{
+    "sub_array_count": 26,
+    "items": 2540,
+    "clusters": 26,
+    "data": [
+        [
+            {
+                "Politics_Germany": [
+                    "ampel",
+                    "afd",
+                    "bundestag",
+                    "scholz",
+                    "bundestagswahl",
+                    "wahl",
+                    "lindner"
+                ]
+            },
+            {
+                "International_Politics": [
+                    "usa",
+                    "trump",
+                    "donaldtrump",
+                    "biden",
+                    "putin",
+                    "harris",
+                    "china",
+                    "iran",
+                    "eu"
+                ]
+            },
+            {
+                "Global_Conflict": [
+                    "israel",
+                    "gaza",
+                    "hamas",
+                    "ukraine",
+                    "russland",
+                    "krieg",
+                    "nahost",
+                    "syrien"
+                ]
+            },
+            {
+                "German_Cities": [
+                    "münchen",
+                    "berlin",
+                    "hamburg",
+                    "magdeburg",
+                    "brandenburg"
+                ]
+            },
+            {
+                "Media_News": [
+                    "zdfheute",
+                    "nachrichten",
+                    "news",
+                    "bild",
+                    "podcast"
+                ]
+            },
+            {
+                "Family_Relationships": [
+                    "familie",
+                    "kinder",
+                    "eltern",
+                    "erziehung",
+                    "beziehung",
+                    "liebe",
+                    "schwangerschaft"
+                ]
+            },
+            {
+                "Health_Wellness": [
+                    "gesundheit",
+                    "medizin",
+                    "psychologie",
+                    "therapie",
+                    "ernährung"
+                ]
+            },
+            {
+                "Sports_Entertainment": [
+                    "sport",
+                    "fußball",
+                    "em2024",
+                    "euro2024",
+                    "em",
+                    "famefighting",
+                    "celebrityboxing",
+                    "oktoberfest"
+                ]
+            },
+            {
+                "Travel_Transportation": [
+                    "urlaub",
+                    "reisen",
+                    "bahn",
+                    "auto",
+                    "flugzeug"
+                ]
+            },
+            {
+                "Weather_Environment": [
+                    "klimawandel",
+                    "klima",
+                    "wetter",
+                    "unwetter",
+                    "hochwasser"
+                ]
+            },
+            {
+                "Law_Security": [
+                    "polizei",
+                    "gericht",
+                    "verbrechen",
+                    "truecrime",
+                    "prozess",
+                    "rettung"
+                ]
+            },
+            {
+                "Education_Research": [
+                    "schule",
+                    "forschung",
+                    "ki"
+                ]
+            },
+            {
+                "Economy_Finance": [
+                    "finanzen",
+                    "geld",
+                    "wirtschaft",
+                    "arbeit"
+                ]
+            },
+            {
+                "European_Countries": [
+                    "deutschland",
+                    "germany",
+                    "frankreich",
+                    "italien",
+                    "spanien",
+                    "österreich",
+                    "großbritannien",
+                    "paris"
+                ]
+            },
+            {
+                "Seasonal_Events": [
+                    "weihnachten",
+                    "weihnachtsmarkt",
+                    "silvester"
+                ]
+            },
+            {
+                "Social_Media": [
+                    "reels",
+                    "szunvergessen"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "migration",
+                    "geschichte",
+                    "musik",
+                    "tiere",
+                    "wohnen",
+                    "alter"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics & Government": [
+                    "uswahl2024",
+                    "politbarometer",
+                    "spd",
+                    "habeck",
+                    "europa",
+                    "demokratie",
+                    "merz",
+                    "grüne",
+                    "cdu",
+                    "wahlen",
+                    "kamalaharris",
+                    "olafscholz",
+                    "bundesregierung",
+                    "baerbock",
+                    "fdp",
+                    "rechtsextremismus"
+                ]
+            },
+            {
+                "Locations": [
+                    "losangeles",
+                    "newyork",
+                    "thüringen",
+                    "südkorea",
+                    "brasilien",
+                    "libanon",
+                    "japan",
+                    "australien",
+                    "türkei",
+                    "schweiz",
+                    "england",
+                    "sachsen",
+                    "köln"
+                ]
+            },
+            {
+                "Entertainment & Media": [
+                    "tiktok",
+                    "zdffrontal",
+                    "influencer",
+                    "netflix",
+                    "socialmedia",
+                    "taylorswift",
+                    "serien",
+                    "sportstudio",
+                    "film",
+                    "streaming",
+                    "kunst"
+                ]
+            },
+            {
+                "Family & Relationships": [
+                    "baby",
+                    "familientrio",
+                    "hochzeit",
+                    "paartherapie",
+                    "freundschaft",
+                    "partnerschaft",
+                    "ehe",
+                    "kind",
+                    "trennung",
+                    "sex"
+                ]
+            },
+            {
+                "Health & Wellness": [
+                    "drogen",
+                    "mentalhealth",
+                    "krankenhaus",
+                    "sucht",
+                    "geburt",
+                    "cannabis"
+                ]
+            },
+            {
+                "Nature & Environment": [
+                    "umwelt",
+                    "natur",
+                    "klimaschutz",
+                    "tierschutz",
+                    "schnee",
+                    "winter"
+                ]
+            },
+            {
+                "Transportation & Infrastructure": [
+                    "deutschebahn",
+                    "db",
+                    "verkehr",
+                    "musk",
+                    "nasa",
+                    "weltall"
+                ]
+            },
+            {
+                "Society & Issues": [
+                    "frauen",
+                    "metoo",
+                    "gewalt",
+                    "terror",
+                    "queer",
+                    "sicherheit",
+                    "rente"
+                ]
+            },
+            {
+                "Animals": [
+                    "hund",
+                    "hunde"
+                ]
+            },
+            {
+                "Sports & Recreation": [
+                    "dfb",
+                    "boxen",
+                    "wiesn",
+                    "paralympics"
+                ]
+            },
+            {
+                "Crime & Safety": [
+                    "crime",
+                    "kriminalität",
+                    "unfall",
+                    "feuerwehr",
+                    "feuer"
+                ]
+            },
+            {
+                "Lifestyle": [
+                    "glück",
+                    "studium",
+                    "job",
+                    "karriere",
+                    "essen",
+                    "reise",
+                    "produkttest"
+                ]
+            },
+            {
+                "Media Events": [
+                    "interview",
+                    "rekord",
+                    "trauer",
+                    "palästina"
+                ]
+            }
+        ],
+        [
+            {
+                "Health & Medical": [
+                    "krankheit",
+                    "arzt",
+                    "krebs",
+                    "who",
+                    "psyche",
+                    "gehirn",
+                    "fitness",
+                    "abnehmen",
+                    "depression",
+                    "rauchen"
+                ]
+            },
+            {
+                "Entertainment & Media": [
+                    "kino",
+                    "serie",
+                    "hollywood",
+                    "markuslanz",
+                    "lanz",
+                    "zdfsportstudio",
+                    "gaming",
+                    "fotografie"
+                ]
+            },
+            {
+                "Places & Locations": [
+                    "kalifornien",
+                    "london",
+                    "norwegen",
+                    "indien",
+                    "thailand",
+                    "niederlande",
+                    "dresden",
+                    "aschaffenburg",
+                    "georgien"
+                ]
+            },
+            {
+                "Politics & Government": [
+                    "btw25",
+                    "wahlkampf",
+                    "regierung",
+                    "kanzler",
+                    "landtagswahl",
+                    "gesetz",
+                    "un",
+                    "assad",
+                    "demo"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "feminismus",
+                    "lgbtq",
+                    "gleichberechtigung",
+                    "diskriminierung",
+                    "inklusion",
+                    "antisemitismus",
+                    "gesellschaft"
+                ]
+            },
+            {
+                "Technology & Digital": [
+                    "elonmusk",
+                    "meta",
+                    "smartphone",
+                    "handy",
+                    "strom"
+                ]
+            },
+            {
+                "Sports": [
+                    "bundesliga",
+                    "fussball",
+                    "olympia",
+                    "nationalmannschaft"
+                ]
+            },
+            {
+                "Environment & Nature": [
+                    "klimakrise",
+                    "meer",
+                    "regen",
+                    "wandern",
+                    "letztegeneration"
+                ]
+            },
+            {
+                "Science & Education": [
+                    "wissenschaft",
+                    "uni",
+                    "bildung",
+                    "iss",
+                    "weltraum"
+                ]
+            },
+            {
+                "Family & Relationships": [
+                    "mutter",
+                    "paar",
+                    "dating",
+                    "einsamkeit",
+                    "sexualität",
+                    "verhütung",
+                    "abtreibung"
+                ]
+            },
+            {
+                "Crime & Justice": [
+                    "mord",
+                    "kriminalfall",
+                    "gefängnis",
+                    "vermisst",
+                    "hisbollah"
+                ]
+            },
+            {
+                "Culture & Lifestyle": [
+                    "literatur",
+                    "bücher",
+                    "lesen",
+                    "sprache",
+                    "tourismus",
+                    "wiesn2024"
+                ]
+            },
+            {
+                "Life & Death": [
+                    "tod",
+                    "rip",
+                    "gedenken"
+                ]
+            },
+            {
+                "Work & Living": [
+                    "homeoffice",
+                    "miete"
+                ]
+            },
+            {
+                "Animals": [
+                    "katze"
+                ]
+            },
+            {
+                "Events & Seasons": [
+                    "christmas",
+                    "sommer",
+                    "feuerwerk"
+                ]
+            },
+            {
+                "Youth & Society": [
+                    "jugendliche"
+                ]
+            },
+            {
+                "Celebrities": [
+                    "seancombs",
+                    "pelicot"
+                ]
+            },
+            {
+                "Transportation": [
+                    "zug"
+                ]
+            },
+            {
+                "Natural Disasters": [
+                    "hurrikan"
+                ]
+            },
+            {
+                "Charity": [
+                    "spenden"
+                ]
+            },
+            {
+                "Sleep": [
+                    "schlaf"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics & Government": [
+                    "bundeskanzler",
+                    "merkel",
+                    "steinmeier",
+                    "weidel",
+                    "macron",
+                    "rechtsruck",
+                    "ltwbrandenburg",
+                    "vertrauensfrage",
+                    "nato",
+                    "bsw"
+                ]
+            },
+            {
+                "Places & Cities": [
+                    "frankfurt",
+                    "stuttgart",
+                    "avignon",
+                    "valencia",
+                    "bingen",
+                    "mexiko",
+                    "island",
+                    "schweden",
+                    "dänemark",
+                    "niedersachsen",
+                    "neuseeland",
+                    "argentinien"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "armut",
+                    "asyl",
+                    "flucht",
+                    "obdachlosigkeit",
+                    "frauenrechte",
+                    "schwangerschaftsabbruch",
+                    "sexarbeit",
+                    "escort",
+                    "missbrauch",
+                    "hilfe"
+                ]
+            },
+            {
+                "Environment & Climate": [
+                    "umweltschutz",
+                    "cop29",
+                    "vulkan",
+                    "flut",
+                    "hitze",
+                    "esa",
+                    "raumfahrt"
+                ]
+            },
+            {
+                "Health & Wellness": [
+                    "psychotherapie",
+                    "pflege",
+                    "krank",
+                    "skincare",
+                    "hautpflege",
+                    "narzissmus",
+                    "persönlichkeit"
+                ]
+            },
+            {
+                "Sports & Entertainment": [
+                    "fcbayern",
+                    "dfbteam",
+                    "basketball",
+                    "marathon",
+                    "concert",
+                    "comedy",
+                    "party",
+                    "talkshow",
+                    "oscars"
+                ]
+            },
+            {
+                "Education & Career": [
+                    "ausbildung",
+                    "beruf",
+                    "lernen",
+                    "lehrer",
+                    "arbeitsmarkt"
+                ]
+            },
+            {
+                "Transportation": [
+                    "autobahn",
+                    "lufthansa",
+                    "fahrrad",
+                    "tesla"
+                ]
+            },
+            {
+                "Lifestyle & Relationships": [
+                    "leben",
+                    "beziehungen",
+                    "fremdgehen",
+                    "kinderwunsch",
+                    "adoption",
+                    "zufriedenheit"
+                ]
+            },
+            {
+                "Business & Finance": [
+                    "steuern",
+                    "immobilie",
+                    "haushalt",
+                    "betrug",
+                    "lotto"
+                ]
+            },
+            {
+                "Culture & Society": [
+                    "kultur",
+                    "kirche",
+                    "religion",
+                    "neujahr",
+                    "jahresrückblick"
+                ]
+            },
+            {
+                "Law & Order": [
+                    "verbot",
+                    "strafe",
+                    "legalisierung",
+                    "kokain"
+                ]
+            },
+            {
+                "International Affairs": [
+                    "nahostkonflikt",
+                    "angriff",
+                    "nobelpreis"
+                ]
+            },
+            {
+                "Food & Dining": [
+                    "bier",
+                    "mcdonalds",
+                    "eis"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "held",
+                    "milton",
+                    "diddy",
+                    "yoon",
+                    "umfrage"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics & Government": [
+                    "ampelkoalition",
+                    "csu",
+                    "europawahl",
+                    "faeser",
+                    "joebiden",
+                    "neuwahl",
+                    "söder",
+                    "uselections",
+                    "wagenknecht"
+                ]
+            },
+            {
+                "Places & Locations": [
+                    "beirut",
+                    "damaskus",
+                    "ddr",
+                    "florida",
+                    "griechenland",
+                    "leipzig",
+                    "mallorca",
+                    "mannheim",
+                    "nordkorea",
+                    "ostsee",
+                    "philippinen",
+                    "polen",
+                    "rom",
+                    "rumänien",
+                    "sudan",
+                    "sylt",
+                    "theresienwiese",
+                    "wien"
+                ]
+            },
+            {
+                "Housing & Real Estate": [
+                    "architektur",
+                    "eigenheim",
+                    "immobilien",
+                    "wohnraum",
+                    "wohnung"
+                ]
+            },
+            {
+                "Health & Wellness": [
+                    "diät",
+                    "klinik",
+                    "medikamente",
+                    "mentalegesundheit",
+                    "organspende",
+                    "schlafen",
+                    "schwimmen",
+                    "vegan"
+                ]
+            },
+            {
+                "Environment & Nature": [
+                    "brand",
+                    "landwirtschaft",
+                    "waldbrände",
+                    "wasser",
+                    "wal",
+                    "zoo"
+                ]
+            },
+            {
+                "Media & Entertainment": [
+                    "instagram",
+                    "kolumne",
+                    "legende",
+                    "medien",
+                    "model",
+                    "royals",
+                    "schauspieler",
+                    "talk",
+                    "tv",
+                    "wieicheuchsehe"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "bauernproteste",
+                    "israelunderattack",
+                    "jugend",
+                    "katholischekirche",
+                    "klimakleber",
+                    "menschenrechte",
+                    "rassismus",
+                    "senioren",
+                    "soziologie",
+                    "unicef"
+                ]
+            },
+            {
+                "Business & Economy": [
+                    "aktien",
+                    "dhl",
+                    "handwerk",
+                    "inflation",
+                    "luxus",
+                    "post",
+                    "shopping",
+                    "sparen"
+                ]
+            },
+            {
+                "Food & Dining": [
+                    "kochen",
+                    "lebensmittel",
+                    "restaurant",
+                    "rezept"
+                ]
+            },
+            {
+                "Family & Relationships": [
+                    "geschwister",
+                    "scheidung"
+                ]
+            },
+            {
+                "Sports & Recreation": [
+                    "beckenbauer",
+                    "finale",
+                    "laufen",
+                    "poker",
+                    "strand",
+                    "weltrekord"
+                ]
+            },
+            {
+                "Technology & Companies": [
+                    "apple"
+                ]
+            },
+            {
+                "Legal & Rights": [
+                    "entführung",
+                    "recht"
+                ]
+            },
+            {
+                "Events & Time": [
+                    "2025",
+                    "silvester2024"
+                ]
+            },
+            {
+                "Crisis & Disasters": [
+                    "erdbeben",
+                    "streit"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics": [
+                    "justiz",
+                    "grenzkontrollen",
+                    "fpÖ",
+                    "verfassungsschutz",
+                    "selenskyj",
+                    "roberthabeck",
+                    "pistorius",
+                    "netanjahu",
+                    "landtagswahlen",
+                    "landtag",
+                    "krieginderukraine",
+                    "kanzlerkandidat"
+                ]
+            },
+            {
+                "Entertainment": [
+                    "fernsehen",
+                    "dschungelcamp",
+                    "bibisbeautypalace",
+                    "unterhaltung",
+                    "tilllindemann",
+                    "stefanraab",
+                    "rowzero",
+                    "rammstein",
+                    "raab",
+                    "promis",
+                    "onedirection",
+                    "liampayne",
+                    "klaasohm"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "holocaust",
+                    "demonstration",
+                    "demenz",
+                    "altern",
+                    "tierwohl",
+                    "trauma",
+                    "tradwife",
+                    "selbstbestimmung",
+                    "mentalload",
+                    "liebeskummer",
+                    "hunger",
+                    "depressionen"
+                ]
+            },
+            {
+                "Places": [
+                    "hotel",
+                    "flughafen",
+                    "albanien",
+                    "tschechien",
+                    "städtetrip",
+                    "ostdeutschland",
+                    "olympiastadion",
+                    "moskau",
+                    "lasvegas",
+                    "landleben",
+                    "indonesien"
+                ]
+            },
+            {
+                "Environment": [
+                    "co2",
+                    "waldbrand",
+                    "naturschutz",
+                    "nachhaltigkeit",
+                    "mond",
+                    "igel"
+                ]
+            },
+            {
+                "Sports": [
+                    "formel1",
+                    "europameisterschaft",
+                    "uefa",
+                    "tennis",
+                    "wettbewerb"
+                ]
+            },
+            {
+                "Living": [
+                    "wohnungssuche",
+                    "wg",
+                    "vermögen",
+                    "versicherung",
+                    "steuer",
+                    "mietpreise"
+                ]
+            },
+            {
+                "Health": [
+                    "herz",
+                    "gewicht",
+                    "krankenkasse",
+                    "hygiene",
+                    "einherzfürkinder"
+                ]
+            },
+            {
+                "Technology": [
+                    "technik",
+                    "künstlicheintelligenz",
+                    "test",
+                    "recherche"
+                ]
+            },
+            {
+                "Law and Security": [
+                    "festnahme",
+                    "fbi",
+                    "ermittlungen",
+                    "anschlag",
+                    "raf"
+                ]
+            },
+            {
+                "Family and Relationships": [
+                    "vater",
+                    "kate",
+                    "kommunikation"
+                ]
+            },
+            {
+                "Career": [
+                    "erfolg",
+                    "kündigung",
+                    "studieren"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "emotionen",
+                    "deutschlandticket",
+                    "bauern",
+                    "sturm",
+                    "katastrophe",
+                    "genz",
+                    "führerschein",
+                    "gastronomie",
+                    "kaffee",
+                    "tierliebe"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics & Government": [
+                    "vonderleyen",
+                    "parlament",
+                    "partei",
+                    "politiker",
+                    "präsident",
+                    "republikaner",
+                    "uswahl24",
+                    "uswahlen",
+                    "tvduell",
+                    "obama",
+                    "nagelsmann"
+                ]
+            },
+            {
+                "Social Issues & Activism": [
+                    "aktivismus",
+                    "gewaltgegenfrauen",
+                    "femizid",
+                    "freiheit",
+                    "proteste",
+                    "bauernprotest"
+                ]
+            },
+            {
+                "Global Regions & Countries": [
+                    "afghanistan",
+                    "afrika",
+                    "österreich",
+                    "saudiarabien",
+                    "serbien",
+                    "südamerika",
+                    "tokio",
+                    "sydney"
+                ]
+            },
+            {
+                "Technology & Digital": [
+                    "digitalisierung",
+                    "facebook",
+                    "whatsapp",
+                    "youtube",
+                    "roboter",
+                    "spacex"
+                ]
+            },
+            {
+                "Environmental": [
+                    "amazonas",
+                    "erdererwärmung",
+                    "regenwald",
+                    "wald",
+                    "ozean"
+                ]
+            },
+            {
+                "Health & Medical": [
+                    "endometriose",
+                    "pcos",
+                    "op",
+                    "pille",
+                    "schwanger",
+                    "virus"
+                ]
+            },
+            {
+                "Sports & Entertainment": [
+                    "ronaldo",
+                    "schiedsrichter",
+                    "olympiapark",
+                    "paris2024",
+                    "pokernight",
+                    "erastour"
+                ]
+            },
+            {
+                "Travel & Transportation": [
+                    "Öpnv",
+                    "fahrschule",
+                    "reisetipps",
+                    "travelbook",
+                    "tinyhouse"
+                ]
+            },
+            {
+                "Personal & Lifestyle": [
+                    "gefühle",
+                    "geburtstag",
+                    "ferien",
+                    "heiraten",
+                    "partnersuche",
+                    "selbstbewusstsein",
+                    "single",
+                    "stress"
+                ]
+            },
+            {
+                "Business & Economy": [
+                    "auktion",
+                    "reichtum",
+                    "schulden",
+                    "unternehmen",
+                    "rewe",
+                    "pakete"
+                ]
+            },
+            {
+                "Current Events": [
+                    "gazastreifen",
+                    "geiseln",
+                    "gdl",
+                    "waffen",
+                    "carolarbrücke",
+                    "bundeswehr"
+                ]
+            },
+            {
+                "Social Media & Internet": [
+                    "viral",
+                    "booktok",
+                    "bibi",
+                    "gigi",
+                    "fail"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "2024",
+                    "beerdigung",
+                    "coldcase",
+                    "diebstahl",
+                    "feuerzone",
+                    "nationalsozialismus",
+                    "papst",
+                    "pizza",
+                    "polarlichter",
+                    "rapper",
+                    "retter",
+                    "schauspielerin",
+                    "schüler",
+                    "schokolade",
+                    "sonne",
+                    "spende",
+                    "spionage",
+                    "unglück",
+                    "viertagewoche",
+                    "weihnachtsmann"
+                ]
+            }
+        ],
+        [
+            {
+                "Locations and Places": [
+                    "museum",
+                    "kroatien",
+                    "insel",
+                    "hessen",
+                    "hawaii",
+                    "grönland",
+                    "georgia",
+                    "finnland",
+                    "dubai",
+                    "borkum",
+                    "barcelona",
+                    "badenwürttemberg",
+                    "amsterdam",
+                    "alpen",
+                    "auschwitz",
+                    "brandenburgertor"
+                ]
+            },
+            {
+                "Health and Medicine": [
+                    "migräne",
+                    "körper",
+                    "gynäkologie",
+                    "frühchen",
+                    "fehlgeburt",
+                    "impfung",
+                    "alzheimer",
+                    "alkoholismus"
+                ]
+            },
+            {
+                "Education and Learning": [
+                    "mathematik",
+                    "klassenzimmer",
+                    "kindergarten",
+                    "kindheit",
+                    "biologie",
+                    "bafög",
+                    "bachelor"
+                ]
+            },
+            {
+                "Technology and Digital": [
+                    "messenger",
+                    "google",
+                    "app",
+                    "ai"
+                ]
+            },
+            {
+                "Politics and Society": [
+                    "linke",
+                    "diegründen",
+                    "bürgermeister",
+                    "bürgergeld",
+                    "flüchtlinge",
+                    "fachkräftemangel",
+                    "ampelaus",
+                    "engagement",
+                    "jugendschutz",
+                    "jugendamt"
+                ]
+            },
+            {
+                "Celebrities and Public Figures": [
+                    "melaniatrump",
+                    "maybritillner",
+                    "heidiklum",
+                    "eugenlopez",
+                    "celinebehringer",
+                    "bushido"
+                ]
+            },
+            {
+                "Business and Finance": [
+                    "millionär",
+                    "millionen",
+                    "hauskauf",
+                    "blackfriday",
+                    "arbeitszeit",
+                    "altersvorsorge",
+                    "zölle"
+                ]
+            },
+            {
+                "Entertainment and Culture": [
+                    "harrypotter",
+                    "halloween",
+                    "fifa",
+                    "club",
+                    "buchmesse",
+                    "boomer"
+                ]
+            },
+            {
+                "Buildings and Infrastructure": [
+                    "haus",
+                    "büro",
+                    "brücke",
+                    "baustelle"
+                ]
+            },
+            {
+                "Transportation": [
+                    "fliegen",
+                    "bus"
+                ]
+            },
+            {
+                "Food and Nutrition": [
+                    "kohlenhydrate",
+                    "döner",
+                    "dubaischokolade"
+                ]
+            },
+            {
+                "Family and Relationships": [
+                    "mutterschaft",
+                    "liebesgeschichte",
+                    "abschied"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "lgbtqia",
+                    "kiffen",
+                    "knast",
+                    "anklage"
+                ]
+            },
+            {
+                "Nature and Animals": [
+                    "elefant"
+                ]
+            },
+            {
+                "Environment": [
+                    "fridaysforfuture"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "kälte",
+                    "kater",
+                    "islam",
+                    "grenze",
+                    "goodnews",
+                    "geheimnis",
+                    "can",
+                    "bvb",
+                    "beauty",
+                    "anzeigenhauptmeister",
+                    "all",
+                    "attentat",
+                    "bergsteigen",
+                    "bestatter",
+                    "belgien",
+                    "fentanyl"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics": [
+                    "zuckerberg",
+                    "wolfgangschäuble",
+                    "ukrainekrieg",
+                    "uselection",
+                    "selbstbestimmungsgesetz",
+                    "präsidentschaftswahl",
+                    "parteitag",
+                    "parteien",
+                    "nawalny",
+                    "markussöder",
+                    "lepen",
+                    "kriegsrecht",
+                    "konflikt"
+                ]
+            },
+            {
+                "Places": [
+                    "zugspitze",
+                    "venezuela",
+                    "ubahn",
+                    "solingen",
+                    "singapur",
+                    "schottland",
+                    "saarland",
+                    "rheinlandpfalz",
+                    "pazifik",
+                    "notredame",
+                    "neworleans",
+                    "muenchen",
+                    "marokko",
+                    "mainz",
+                    "kuba"
+                ]
+            },
+            {
+                "Sports & Entertainment": [
+                    "wm",
+                    "superbowl",
+                    "ski",
+                    "schach",
+                    "rap",
+                    "olympischespiele",
+                    "olympia2024",
+                    "nfl",
+                    "nba",
+                    "music",
+                    "pop"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "worklifebalance",
+                    "trans",
+                    "sexismus",
+                    "prostitution",
+                    "pflegefamilie",
+                    "minimalismus",
+                    "millenials",
+                    "leistungsdruck",
+                    "körperbild"
+                ]
+            },
+            {
+                "Health & Wellness": [
+                    "zahnarzt",
+                    "therapyspeak",
+                    "meditation",
+                    "longcovid",
+                    "krankschreibung",
+                    "kopfschmerzen"
+                ]
+            },
+            {
+                "Technology & Digital": [
+                    "tiktokban",
+                    "tinder",
+                    "temu",
+                    "space",
+                    "krypto"
+                ]
+            },
+            {
+                "Environmental": [
+                    "weltklimakonferenz",
+                    "wildlife",
+                    "plastik",
+                    "müll"
+                ]
+            },
+            {
+                "Current Events": [
+                    "zeitumstellung",
+                    "winterzeit",
+                    "verschwunden",
+                    "tsunami",
+                    "tot",
+                    "sterben",
+                    "revolution",
+                    "newyear",
+                    "mauerfall",
+                    "margotfriedländer"
+                ]
+            },
+            {
+                "Business & Economy": [
+                    "volkswagen",
+                    "suv",
+                    "steuerklärung",
+                    "preise",
+                    "paket"
+                ]
+            },
+            {
+                "Lifestyle & Culture": [
+                    "zigaretten",
+                    "vapes",
+                    "ramadan",
+                    "ratten",
+                    "oma",
+                    "maori",
+                    "lebenstraum",
+                    "küche"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "x",
+                    "unbubble",
+                    "rätsel",
+                    "rezension",
+                    "ranking",
+                    "rad",
+                    "petition",
+                    "pause",
+                    "pass"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics & Government": [
+                    "koalition",
+                    "klage",
+                    "kingcharles",
+                    "kickl",
+                    "kapitol",
+                    "kaiser",
+                    "grundgesetz",
+                    "bundesverfassungsgericht",
+                    "bundestagswahl2025",
+                    "brandenburgwahl",
+                    "bka",
+                    "demokraten",
+                    "dielinke",
+                    "erdogan",
+                    "christianlindner",
+                    "barnier"
+                ]
+            },
+            {
+                "Media & Entertainment": [
+                    "journalismus",
+                    "dsds",
+                    "esc",
+                    "comedian",
+                    "barbie",
+                    "ballermann",
+                    "bildpokernight",
+                    "bibiundjulian"
+                ]
+            },
+            {
+                "Sports & Athletes": [
+                    "juliannagelsmann",
+                    "julianclaßen",
+                    "herthabsc",
+                    "bayerleverkusen",
+                    "cristianoronaldo",
+                    "cristiano",
+                    "cr7",
+                    "extremsport"
+                ]
+            },
+            {
+                "Health & Medicine": [
+                    "hpv",
+                    "hiv",
+                    "hebamme",
+                    "grippe",
+                    "erkältung",
+                    "bauchschmerzen",
+                    "dna"
+                ]
+            },
+            {
+                "Business & Finance": [
+                    "ikea",
+                    "geldanlage",
+                    "edeka",
+                    "dax",
+                    "börse",
+                    "brauerei"
+                ]
+            },
+            {
+                "Technology & Digital": [
+                    "iphone",
+                    "cybertruck",
+                    "datingapps",
+                    "datenschutz",
+                    "daten"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "integration",
+                    "gleichstellung",
+                    "geschlecht",
+                    "generationen",
+                    "gendern",
+                    "einsam",
+                    "behinderung",
+                    "carearbeit"
+                ]
+            },
+            {
+                "Food & Dining": [
+                    "gemüse",
+                    "frühstück",
+                    "food",
+                    "fleisch",
+                    "fermentieren"
+                ]
+            },
+            {
+                "Nature & Environment": [
+                    "himmel",
+                    "herbst",
+                    "brände",
+                    "dinosaurier"
+                ]
+            },
+            {
+                "People & Personalities": [
+                    "hartmutrosa",
+                    "grönemeyer",
+                    "jimmycarter",
+                    "carter",
+                    "carolinmcke",
+                    "cankaplan",
+                    "biancaheinicke",
+                    "chico"
+                ]
+            },
+            {
+                "Places & Locations": [
+                    "istanbul",
+                    "kanada",
+                    "haiti",
+                    "heimat"
+                ]
+            },
+            {
+                "Current Events": [
+                    "flugzeugabsturz",
+                    "coronavirus",
+                    "challenger"
+                ]
+            },
+            {
+                "Lifestyle & Personal": [
+                    "hundeliebe",
+                    "katzen",
+                    "geschenke",
+                    "date",
+                    "coaching",
+                    "burnon"
+                ]
+            },
+            {
+                "Social Activities": [
+                    "ehrenamt",
+                    "führung",
+                    "frankfurterbuchmesse",
+                    "bauen"
+                ]
+            },
+            {
+                "Serious Issues": [
+                    "islamismus",
+                    "extremismus",
+                    "entscheidung",
+                    "entdeckung",
+                    "einkommen",
+                    "böller"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics & Government": [
+                    "asylpolitik",
+                    "union",
+                    "werteunion",
+                    "uswahlkampf",
+                    "verfassung",
+                    "wahlrecht",
+                    "terroristen",
+                    "zoll"
+                ]
+            },
+            {
+                "Nature & Environment": [
+                    "artenschutz",
+                    "wildtiere",
+                    "wale",
+                    "vögel",
+                    "atomkraft",
+                    "antarktis",
+                    "tier",
+                    "weltraumschrott",
+                    "Überschwemmung"
+                ]
+            },
+            {
+                "Space & Science": [
+                    "astronomie",
+                    "astronauten",
+                    "universum",
+                    "archäologie"
+                ]
+            },
+            {
+                "Work & Career": [
+                    "arbeitswelt",
+                    "arbeitsplatz",
+                    "traumberuf",
+                    "training",
+                    "trainer"
+                ]
+            },
+            {
+                "Places & Travel": [
+                    "washington",
+                    "vietnam",
+                    "venedig",
+                    "tibet",
+                    "texas",
+                    "tuvalu",
+                    "Ägypten",
+                    "wales",
+                    "travel",
+                    "wheretonext"
+                ]
+            },
+            {
+                "Time & Planning": [
+                    "zeit",
+                    "zeitzeuge",
+                    "uhr",
+                    "todoliste",
+                    "vorsätze"
+                ]
+            },
+            {
+                "Sports": [
+                    "triathlon",
+                    "weltmeister",
+                    "weltmeisterschaft",
+                    "trikot",
+                    "adidas"
+                ]
+            },
+            {
+                "Health & Medical": [
+                    "aids",
+                    "ärzte",
+                    "adhs",
+                    "vasektomie",
+                    "zahnpflege",
+                    "zahn"
+                ]
+            },
+            {
+                "Education": [
+                    "unterricht",
+                    "universität",
+                    "vorlesen"
+                ]
+            },
+            {
+                "Family & Relationships": [
+                    "babys",
+                    "zwillinge",
+                    "theroyalfamily",
+                    "affäre",
+                    "wiedersehen"
+                ]
+            },
+            {
+                "Media & Technology": [
+                    "twitter",
+                    "wikileaks",
+                    "autorin",
+                    "annewill",
+                    "airbnb",
+                    "anzeige"
+                ]
+            },
+            {
+                "Emotions & Mental States": [
+                    "wut",
+                    "traurig",
+                    "albtraum",
+                    "unsicher",
+                    "unschuldig"
+                ]
+            },
+            {
+                "Transportation": [
+                    "autofahren",
+                    "unfälle",
+                    "traktor",
+                    "verspätung"
+                ]
+            },
+            {
+                "Economy & Finance": [
+                    "wohlstand",
+                    "zinsen",
+                    "teuer",
+                    "wohnungsmarkt"
+                ]
+            },
+            {
+                "Culture & Tradition": [
+                    "tradition",
+                    "weihnachtsessen",
+                    "wortdesjahres"
+                ]
+            },
+            {
+                "Law & Security": [
+                    "todesstrafe",
+                    "visum",
+                    "attacke"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "westen",
+                    "vanderkolk",
+                    "verlust",
+                    "waschen",
+                    "zuhören",
+                    "zuhause",
+                    "wwf",
+                    "woidke",
+                    "unitedwithisrael",
+                    "tipps",
+                    "tierquäler",
+                    "andererseits",
+                    "aussteiger",
+                    "arian"
+                ]
+            }
+        ],
+        [
+            {
+                "Current Events & Politics": [
+                    "terrorismus",
+                    "standwithisrael",
+                    "rafah",
+                    "rechtsstaat",
+                    "propaganda",
+                    "schuldenbremse",
+                    "soldaten",
+                    "schweigegeldprozess"
+                ]
+            },
+            {
+                "Places & Travel": [
+                    "tegernsee",
+                    "tampa",
+                    "taiwan",
+                    "southport",
+                    "sizilien",
+                    "prag",
+                    "portugal",
+                    "overtourism"
+                ]
+            },
+            {
+                "Social & Demographics": [
+                    "teenager",
+                    "student",
+                    "studenten",
+                    "superreiche",
+                    "stadtleben",
+                    "skinnyprivilege"
+                ]
+            },
+            {
+                "Transportation": [
+                    "taxi",
+                    "privatjet",
+                    "pendeln"
+                ]
+            },
+            {
+                "Health & Medical": [
+                    "schlaganfall",
+                    "schizophrenie",
+                    "postpartum",
+                    "postcovid",
+                    "patient",
+                    "pandemie",
+                    "puls",
+                    "sterilisation",
+                    "sterbehilfe"
+                ]
+            },
+            {
+                "Entertainment & Media": [
+                    "spotify",
+                    "sportbild",
+                    "sozialemedien",
+                    "rtl",
+                    "pumuckl",
+                    "promiboxen",
+                    "schauspiel"
+                ]
+            },
+            {
+                "Personal Development": [
+                    "selbstversuch",
+                    "selbstständigkeit",
+                    "selbstsicher",
+                    "persönlichkeitstest",
+                    "persönlichkeitsstörung",
+                    "persönlichkeitsentwicklung"
+                ]
+            },
+            {
+                "Education": [
+                    "sexualkunde",
+                    "schulsystem",
+                    "schulen",
+                    "python",
+                    "physik",
+                    "prüfung"
+                ]
+            },
+            {
+                "Society & Culture": [
+                    "sekte",
+                    "stereotype",
+                    "queerhistory",
+                    "pride",
+                    "patchwork",
+                    "seitensprung"
+                ]
+            },
+            {
+                "Animals & Nature": [
+                    "schafe",
+                    "pony",
+                    "pinguine",
+                    "pinguin",
+                    "pferd",
+                    "panda",
+                    "permafrost"
+                ]
+            },
+            {
+                "Lifestyle & Beauty": [
+                    "tattoo",
+                    "schönheit",
+                    "putzen"
+                ]
+            },
+            {
+                "Family & Relationships": [
+                    "sohn",
+                    "sorgerecht",
+                    "sorgen"
+                ]
+            },
+            {
+                "Sports & Activities": [
+                    "slackline",
+                    "radsport",
+                    "pferderennen"
+                ]
+            },
+            {
+                "Technology": [
+                    "pager",
+                    "startup"
+                ]
+            },
+            {
+                "Special Events": [
+                    "silvester2023",
+                    "tagderdeutscheneinheit"
+                ]
+            },
+            {
+                "Crime & Security": [
+                    "sek",
+                    "schmuggel"
+                ]
+            },
+            {
+                "Health Issues": [
+                    "schlafstörung",
+                    "sexualisiertegewalt"
+                ]
+            },
+            {
+                "Notable People": [
+                    "tanjamakaric",
+                    "shirindavid",
+                    "ricardalang",
+                    "sharmahd"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "süß",
+                    "szungeklaert",
+                    "stromausfall",
+                    "sternenkind",
+                    "smog",
+                    "slowakei",
+                    "shein",
+                    "schlossgripsholm",
+                    "schicksal",
+                    "reisepass",
+                    "reiseerfahrung",
+                    "reden",
+                    "tabak"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics & Government": [
+                    "opposition",
+                    "neuwahlen",
+                    "nancyfaeser",
+                    "militärhilfe",
+                    "militär",
+                    "meloni",
+                    "königcharles",
+                    "kennedy"
+                ]
+            },
+            {
+                "Technology & Digital": [
+                    "onlyfans",
+                    "onlineshopping",
+                    "microsoft",
+                    "meme"
+                ]
+            },
+            {
+                "Places & Locations": [
+                    "olympiaberg",
+                    "nyc",
+                    "novisad",
+                    "nordsee",
+                    "maxvorstadt",
+                    "malle",
+                    "kongo",
+                    "kenia",
+                    "kasachstan"
+                ]
+            },
+            {
+                "Health & Medical": [
+                    "neurologie",
+                    "mpox",
+                    "mecfs",
+                    "lungenentzündung",
+                    "malaria",
+                    "marburgvirus"
+                ]
+            },
+            {
+                "Nature & Environment": [
+                    "outdoor",
+                    "orca",
+                    "nutztiere",
+                    "mücken",
+                    "löwe",
+                    "mars",
+                    "komet",
+                    "klimakonferenz",
+                    "klimachaoten"
+                ]
+            },
+            {
+                "Society & Culture": [
+                    "ordnung",
+                    "muslime",
+                    "moral",
+                    "monogamie",
+                    "massentourismus",
+                    "klassismus"
+                ]
+            },
+            {
+                "Family & Relationships": [
+                    "mädchen",
+                    "männer",
+                    "mutterschutz",
+                    "mama",
+                    "lovestory",
+                    "kontaktanzeige",
+                    "kinderlos",
+                    "kinderbetreuung",
+                    "kinderrechte",
+                    "kinderarmut"
+                ]
+            },
+            {
+                "Sports & Recreation": [
+                    "olympia24",
+                    "mountainbike",
+                    "manuelneuer",
+                    "lebronjames",
+                    "klettern"
+                ]
+            },
+            {
+                "Emergency & Safety": [
+                    "notruf",
+                    "notfall",
+                    "lebenretten"
+                ]
+            },
+            {
+                "Time & Calendar": [
+                    "november",
+                    "neujahr2024"
+                ]
+            },
+            {
+                "Work & Career": [
+                    "management",
+                    "lehrermangel",
+                    "lehrerin",
+                    "lehramt",
+                    "leistung",
+                    "lokführer",
+                    "karriereende"
+                ]
+            },
+            {
+                "Entertainment & Media": [
+                    "montanablack",
+                    "metgala",
+                    "matthewperry",
+                    "maggiesmith",
+                    "kimkardashian",
+                    "kaybernstein"
+                ]
+            },
+            {
+                "Transportation": [
+                    "luftfahrt",
+                    "lkw"
+                ]
+            },
+            {
+                "Food & Nutrition": [
+                    "mittagessen",
+                    "metzger",
+                    "käse",
+                    "ketogen"
+                ]
+            },
+            {
+                "Economy & Finance": [
+                    "mieten",
+                    "kaufkraft"
+                ]
+            },
+            {
+                "Art & Culture": [
+                    "memoiren",
+                    "kunstwerk",
+                    "krimi"
+                ]
+            },
+            {
+                "Geography & Navigation": [
+                    "kartografie",
+                    "loch"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "mythos",
+                    "mobilität",
+                    "master",
+                    "motivation",
+                    "neugeborenes",
+                    "narzisstin",
+                    "niclasmatthei",
+                    "niewieder",
+                    "krise",
+                    "kurzurlaub"
+                ]
+            }
+        ],
+        [
+            {
+                "Places and Locations": [
+                    "karlsruhe",
+                    "irland",
+                    "hanau",
+                    "gelsenkirchen",
+                    "erfurt",
+                    "harz"
+                ]
+            },
+            {
+                "Politics and Government": [
+                    "kanzlerkandidatur",
+                    "friedrichmerz",
+                    "europaparlament",
+                    "g20",
+                    "gaetz",
+                    "grenzkontrolle"
+                ]
+            },
+            {
+                "Entertainment and Media": [
+                    "jimmyfallon",
+                    "julienco",
+                    "julian",
+                    "gntm",
+                    "hapekerkeling",
+                    "gigibirofio",
+                    "flojo",
+                    "friends",
+                    "helene"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "hatespeech",
+                    "femizide",
+                    "gender",
+                    "homosexualität",
+                    "identität",
+                    "gerechtigkeit",
+                    "geflüchtete"
+                ]
+            },
+            {
+                "Nature and Environment": [
+                    "gletscher",
+                    "hai",
+                    "frosch",
+                    "erde",
+                    "galaxie",
+                    "fuji"
+                ]
+            },
+            {
+                "Education and Research": [
+                    "gymnasium",
+                    "hochschule",
+                    "hirnforschung",
+                    "forscher",
+                    "homosapiens"
+                ]
+            },
+            {
+                "Cultural Events and Traditions": [
+                    "karneval",
+                    "fastnacht",
+                    "fashion"
+                ]
+            },
+            {
+                "Work and Economy": [
+                    "gehalt",
+                    "immobilienkauf",
+                    "igmetall",
+                    "gewerkschaft",
+                    "ferienhaus",
+                    "entschädigung"
+                ]
+            },
+            {
+                "Travel and Transportation": [
+                    "flugreisen",
+                    "flughorror",
+                    "flug",
+                    "grenzen"
+                ]
+            },
+            {
+                "Health and Wellness": [
+                    "hormone",
+                    "entspannung",
+                    "erkältungszeit",
+                    "erstehilfe"
+                ]
+            },
+            {
+                "Personal Development": [
+                    "erwachsen",
+                    "erfahrungen",
+                    "hoffnung",
+                    "glücklich",
+                    "erinnerungen",
+                    "erinnern"
+                ]
+            },
+            {
+                "Hobbies and Interests": [
+                    "hobby",
+                    "highlights",
+                    "highlight",
+                    "jagd",
+                    "haustiere"
+                ]
+            },
+            {
+                "Communication and Language": [
+                    "internet",
+                    "gebärdensprache",
+                    "humor"
+                ]
+            },
+            {
+                "Religion and Culture": [
+                    "judentum",
+                    "juden",
+                    "indigene"
+                ]
+            },
+            {
+                "Sports": [
+                    "jürgenklopp",
+                    "kampf"
+                ]
+            },
+            {
+                "Weather and Climate": [
+                    "frost",
+                    "glatteis"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "fake",
+                    "fans",
+                    "famezone",
+                    "falschparker",
+                    "farbattacke",
+                    "friseur",
+                    "fremdverliebt",
+                    "geschenk",
+                    "generation",
+                    "gripsholm",
+                    "hawktuah",
+                    "helfen",
+                    "itendswithus",
+                    "euro24",
+                    "ethik",
+                    "erbe"
+                ]
+            }
+        ],
+        [
+            {
+                "Entertainment & Media": [
+                    "eminem",
+                    "emilyinparis",
+                    "disney",
+                    "coldplay",
+                    "charts",
+                    "championsleague",
+                    "bookstagram",
+                    "berlintagundnacht",
+                    "ard",
+                    "asterix"
+                ]
+            },
+            {
+                "Health & Medicine": [
+                    "emdr",
+                    "diabetes",
+                    "chronischkrank",
+                    "chirurgie",
+                    "burnout",
+                    "bulimie",
+                    "blutzucker",
+                    "anatomie",
+                    "covid19",
+                    "covid"
+                ]
+            },
+            {
+                "Nature & Environment": [
+                    "elefanten",
+                    "delfine",
+                    "dürre",
+                    "biodiversität",
+                    "asteroid",
+                    "brombeere"
+                ]
+            },
+            {
+                "Animals & Pets": [
+                    "dogs",
+                    "dog"
+                ]
+            },
+            {
+                "Technology": [
+                    "eauto",
+                    "drohnen",
+                    "drohne",
+                    "computerspiele",
+                    "autoindustrie"
+                ]
+            },
+            {
+                "Places & Cities": [
+                    "duisburg",
+                    "bulgarien",
+                    "bremervörde",
+                    "baltimore",
+                    "augsburg",
+                    "athen",
+                    "alexanderplatz"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "einervonuns",
+                    "ehefüralle",
+                    "arbeiterkind",
+                    "behindertenwerkstatt",
+                    "amnesty",
+                    "ampelregierung"
+                ]
+            },
+            {
+                "Sports & Activities": [
+                    "eisbaden",
+                    "bayernmünchen",
+                    "boateng",
+                    "ausruhen",
+                    "ausflug",
+                    "diogo"
+                ]
+            },
+            {
+                "Business & Work": [
+                    "arbeitsrecht",
+                    "arbeiten",
+                    "anwalt",
+                    "baufinanzierung",
+                    "bürokratie",
+                    "berufswahl"
+                ]
+            },
+            {
+                "Politics & Government": [
+                    "annalenabaerbock",
+                    "angelamerkel",
+                    "bundesverdienstkreuz",
+                    "bundestrainer",
+                    "begnadigung",
+                    "assange"
+                ]
+            },
+            {
+                "Food & Drink": [
+                    "café",
+                    "butter",
+                    "backen",
+                    "alkoholfrei"
+                ]
+            },
+            {
+                "Family & Relationships": [
+                    "elternschaft",
+                    "bruder"
+                ]
+            },
+            {
+                "Transportation": [
+                    "autofahrer",
+                    "autounfall",
+                    "bahnstreik"
+                ]
+            },
+            {
+                "Organizations": [
+                    "dkms",
+                    "drk"
+                ]
+            },
+            {
+                "Lifestyle": [
+                    "dryjanuary",
+                    "auswandern",
+                    "aufräumen"
+                ]
+            },
+            {
+                "Culture & Traditions": [
+                    "brauch",
+                    "buschfunk"
+                ]
+            },
+            {
+                "Social Media & Internet": [
+                    "elhotzo",
+                    "bildpokert"
+                ]
+            },
+            {
+                "Architecture & Buildings": [
+                    "blockhaus"
+                ]
+            },
+            {
+                "Books & Literature": [
+                    "buch",
+                    "arthurcbrooks"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "btw",
+                    "archiv",
+                    "anzeigen",
+                    "astronaut",
+                    "amerika",
+                    "bauer",
+                    "crush",
+                    "dj",
+                    "diekiste",
+                    "dieb",
+                    "droge"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics & Government": [
+                    "zdfpolitbarometer",
+                    "wirtschaftsweise",
+                    "whitehouse",
+                    "weißeshaus",
+                    "westdeutschland",
+                    "vermögensteuer",
+                    "Özdemir",
+                    "Övp",
+                    "vučić",
+                    "voigt"
+                ]
+            },
+            {
+                "Health & Medical": [
+                    "zahngesundheit",
+                    "zähne",
+                    "zähneknirschen",
+                    "abnehmspritze",
+                    "übergewicht",
+                    "Übergewicht",
+                    "vulva",
+                    "vorsorge",
+                    "viren"
+                ]
+            },
+            {
+                "Entertainment & Media": [
+                    "wwe",
+                    "wrestling",
+                    "wettendass",
+                    "videos",
+                    "vogue"
+                ]
+            },
+            {
+                "Sports": [
+                    "zverev",
+                    "wm2034",
+                    "wm2026",
+                    "wnba",
+                    "wembley"
+                ]
+            },
+            {
+                "Nature & Environment": [
+                    "yellowstone",
+                    "wolf",
+                    "windenergie",
+                    "wildnis",
+                    "wattenmeer",
+                    "wasserfall",
+                    "vogel",
+                    "öltanker"
+                ]
+            },
+            {
+                "Holidays & Celebrations": [
+                    "xmas",
+                    "wunschzettel",
+                    "weihnachtsgeschenke",
+                    "weihnachtsbaum"
+                ]
+            },
+            {
+                "Places & Locations": [
+                    "zeitz",
+                    "wolfsburg",
+                    "wunsiedel",
+                    "vilnius",
+                    "ätna"
+                ]
+            },
+            {
+                "Emotions & Psychology": [
+                    "wutanfall",
+                    "wohnpsychologie",
+                    "wertschätzung",
+                    "verliebt",
+                    "verrückt",
+                    "verlassenwerden"
+                ]
+            },
+            {
+                "Daily Life": [
+                    "zusammenziehen",
+                    "zusammenwohnen",
+                    "zugfahren",
+                    "wäsche",
+                    "waschmaschine",
+                    "verzicht"
+                ]
+            },
+            {
+                "Food & Drink": [
+                    "zitrone",
+                    "zimtschnecke"
+                ]
+            },
+            {
+                "Business & Retail": [
+                    "wirecard",
+                    "werbung",
+                    "aldi"
+                ]
+            },
+            {
+                "Natural Phenomena": [
+                    "zyklon",
+                    "vollmond"
+                ]
+            },
+            {
+                "Education & Career": [
+                    "ziele",
+                    "abitur"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "abhängigkeit",
+                    "weltreise"
+                ]
+            },
+            {
+                "Transportation & Movement": [
+                    "verkehrswende"
+                ]
+            },
+            {
+                "Historical Events": [
+                    "wende",
+                    "weremember"
+                ]
+            },
+            {
+                "Safety & Security": [
+                    "warntag",
+                    "überfall",
+                    "Überleben"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "zillenials",
+                    "winner",
+                    "winder",
+                    "wiesntipp",
+                    "wicked",
+                    "wagnerbrueder",
+                    "wagnerbrothers",
+                    "völliglosgelöst",
+                    "vorsatz",
+                    "verurteilt",
+                    "verstorben",
+                    "verstappen",
+                    "verpackung",
+                    "yoga",
+                    "wahrscheinlichkeit",
+                    "walz",
+                    "walfang",
+                    "Éowyn",
+                    "affe",
+                    "Überraschung"
+                ]
+            }
+        ],
+        [
+            {
+                "News and Media": [
+                    "tagesschau",
+                    "süddeutschezeitung",
+                    "theonion",
+                    "szgipfel",
+                    "szfamilientreffen",
+                    "szerleben",
+                    "update",
+                    "tonightshow"
+                ]
+            },
+            {
+                "Politics and Government": [
+                    "uspräsident",
+                    "ursulavonderleyen",
+                    "untersuchungsausschuss",
+                    "supertuesday",
+                    "verhandlung",
+                    "verfolgung",
+                    "taliban",
+                    "ungarn",
+                    "unabhängigkeit"
+                ]
+            },
+            {
+                "Entertainment": [
+                    "tvtotal",
+                    "trashtv",
+                    "thebear",
+                    "tetris",
+                    "supermario",
+                    "thilomischke",
+                    "thomashelmer",
+                    "twitch",
+                    "tatort"
+                ]
+            },
+            {
+                "Sports": [
+                    "turnen",
+                    "teamkollegen",
+                    "tonikroos",
+                    "teamdparalympics",
+                    "teamdeutschlandparalympics",
+                    "teamdeutschland",
+                    "torhymne",
+                    "u17"
+                ]
+            },
+            {
+                "Environmental": [
+                    "umweltverschmutzung",
+                    "umwelthilfe",
+                    "thunberg",
+                    "tierwelt",
+                    "tierhaltung",
+                    "tierquälerei",
+                    "tauben",
+                    "taube"
+                ]
+            },
+            {
+                "Places and Locations": [
+                    "tokyo",
+                    "tokionews",
+                    "tokyonews",
+                    "uk",
+                    "uruguay",
+                    "südafrika",
+                    "veitlindau",
+                    "trevi"
+                ]
+            },
+            {
+                "Technology": [
+                    "technologie",
+                    "tracking",
+                    "titan",
+                    "ufo",
+                    "uboot",
+                    "textil"
+                ]
+            },
+            {
+                "Personal Status": [
+                    "verheiratet",
+                    "untreue",
+                    "unfruchtbarkeit",
+                    "valeriia",
+                    "tradwives",
+                    "swiftie"
+                ]
+            },
+            {
+                "Events": [
+                    "trauerfeier",
+                    "veranstaltung",
+                    "tour",
+                    "transplantation",
+                    "tarifstreit"
+                ]
+            },
+            {
+                "Consumer Related": [
+                    "verbraucherschutz",
+                    "verbraucher",
+                    "supermarkt",
+                    "trinkgeld",
+                    "süßigkeiten",
+                    "superfood"
+                ]
+            },
+            {
+                "Lifestyle": [
+                    "vanlife",
+                    "trip",
+                    "techno",
+                    "tacos",
+                    "toilette",
+                    "sun"
+                ]
+            },
+            {
+                "Celebrity": [
+                    "tomkaulitz",
+                    "tanjamay",
+                    "timwalz",
+                    "sängerin"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "traum",
+                    "trost",
+                    "thankful",
+                    "testament",
+                    "teilhabe",
+                    "tragisch",
+                    "titanic",
+                    "ttt",
+                    "tannenbaum",
+                    "säugling",
+                    "supermond",
+                    "suche",
+                    "unvergessen",
+                    "transport"
+                ]
+            }
+        ],
+        [
+            {
+                "Entertainment & Media": [
+                    "starwars",
+                    "startrek",
+                    "star",
+                    "simpsons",
+                    "shogun",
+                    "schlager",
+                    "satire",
+                    "song"
+                ]
+            },
+            {
+                "Transportation": [
+                    "straßenverkehr",
+                    "schifffahrt",
+                    "schiff",
+                    "sbahn",
+                    "stau",
+                    "stewardess"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "straßenhunde",
+                    "sozialpolitik",
+                    "sozialearbeit",
+                    "solidarität",
+                    "seenotrettung",
+                    "schwarzarbeit",
+                    "selbsthilfegruppe"
+                ]
+            },
+            {
+                "Personal Care & Wellness": [
+                    "skincaretrends",
+                    "skincareroutine",
+                    "selfcare",
+                    "selbstdisziplin",
+                    "schmerz",
+                    "stoffwechsel"
+                ]
+            },
+            {
+                "Places & Locations": [
+                    "straßburg",
+                    "skandinavien",
+                    "signalidunapark",
+                    "sardinien",
+                    "sarasota",
+                    "stpauli"
+                ]
+            },
+            {
+                "Nature & Environment": [
+                    "sturmflut",
+                    "sonnensturm",
+                    "schildkröte",
+                    "see",
+                    "schaum"
+                ]
+            },
+            {
+                "Legal & Government": [
+                    "staatskrise",
+                    "strafen",
+                    "strafzettel",
+                    "shutdown",
+                    "schadenersatz"
+                ]
+            },
+            {
+                "Sports & Activities": [
+                    "sprint",
+                    "sportlerdesjahres",
+                    "simonebiles",
+                    "segeln",
+                    "schumacher"
+                ]
+            },
+            {
+                "Lifestyle & Society": [
+                    "style",
+                    "sternerestaurant",
+                    "sterne",
+                    "shisha",
+                    "secondhand",
+                    "sothebys"
+                ]
+            },
+            {
+                "Personal & Relationships": [
+                    "stalking",
+                    "schlussmachen",
+                    "schwester",
+                    "schatz",
+                    "saveme"
+                ]
+            },
+            {
+                "History & Memory": [
+                    "stasi",
+                    "stolpersteine",
+                    "sisi"
+                ]
+            },
+            {
+                "Technology": [
+                    "starlink",
+                    "skyecc",
+                    "skills"
+                ]
+            },
+            {
+                "Health & Medical": [
+                    "sepsis",
+                    "studien",
+                    "schusseligkeit",
+                    "schusselig"
+                ]
+            },
+            {
+                "Spirituality & Philosophy": [
+                    "spiritualität",
+                    "sinndeslebens"
+                ]
+            },
+            {
+                "Current Events": [
+                    "sinwar",
+                    "skandal",
+                    "schüsse"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "suchaktion",
+                    "sturdyparenting",
+                    "spezi",
+                    "spender",
+                    "spaß",
+                    "spiel",
+                    "spielzeug",
+                    "stanley",
+                    "stellenabbau",
+                    "sonntagsfrage",
+                    "sommerzeit",
+                    "sommerhaus",
+                    "seandiddycombs",
+                    "sdj2024",
+                    "sdj",
+                    "schäfer",
+                    "schulbarometer",
+                    "schock",
+                    "schloss",
+                    "schlange"
+                ]
+            }
+        ],
+        [
+            {
+                "Locations": [
+                    "sanfrancisco",
+                    "sachsenanhalt",
+                    "saarbrücken",
+                    "rügen",
+                    "rio",
+                    "reykjanes",
+                    "regensburg",
+                    "puertorico",
+                    "pompeji",
+                    "peking"
+                ]
+            },
+            {
+                "People and Personalities": [
+                    "sandrahüller",
+                    "sahrawagenknecht",
+                    "rüdiger",
+                    "ryangosling",
+                    "rockefeller",
+                    "ripley",
+                    "prinzessinkate",
+                    "prinzessin",
+                    "princessofwales",
+                    "priester",
+                    "pietrolombardi",
+                    "paulronzheimer",
+                    "patriceaminati"
+                ]
+            },
+            {
+                "Medical and Health": [
+                    "psychosen",
+                    "psychischeerkrankung",
+                    "psychiatrie",
+                    "psychedelika",
+                    "pränataldiagnostik",
+                    "prothese",
+                    "physiotherapie",
+                    "pfleger",
+                    "pflegenotstand",
+                    "patienten"
+                ]
+            },
+            {
+                "Politics and Government": [
+                    "sanktionen",
+                    "resolution",
+                    "reichsbürger",
+                    "reich",
+                    "rassemblementnational",
+                    "populismus",
+                    "president",
+                    "personalausweis"
+                ]
+            },
+            {
+                "Sports and Recreation": [
+                    "realmadrid",
+                    "premierleague",
+                    "reiten",
+                    "radfahren",
+                    "pool",
+                    "pferde"
+                ]
+            },
+            {
+                "Nature and Environment": [
+                    "sand",
+                    "sahara",
+                    "roteliste",
+                    "polarfuchs",
+                    "pfas",
+                    "recycling"
+                ]
+            },
+            {
+                "Transportation and Space": [
+                    "ryanair",
+                    "raketenangriff",
+                    "rakete",
+                    "raumstation",
+                    "pilot",
+                    "polarisdawn"
+                ]
+            },
+            {
+                "Food and Drink": [
+                    "salzzitrone",
+                    "salz",
+                    "redbull",
+                    "pommes"
+                ]
+            },
+            {
+                "Entertainment and Media": [
+                    "rocknroll",
+                    "reporter",
+                    "remote",
+                    "popmusik",
+                    "porno",
+                    "punk"
+                ]
+            },
+            {
+                "Business and Work": [
+                    "praktikum",
+                    "praxis",
+                    "preiserföhung",
+                    "penny",
+                    "planung"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "sancta",
+                    "rollstuhl",
+                    "razzia",
+                    "raygun",
+                    "rausch",
+                    "rationalität",
+                    "puppen",
+                    "promille",
+                    "preisverleihung",
+                    "positiv",
+                    "pinkeln",
+                    "pfand",
+                    "peta",
+                    "periode",
+                    "perfektionismus",
+                    "placetob",
+                    "phönix"
+                ]
+            }
+        ],
+        [
+            {
+                "Geography and Places": [
+                    "patagonien",
+                    "passau",
+                    "paraguay",
+                    "panama",
+                    "palma",
+                    "pacificpalisades",
+                    "oxford",
+                    "orlando",
+                    "nürnberg",
+                    "nigeria",
+                    "nepal",
+                    "namibia",
+                    "mosel",
+                    "mounteverest",
+                    "moldau",
+                    "mayotte",
+                    "maui"
+                ]
+            },
+            {
+                "Politics and Government": [
+                    "parteiverbot",
+                    "parlamentswahl",
+                    "paragraf218",
+                    "paragraf175",
+                    "omidnouripour",
+                    "ministerpraesident",
+                    "nationalratswahlen",
+                    "menendez",
+                    "milei"
+                ]
+            },
+            {
+                "Sports and Olympics": [
+                    "paralympics2024",
+                    "olympics",
+                    "orlandomagic",
+                    "musiala",
+                    "medaillenspiegel"
+                ]
+            },
+            {
+                "Entertainment and Media": [
+                    "oscar",
+                    "oliverpocher",
+                    "oasis",
+                    "nintendo",
+                    "michaeljackson",
+                    "michaelgambon",
+                    "millivanilli",
+                    "matches"
+                ]
+            },
+            {
+                "Organizations and Brands": [
+                    "oxfam",
+                    "nike",
+                    "michelin",
+                    "mecces"
+                ]
+            },
+            {
+                "Animals and Nature": [
+                    "otter",
+                    "orangutan",
+                    "obst",
+                    "naturkatastrophe",
+                    "mäfhroboter",
+                    "moore"
+                ]
+            },
+            {
+                "Health and Medical": [
+                    "opioid",
+                    "operation",
+                    "multiplesklerose",
+                    "ms"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "obdachlos",
+                    "nächstenliebe",
+                    "nobodywantsthis",
+                    "neurodivergenz",
+                    "migrationshintergrund",
+                    "minderjaehrige",
+                    "massentierhaltung"
+                ]
+            },
+            {
+                "Transportation": [
+                    "parken",
+                    "panne",
+                    "notlandung",
+                    "nahverkehr",
+                    "nachtzug"
+                ]
+            },
+            {
+                "Technology and Science": [
+                    "offline",
+                    "oceangate",
+                    "neurowissenschaft",
+                    "medienkompetenz",
+                    "mikroplastik"
+                ]
+            },
+            {
+                "Historical and Cultural": [
+                    "nszeit",
+                    "nostalgie",
+                    "monalisa",
+                    "nordischesmodell"
+                ]
+            },
+            {
+                "Time and Seasons": [
+                    "oktober",
+                    "neujahr2025",
+                    "nacht",
+                    "merrychristmas"
+                ]
+            },
+            {
+                "Business and Economy": [
+                    "musikindustrie",
+                    "mittleresmanagement",
+                    "mittelschicht",
+                    "mindestlohn",
+                    "milliardär",
+                    "mietrecht"
+                ]
+            },
+            {
+                "News and Communication": [
+                    "nachricht",
+                    "nachbarn",
+                    "mysteriös"
+                ]
+            },
+            {
+                "Environment": [
+                    "meeresspiegel",
+                    "mobilitaet"
+                ]
+            },
+            {
+                "Sports Personalities": [
+                    "miketyson",
+                    "miles"
+                ]
+            }
+        ],
+        [
+            {
+                "Places and Cities": [
+                    "marburg",
+                    "manhattan",
+                    "mailand",
+                    "madrid",
+                    "lahore",
+                    "la",
+                    "lateinamerika",
+                    "katalonien",
+                    "kiew",
+                    "kursk"
+                ]
+            },
+            {
+                "Climate and Environment": [
+                    "klimaziele",
+                    "klimapolitik",
+                    "klimakriminelle",
+                    "klimagipfel",
+                    "klimafreundlich",
+                    "klimaforschung",
+                    "klimabilanz",
+                    "klimaaktivisten",
+                    "lawine",
+                    "lava",
+                    "küste"
+                ]
+            },
+            {
+                "Business and Commerce": [
+                    "markt",
+                    "marketing",
+                    "lieferdienst",
+                    "lieferando",
+                    "lidl",
+                    "kredit",
+                    "konsum",
+                    "label",
+                    "kneipe"
+                ]
+            },
+            {
+                "Health and Medical": [
+                    "magenop",
+                    "lenacapavir",
+                    "lebensgefahr",
+                    "krankheiten",
+                    "koma",
+                    "klinikum",
+                    "knochenmarkspende"
+                ]
+            },
+            {
+                "Entertainment and Media": [
+                    "majortom",
+                    "maischberger",
+                    "magic",
+                    "lukemockridge",
+                    "linkinpark",
+                    "lastchristmas",
+                    "louvre",
+                    "künstlerhaus"
+                ]
+            },
+            {
+                "People and Personalities": [
+                    "maduro",
+                    "luisaneubauer",
+                    "luigimangione",
+                    "lebowitz",
+                    "lauterbach",
+                    "kroos",
+                    "kretschmer",
+                    "kompany"
+                ]
+            },
+            {
+                "Education and Learning": [
+                    "lehrkräfte",
+                    "kulturgeschichte",
+                    "klassenfahrt",
+                    "kindererziehung",
+                    "kinderbücher"
+                ]
+            },
+            {
+                "Lifestyle and Relationships": [
+                    "langzeitbeziehung",
+                    "kuscheltier",
+                    "kuscheln",
+                    "lifecoach",
+                    "lampen",
+                    "kleidung"
+                ]
+            },
+            {
+                "Food and Drink": [
+                    "kartoffeln",
+                    "kuchen",
+                    "kochtipps",
+                    "koffein",
+                    "lecker"
+                ]
+            },
+            {
+                "Legal and Political": [
+                    "legal",
+                    "länder",
+                    "land",
+                    "ltw",
+                    "kongress",
+                    "kontrolle",
+                    "macht"
+                ]
+            },
+            {
+                "Travel and Leisure": [
+                    "kreuzfahrt",
+                    "kurzurlaubinbayern"
+                ]
+            },
+            {
+                "Substances": [
+                    "marihuana",
+                    "kondome",
+                    "kondom"
+                ]
+            },
+            {
+                "Animals": [
+                    "kühe",
+                    "kätzchen"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "lustig",
+                    "lotterie",
+                    "langstreckenschwimmen",
+                    "kriegsreporter",
+                    "krieginnahost",
+                    "krisenmodus",
+                    "kosmologie",
+                    "kopftuch",
+                    "konzentration",
+                    "kolumbien",
+                    "kellner",
+                    "kensingtonpalace",
+                    "kältebus",
+                    "lebensabschnitt"
+                ]
+            }
+        ],
+        [
+            {
+                "Social Media & Entertainment": [
+                    "justinbieber",
+                    "julianundtanja",
+                    "influencermarketing",
+                    "influencerin",
+                    "joker",
+                    "jamesbond",
+                    "jayz",
+                    "haileybieber",
+                    "gntmfinale",
+                    "gossip",
+                    "goldenglobes"
+                ]
+            },
+            {
+                "News & Journalism": [
+                    "journalisten",
+                    "japannews",
+                    "investigativ",
+                    "infografik",
+                    "infowars"
+                ]
+            },
+            {
+                "Technology & Digital": [
+                    "icq",
+                    "googletrends",
+                    "glukosetracking",
+                    "handynutzung",
+                    "gruppenchat"
+                ]
+            },
+            {
+                "Places & Geography": [
+                    "kanaren",
+                    "isar",
+                    "hongkong",
+                    "hauptstadt",
+                    "grünheide",
+                    "guantanamo",
+                    "harbourbridge",
+                    "haneda"
+                ]
+            },
+            {
+                "Politics & Society": [
+                    "kapitalismus",
+                    "julianassange",
+                    "grundrechte",
+                    "gülen",
+                    "guterres",
+                    "grünejugend"
+                ]
+            },
+            {
+                "Health & Wellness": [
+                    "joggen",
+                    "hospiz",
+                    "helmasick",
+                    "handicap",
+                    "haare",
+                    "implantat"
+                ]
+            },
+            {
+                "Terrorism & Conflict": [
+                    "isis",
+                    "is",
+                    "irak",
+                    "hinrichtung"
+                ]
+            },
+            {
+                "Business & Economy": [
+                    "jeffbezos",
+                    "insolvenz",
+                    "innovation",
+                    "greenwashing"
+                ]
+            },
+            {
+                "Religion & Culture": [
+                    "kairos",
+                    "hindu",
+                    "glaube"
+                ]
+            },
+            {
+                "Family & Relationships": [
+                    "großeltern",
+                    "heimweg",
+                    "heino",
+                    "hannelore"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "jugendhilfe",
+                    "hass",
+                    "humanitärehilfe",
+                    "holocaustüberlebende"
+                ]
+            },
+            {
+                "Trends & Challenges": [
+                    "jugendwortdesjahres",
+                    "hotchipchallenge",
+                    "hobbyhorsing",
+                    "gutevorsätze"
+                ]
+            },
+            {
+                "Crime & Security": [
+                    "jva",
+                    "haft",
+                    "hacker"
+                ]
+            },
+            {
+                "Art & Media": [
+                    "karikatur",
+                    "hörbuch",
+                    "hyperphantasie"
+                ]
+            },
+            {
+                "Sports & Games": [
+                    "ironman",
+                    "hochrisikospiel",
+                    "glücksspiel"
+                ]
+            },
+            {
+                "Lifestyle & Home": [
+                    "ikeavintage",
+                    "hausbau",
+                    "holzhaus"
+                ]
+            },
+            {
+                "Transportation": [
+                    "jl516",
+                    "ice",
+                    "jal"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "k2",
+                    "jackpot",
+                    "it",
+                    "inselsylt",
+                    "helfer",
+                    "heimem",
+                    "hegseth",
+                    "harry",
+                    "hape",
+                    "hündin",
+                    "gisèlepelicot",
+                    "giselepelicot"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics and Government": [
+                    "gendergap",
+                    "frauenquote",
+                    "euparlament",
+                    "eugh",
+                    "eubeitritt",
+                    "europol",
+                    "frontnational",
+                    "friedensnobelpreis"
+                ]
+            },
+            {
+                "Natural Events and Environment": [
+                    "extremwetter",
+                    "erdrutsch",
+                    "erneuerbare",
+                    "flutkatastrophe",
+                    "ernte",
+                    "garten"
+                ]
+            },
+            {
+                "Social Media and Technology": [
+                    "ghosting",
+                    "fakenews",
+                    "fortnite",
+                    "escooter",
+                    "etf"
+                ]
+            },
+            {
+                "Health and Wellness": [
+                    "gewichtskontrolle",
+                    "gewichtsabnahme",
+                    "gesundheitssystem",
+                    "gesundehaut",
+                    "geburtshilfe",
+                    "frühgeborene",
+                    "fsme"
+                ]
+            },
+            {
+                "Travel and Places": [
+                    "ghana",
+                    "gardasee",
+                    "fontanaditrevi",
+                    "flüge",
+                    "familienurlaub"
+                ]
+            },
+            {
+                "Sports and Athletics": [
+                    "fighting",
+                    "florianwirtz",
+                    "florencegriffithjoyner",
+                    "flitzer",
+                    "fußballwm",
+                    "franzbeckenbauer",
+                    "germanboxingseries",
+                    "famefightingchallenger",
+                    "fallschirmsprung"
+                ]
+            },
+            {
+                "Fashion and Beauty": [
+                    "frisur",
+                    "friseursalon",
+                    "fastfashion",
+                    "foundation",
+                    "gelbhaar"
+                ]
+            },
+            {
+                "Social Issues": [
+                    "geschlechterrollen",
+                    "geschlechterrolle",
+                    "girlhood",
+                    "frauenbild",
+                    "flüchtlingsunterkunft",
+                    "fachkräfte"
+                ]
+            },
+            {
+                "Entertainment and Media": [
+                    "filme",
+                    "festival",
+                    "forbes",
+                    "eurovision",
+                    "erotik"
+                ]
+            },
+            {
+                "Food and Dining": [
+                    "gewürz",
+                    "fastfood",
+                    "fisch",
+                    "fastenmonat"
+                ]
+            },
+            {
+                "Transportation": [
+                    "ferrari",
+                    "fahrradschloss",
+                    "fahranfänger",
+                    "fahndung"
+                ]
+            },
+            {
+                "Crime and Safety": [
+                    "geisel",
+                    "gefährlich",
+                    "evakuierung",
+                    "erpressung"
+                ]
+            },
+            {
+                "History and Memory": [
+                    "gedenktag",
+                    "gedenkstätte",
+                    "geschichten",
+                    "fossil"
+                ]
+            },
+            {
+                "Personal Relations": [
+                    "freundinnen",
+                    "freunde",
+                    "ex",
+                    "gemeinsamewohnung"
+                ]
+            },
+            {
+                "German Words": [
+                    "gewonnen",
+                    "gewinn",
+                    "gewohnheiten",
+                    "genießen",
+                    "geister",
+                    "gehörlos",
+                    "gestorben"
+                ]
+            },
+            {
+                "Money and Finance": [
+                    "euros",
+                    "eurojackpot",
+                    "fortschritt"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "gift",
+                    "gas",
+                    "fails",
+                    "fan",
+                    "farbe",
+                    "frei",
+                    "gbs2",
+                    "gerichtsprozess"
+                ]
+            }
+        ],
+        [
+            {
+                "Politics": [
+                    "erdoğan",
+                    "ebrahimraisi",
+                    "bundestagswahl25",
+                    "bundesrat",
+                    "bundeskanzlerin",
+                    "buschmann",
+                    "bärbelbas",
+                    "chrupalla",
+                    "cheney",
+                    "bündnissahrawagenknacht"
+                ]
+            },
+            {
+                "Transportation": [
+                    "elterntaxi",
+                    "eautos",
+                    "elektroauto",
+                    "ebike",
+                    "busfahrer"
+                ]
+            },
+            {
+                "Sports": [
+                    "eishockey",
+                    "elfmeter",
+                    "doping",
+                    "dfl",
+                    "dfbpokal",
+                    "deutscherbasketball",
+                    "darts",
+                    "chiefs"
+                ]
+            },
+            {
+                "Education": [
+                    "eras",
+                    "elektrotechnik",
+                    "deutsch",
+                    "denksport"
+                ]
+            },
+            {
+                "Family": [
+                    "elternzeit",
+                    "elternwerden",
+                    "elternchat",
+                    "ehepaar"
+                ]
+            },
+            {
+                "Media_Entertainment": [
+                    "dieterbohlen",
+                    "böhmermann",
+                    "danielaminati",
+                    "constantinfilm",
+                    "capitalbra",
+                    "callboy",
+                    "chatbot",
+                    "chandler",
+                    "bytedance"
+                ]
+            },
+            {
+                "Places": [
+                    "englischergarten",
+                    "eiffelturm",
+                    "dorf",
+                    "denhaag",
+                    "davos",
+                    "colorado",
+                    "chicago",
+                    "chemnitz"
+                ]
+            },
+            {
+                "Science_Technology": [
+                    "deepfake",
+                    "dnatest",
+                    "chemie",
+                    "copernicus"
+                ]
+            },
+            {
+                "Social_Issues": [
+                    "equalcareday",
+                    "einwanderung",
+                    "elite",
+                    "eifersucht",
+                    "dummheit",
+                    "drogenhandel",
+                    "debatte",
+                    "chronischeerkrankung"
+                ]
+            },
+            {
+                "Law_Enforcement": [
+                    "crimemessenger",
+                    "bundespolizei",
+                    "bunker",
+                    "bußgeld",
+                    "böllerverbot"
+                ]
+            },
+            {
+                "Food_Drink": [
+                    "eiscreme",
+                    "drink",
+                    "chips",
+                    "cheddar"
+                ]
+            },
+            {
+                "Animals": [
+                    "dogsofinstagram",
+                    "comedywildlifeawards",
+                    "carinaspack"
+                ]
+            },
+            {
+                "Health_Medicine": [
+                    "dermatologin",
+                    "dermatologie",
+                    "cancer"
+                ]
+            },
+            {
+                "Events": [
+                    "csd",
+                    "cop28",
+                    "cop16",
+                    "chanukka"
+                ]
+            },
+            {
+                "Economy_Shopping": [
+                    "einkaufen",
+                    "eigentum",
+                    "economy",
+                    "clubsterben"
+                ]
+            },
+            {
+                "Media_Organizations": [
+                    "cnn",
+                    "chile",
+                    "burg",
+                    "buli"
+                ]
+            }
+        ],
+        [
+            {
+                "Health & Medical": [
+                    "bruxismus",
+                    "brustkrebs",
+                    "bmi",
+                    "blutzuckerspiegel",
+                    "behandlung",
+                    "bakterien",
+                    "atemwegserkrankung",
+                    "arzttermin",
+                    "antiaging"
+                ]
+            },
+            {
+                "Politics & Government": [
+                    "briefwahl",
+                    "botschaft",
+                    "bosnienundherzegowina",
+                    "bosnienherzegowina",
+                    "bolsonaro",
+                    "björnhöcke",
+                    "behörde",
+                    "bas",
+                    "außenpolitik",
+                    "atomwaffen",
+                    "atombombe",
+                    "atomausstieg",
+                    "aserbaidschan",
+                    "armutgegensteuern",
+                    "antrag"
+                ]
+            },
+            {
+                "Sports & Athletics": [
+                    "boxsport",
+                    "boxkampf",
+                    "boxing",
+                    "borussiadortmund",
+                    "beachvolleyball",
+                    "baseball",
+                    "bewegung",
+                    "australianopen",
+                    "ausopen"
+                ]
+            },
+            {
+                "Entertainment & Media": [
+                    "brucewillis",
+                    "bridgerton",
+                    "brianthompson",
+                    "breakdance",
+                    "billieeilish",
+                    "bibiclaßen",
+                    "beckykennedy",
+                    "bambi",
+                    "balenciaga"
+                ]
+            },
+            {
+                "Places & Geography": [
+                    "brocken",
+                    "brienz",
+                    "bonn",
+                    "berge",
+                    "berg",
+                    "belgrad",
+                    "bayerischerwald",
+                    "bali",
+                    "asien",
+                    "arktis",
+                    "arizona"
+                ]
+            },
+            {
+                "Finance & Economy": [
+                    "budget",
+                    "bitcoin",
+                    "biontech",
+                    "benko",
+                    "bauzinsen",
+                    "banksy",
+                    "banaszak"
+                ]
+            },
+            {
+                "Education & Society": [
+                    "brainrot",
+                    "bodyshaming",
+                    "bodypositivity",
+                    "bildungssystem",
+                    "besterjob",
+                    "arbeitsleben",
+                    "arbeitsbedingungen"
+                ]
+            },
+            {
+                "Nature & Environment": [
+                    "beagle",
+                    "banane",
+                    "badeunfall",
+                    "aussterben",
+                    "aphantasie"
+                ]
+            },
+            {
+                "Events & Activities": [
+                    "berlinale",
+                    "bierbrauen",
+                    "betrunken",
+                    "ausmisten"
+                ]
+            },
+            {
+                "Miscellaneous": [
+                    "bubatz",
+                    "btn",
+                    "bringthemhomenow",
+                    "brille",
+                    "brief",
+                    "brantner",
+                    "blockout2024",
+                    "blockade",
+                    "bildfamilyandfriends",
+                    "bestseller",
+                    "bar",
+                    "babyglück",
+                    "babybommer",
+                    "b0801",
+                    "automat",
+                    "auszeichnung",
+                    "auswahl",
+                    "aura"
+                ]
+            }
+        ],
+        [
+            {
+                "People and Personalities": [
+                    "anthonytaylor",
+                    "annefrank",
+                    "andrewiersig",
+                    "amandaknox",
+                    "alexanderzverev",
+                    "aleks",
+                    "adeleworld"
+                ]
+            },
+            {
+                "Turkish Geography": [
+                    "antalya",
+                    "ankara"
+                ]
+            },
+            {
+                "Social Media/Characters": [
+                    "annitheduck"
+                ]
+            },
+            {
+                "Medical and Health": [
+                    "angststörung",
+                    "angst",
+                    "adipositaschirurg",
+                    "adipositas",
+                    "achtsamkeit"
+                ]
+            },
+            {
+                "Education and Learning": [
+                    "analphabetismus",
+                    "abschlussfeier",
+                    "abschluss"
+                ]
+            },
+            {
+                "Government and Society": [
+                    "amtseinführung",
+                    "abschiebungen",
+                    "abschiebung"
+                ]
+            },
+            {
+                "Companies and Organizations": [
+                    "amazon",
+                    "adac"
+                ]
+            },
+            {
+                "Lifestyle and Living": [
+                    "altenheim",
+                    "alkoholverbot",
+                    "alkoholkonsum"
+                ]
+            },
+            {
+                "Nature and Environment": [
+                    "algen",
+                    "agrar",
+                    "animals"
+                ]
+            },
+            {
+                "Transportation and Travel": [
+                    "airport",
+                    "achterbahn"
+                ]
+            },
+            {
+                "Entertainment and Events": [
+                    "academyawards",
+                    "abschlussfeier"
+                ]
+            },
+            {
+                "Personal Documents": [
+                    "abschiedsbrief"
+                ]
+            },
+            {
+                "Activities and Experiences": [
+                    "abenteuer"
+                ]
+            },
+            {
+                "Sports": [
+                    "achtelfinale"
+                ]
+            },
+            {
+                "Numbers and References": [
+                    "4b",
+                    "2023",
+                    "2",
+                    "11",
+                    "007"
+                ]
+            }
+        ]
+    ]
+}

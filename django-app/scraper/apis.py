@@ -4,10 +4,12 @@ import os
 import re
 import time
 import traceback
-import uuid
 from datetime import datetime
-
+from django.conf import settings
+import anthropic
 import requests
+from django.contrib.messages import success
+from django.core.cache import cache
 
 from django.http import StreamingHttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -40,6 +42,112 @@ class ScraperStats:
         if type not in self.node_types:
             self.node_types[new_node_types] = 0
         self.node_types[new_node_types] += 1
+
+
+def filter_by_count(hashtag_tuples, min_count, max_count):
+    return [(s, count) for (s, count) in hashtag_tuples if min_count <= count <= max_count]
+
+
+def get_only_tags(hashtag_tuples):
+    return [tag for tag, _ in hashtag_tuples]
+
+
+def split_array(array, chunk_size=100):
+    return [array[i:i + chunk_size] for i in range(0, len(array), chunk_size)]
+
+
+def get_chunked_tags(min_count, max_count, chunk_size):
+    res_counts = ScrapeData.get_hashtag_counts()
+    res_filtered = filter_by_count(res_counts, min_count, max_count)
+    res_tags = get_only_tags(res_filtered)
+    res_chunked = split_array(res_tags, chunk_size)
+
+    return res_chunked, len(res_tags), len(res_chunked)
+
+
+@csrf_exempt
+def get_hashtag_list(request):
+    try:
+        if request.method == "POST":
+            return JsonResponse({"error": "POST not supportet"}, status=405)
+
+        min_count = int(request.GET.get('min-count', 100))
+        max_count = int(request.GET.get('max-count', 9999))
+        chunk_size = int(request.GET.get('chunk-size', 100))
+
+        res, tags_count, chunk_count = get_chunked_tags(min_count, max_count, chunk_size)
+
+        return JsonResponse({
+            "sub_array_count": chunk_count,
+            "items": tags_count,
+            "data": res,
+        })
+
+    except Exception as e:
+        print(str(e) + " " + str(traceback.print_exc()))
+        return JsonResponse({"error": str(e) + " " + str(traceback.print_exc())}, status=500)
+
+
+def get_clustered(tag_array, client):
+    text = "You will be given a list of words to cluster into groups based on their semantic relationships or common themes. Your task is to analyze these words and organize them into meaningful clusters.\n\nHere is the list of words:\n<word_list>\n" \
+           + json.dumps(tag_array) \
+           + "\n</word_list>\n\nTo cluster these words, follow these steps:\n1. Carefully read through all the words in the list.\n2. Identify common themes, categories, or relationships among the words.\n3. Group words that share similar meanings, belong to the same category, or are closely related in some way.\n4. Create appropriate names for each group that accurately represent the words within it.\n5. Ensure that each word is placed in the most suitable group.\n\nYour output should be a Python array of dictionaries, where each dictionary represents a cluster. The dictionary key should be the group name, and the value should be a list of words belonging to that group. The format should look like this:\n\n[{\"group_name1\": [\"word1\", \"word2\", \"word3\"]}, {\"group_name2\": [\"word4\", \"word5\", \"word6\"]}, ...]\n\nHere's a simple example to illustrate the expected output format:\n\nInput: apple, banana, carrot, dog, cat, parrot, run, jump, skip\n\nOutput:\n[\n  {\"Fruits\": [\"apple\", \"banana\"]},\n  {\"Vegetables\": [\"carrot\"]},\n  {\"Animals\": [\"dog\", \"cat\", \"parrot\"]},\n  {\"Actions\": [\"run\", \"jump\", \"skip\"]}\n]\n\nNow, please cluster the provided list of words and present your answer in the specified Python array format. Make sure to use appropriate group names and include all the words from the original list.\n\nReturn only the Output array. do not use empty lines in the array."
+    message = client.messages.create(
+        model="claude-3-5-sonnet-20241022",
+        max_tokens=8192,
+        temperature=1,
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": text
+                    }
+                ]
+            }
+        ]
+    )
+
+    return json.loads(message.content[0].text)
+
+
+@csrf_exempt
+def get_grouped_hashtags(request):
+    counter = 0
+    all_cluster = []
+    try:
+        if request.method == "POST":
+            return JsonResponse({"error": "POST not supportet"}, status=405)
+
+        min_count = int(request.GET.get('min-count', 100))
+        max_count = int(request.GET.get('max-count', 9999))
+        chunk_size = int(request.GET.get('chunk-size', 100))
+
+        chunked, tags_count, chunk_count = get_chunked_tags(min_count, max_count, chunk_size)
+
+        client = anthropic.Anthropic(
+            # defaults to os.environ.get("ANTHROPIC_API_KEY")
+            api_key=os.environ.get("ANTHROPIC_API_KEY"),
+        )
+
+        for chunk in chunked:
+            print(f"{counter}...")
+            curr_cluster = get_clustered(chunk, client)
+            all_cluster.append(curr_cluster)
+            print(f"{counter}... Done.")
+            counter += 1
+
+        return JsonResponse({
+            "sub_array_count": chunk_count,
+            "items": tags_count,
+            "clusters": len(all_cluster),
+            "data": all_cluster,
+        })
+
+    except Exception as e:
+        print(str(e) + " " + str(traceback.print_exc()))
+        return JsonResponse({f"error on {counter}": str(e) + " " + str(traceback.print_exc()), "data": all_cluster}, status=500)
 
 
 @csrf_exempt
