@@ -15,7 +15,7 @@ def extract_keys(input_file, output_file):
                 extracted_keys.append(list(cluster.keys())[0])
 
         # Create a dictionary with a single key containing the array of keys
-        output_data = {"keys": extracted_keys}
+        output_data = {"count": len(extracted_keys), "keys": extracted_keys}
 
         # Write the keys array to a new JSON file
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -36,8 +36,8 @@ def extract_keys(input_file, output_file):
 
 
 if __name__ == "__main__":
-    input_json = "AI-cluster_min-2_chunk-size-100.json"
-    output_json = "clustered-keys_min2.json"
+    input_json = "AI-cluster_min-1_max-1_chunk-size-100.json"
+    output_json = "clustered-keys_min1_max1.json"
 
     keys = extract_keys(input_json, output_json)
     if keys:
