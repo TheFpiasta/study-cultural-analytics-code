@@ -1,0 +1,34 @@
+You will be given a list of strings to cluster into groups based on their semantic relationships or common themes. Your task is to analyze these strings and organize them into meaningful clusters.
+Cluster always all strings. Do not provide a representative clustering. Unter all circumstances cluster all strings. Do not cut off the processing.
+
+Here is the list of strings :
+<string_list>
+{{WORD_LIST}}
+</string_list>
+
+To cluster these strings , follow these steps:
+1. Carefully read through all the strings in the list.
+2. Identify common themes, categories, or relationships among the strings .
+3. Group strings that share similar meanings, belong to the same category, or are closely related in some way.
+4. Create appropriate names for each group that accurately represent the strings within it.
+5. Ensure that each string is placed in the most suitable group.
+
+Your output should be a Python array of dictionaries, where each dictionary represents a cluster. The dictionary key should be the group name, and the value should be a list of strings belonging to that group. The format should look like this:
+
+[{"group_name1": ["word1", "word2", "word3"]}, {"group_name2": ["word4", "word5", "word6"]}, ...]
+
+Here's a simple example to illustrate the expected output format:
+
+Input: apple, banana, carrot, dog, cat, parrot, run, jump, skip
+
+Output:
+[
+  {"Fruits": ["apple", "banana"]},
+  {"Vegetables": ["carrot"]},
+  {"Animals": ["dog", "cat", "parrot"]},
+  {"Actions": ["run", "jump", "skip"]}
+]
+
+Now, please cluster the provided list of strings and present your answer in the specified Python array format. Make sure to use appropriate group names and include all the strings from the original list.
+
+Return only the Output array. Cluster always all strings. Do not provide a representative clustering. Unter all circumstances cluster all strings. Do not cut off the processing.
