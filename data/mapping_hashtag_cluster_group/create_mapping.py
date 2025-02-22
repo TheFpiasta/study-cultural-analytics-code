@@ -33,13 +33,13 @@ def generate_mapping(input_file, output_file):
             return hashtags
 
         def update_reversed_mapping(curr_hashtags, curr_cluster_name, curr_group_name):
-            for hashtag in curr_hashtags:
-                if hashtag not in mapping_hashtag_cluster_group:
-                    mapping_hashtag_cluster_group[hashtag] = {}
-                if curr_cluster_name not in mapping_hashtag_cluster_group[hashtag]:
-                    mapping_hashtag_cluster_group[hashtag][curr_cluster_name] = []
+            for curr_hashtag in curr_hashtags:
+                if curr_hashtag not in mapping_hashtag_cluster_group:
+                    mapping_hashtag_cluster_group[curr_hashtag] = {}
+                if curr_cluster_name not in mapping_hashtag_cluster_group[curr_hashtag]:
+                    mapping_hashtag_cluster_group[curr_hashtag][curr_cluster_name] = []
 
-                mapping_hashtag_cluster_group[hashtag][curr_cluster_name] = list(set(curr_group_name) | set(mapping_hashtag_cluster_group[hashtag][curr_cluster_name]))
+                mapping_hashtag_cluster_group[curr_hashtag][curr_cluster_name] = list(set(mapping_hashtag_cluster_group[curr_hashtag][curr_cluster_name]) | {curr_group_name} )
 
         def update_mapping(curr_hashtags, curr_cluster_name, curr_group_name):
             if curr_group_name not in mapping_group_cluster_hashtag:
@@ -50,7 +50,10 @@ def generate_mapping(input_file, output_file):
             mapping_group_cluster_hashtag[curr_group_name][curr_cluster_name] = list(set(curr_hashtags) | set(mapping_group_cluster_hashtag[curr_group_name][curr_cluster_name]))
 
         for group_chunk in group_cluster_mapping:
-            for (group_name, clusters) in group_chunk:
+            for group_name in group_chunk.keys():
+                print(f"process group: {group_name} ...")
+
+                clusters = group_chunk[group_name]
                 all_groups[group_name] = True
 
                 if group_name not in mapping_group_cluster_hashtag:
@@ -69,13 +72,25 @@ def generate_mapping(input_file, output_file):
                     update_reversed_mapping(matching_hashtags, cluster_name, group_name)
                     update_mapping(matching_hashtags, cluster_name, group_name)
 
+                    for hashtag in matching_hashtags:
+                        if hashtag[0:5] == "folie":
+                            print("hi")
+                        all_hashtags[hashtag] = True
+
+        print("Done.")
         # Create result format
-        output_data = {"group_count": len([]), "cluster_count": len([]), "hashtag_count": len([]), "mapping": mapping_group_cluster_hashtag, "reversed_mapping": mapping_hashtag_cluster_group, "all_groups": all_groups, "all_clusters": all_clusters,
+        output_data = {"group_count": len(all_groups),
+                       "cluster_count": len(all_clusters),
+                       "hashtag_count": len(all_hashtags),
+                       "mapping": mapping_group_cluster_hashtag,
+                       "reversed_mapping": mapping_hashtag_cluster_group,
+                       "all_groups": all_groups,
+                       "all_clusters": all_clusters,
                        "all_hashtags": all_hashtags}
 
         # Write the mapping to a new JSON file
         with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(output_data, f, indent=4)
+            json.dump(output_data, f, indent=4, ensure_ascii=False)
 
     except FileNotFoundError:
         print(f"Error: Input file '{input_file}' not found")
