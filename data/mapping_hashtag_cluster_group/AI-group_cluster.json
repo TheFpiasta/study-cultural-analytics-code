@@ -1,0 +1,1814 @@
+{
+    "group_mapping": [
+        {
+            "Politics & Government": [
+                "Politics_Germany",
+                "International_Politics",
+                "Global_Conflict",
+                "Politics & Government"
+            ],
+            "Places & Locations": [
+                "German_Cities",
+                "European_Countries",
+                "Locations",
+                "Places & Locations"
+            ],
+            "Environment & Nature": [
+                "Weather_Environment",
+                "Environment & Nature",
+                "Nature & Environment",
+                "Natural Disasters"
+            ],
+            "Social Issues": [
+                "Society & Issues",
+                "Social Issues",
+                "Youth & Society"
+            ],
+            "Transportation": [
+                "Travel_Transportation",
+                "Transportation & Infrastructure",
+                "Transportation"
+            ],
+            "Law & Security": [
+                "Law_Security",
+                "Crime & Safety",
+                "Crime & Justice"
+            ],
+            "Business & Economy": [
+                "Economy_Finance"
+            ],
+            "Technology & Digital": [
+                "Technology & Digital",
+                "Social_Media"
+            ],
+            "Events & Time": [
+                "Seasonal_Events",
+                "Events & Seasons",
+                "Media Events"
+            ],
+            "Health & Wellness": [
+                "Health_Wellness",
+                "Health & Medical"
+            ],
+            "Entertainment & Media": [
+                "Media_News",
+                "Entertainment & Media",
+                "Sports_Entertainment",
+                "Sports & Recreation",
+                "Sports",
+                "Celebrities"
+            ],
+            "Family & Relationships": [
+                "Family_Relationships",
+                "Family & Relationships"
+            ],
+            "Education & Science": [
+                "Education_Research",
+                "Science & Education"
+            ],
+            "Culture & Lifestyle": [
+                "Lifestyle",
+                "Culture & Lifestyle",
+                "Work & Living",
+                "Life & Death"
+            ],
+            "Animals & Nature": [
+                "Animals"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ]
+        },
+        {
+            "Politics & Government": [
+                "Politics & Government",
+                "Politics",
+                "International Affairs"
+            ],
+            "Social Issues": [
+                "Social Issues",
+                "Social Issues & Activism",
+                "Charity"
+            ],
+            "Technology & Digital": [
+                "Technology & Companies",
+                "Technology",
+                "Technology & Digital"
+            ],
+            "Law & Security": [
+                "Law & Order",
+                "Legal & Rights",
+                "Law and Security"
+            ],
+            "Environment & Nature": [
+                "Environment & Climate",
+                "Environment & Nature",
+                "Environment",
+                "Environmental"
+            ],
+            "Health & Wellness": [
+                "Health & Wellness",
+                "Health"
+            ],
+            "Family & Relationships": [
+                "Family & Relationships",
+                "Family and Relationships",
+                "Lifestyle & Relationships"
+            ],
+            "Places & Locations": [
+                "Places & Cities",
+                "Places & Locations",
+                "Places",
+                "Global Regions & Countries"
+            ],
+            "Entertainment & Media": [
+                "Sports & Entertainment",
+                "Media & Entertainment",
+                "Entertainment",
+                "Sports & Recreation",
+                "Sports"
+            ],
+            "Business & Economy": [
+                "Business & Finance",
+                "Business & Economy"
+            ],
+            "Culture & Lifestyle": [
+                "Culture & Society",
+                "Living",
+                "Food & Dining",
+                "Housing & Real Estate"
+            ],
+            "Education & Science": [
+                "Education & Career",
+                "Career"
+            ],
+            "Events & Time": [
+                "Events & Time",
+                "Crisis & Disasters"
+            ],
+            "Transportation": [
+                "Transportation"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous",
+                "Sleep"
+            ]
+        },
+        {
+            "Health & Wellness": [
+                "Health & Medical",
+                "Health and Medicine",
+                "Health & Medicine",
+                "Health & Wellness",
+                "Food and Nutrition",
+                "Food & Dining"
+            ],
+            "Entertainment & Media": [
+                "Sports & Entertainment",
+                "Media & Entertainment",
+                "Sports & Athletes",
+                "Entertainment and Culture",
+                "Social Media & Internet"
+            ],
+            "Technology & Digital": [
+                "Technology and Digital",
+                "Technology & Digital"
+            ],
+            "Places & Locations": [
+                "Locations and Places",
+                "Places",
+                "Places & Locations",
+                "Buildings and Infrastructure"
+            ],
+            "Business & Economy": [
+                "Business & Economy",
+                "Business and Finance",
+                "Business & Finance"
+            ],
+            "Politics & Government": [
+                "Politics and Society",
+                "Politics",
+                "Politics & Government"
+            ],
+            "Environment & Nature": [
+                "Environment",
+                "Environmental",
+                "Nature and Animals",
+                "Nature & Environment"
+            ],
+            "Social Issues": [
+                "Social Issues",
+                "Serious Issues"
+            ],
+            "Culture & Lifestyle": [
+                "Personal & Lifestyle",
+                "Lifestyle & Culture",
+                "Lifestyle & Personal",
+                "Social Activities"
+            ],
+            "Events & Time": [
+                "Current Events"
+            ],
+            "Transportation": [
+                "Travel & Transportation",
+                "Transportation"
+            ],
+            "Family & Relationships": [
+                "Family and Relationships"
+            ],
+            "Education & Science": [
+                "Education and Learning"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ],
+            "People & Society": [
+                "Celebrities and Public Figures",
+                "People & Personalities"
+            ]
+        },
+        {
+            "Events & Time": [
+                "Time & Planning",
+                "Time & Calendar",
+                "Special Events"
+            ],
+            "Technology & Digital": [
+                "Technology",
+                "Media & Technology",
+                "Technology & Digital"
+            ],
+            "Law & Security": [
+                "Law & Security",
+                "Crime & Security",
+                "Emergency & Safety"
+            ],
+            "Environment & Nature": [
+                "Nature & Environment",
+                "Animals & Nature"
+            ],
+            "Health & Wellness": [
+                "Health & Medical",
+                "Health Issues",
+                "Food & Nutrition"
+            ],
+            "Family & Relationships": [
+                "Family & Relationships"
+            ],
+            "Places & Locations": [
+                "Places & Travel",
+                "Places & Locations"
+            ],
+            "Politics & Government": [
+                "Politics & Government",
+                "Current Events & Politics"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ],
+            "Transportation": [
+                "Transportation"
+            ],
+            "Business & Economy": [
+                "Economy & Finance",
+                "Work & Career"
+            ],
+            "Culture & Lifestyle": [
+                "Culture & Tradition",
+                "Lifestyle & Beauty",
+                "Society & Culture"
+            ],
+            "Entertainment & Media": [
+                "Entertainment & Media"
+            ],
+            "Education & Science": [
+                "Education",
+                "Space & Science"
+            ],
+            "People & Society": [
+                "Social & Demographics",
+                "Notable People"
+            ],
+            "Sports & Recreation": [
+                "Sports",
+                "Sports & Activities",
+                "Sports & Recreation"
+            ],
+            "Personal Development": [
+                "Personal Development",
+                "Emotions & Mental States"
+            ]
+        },
+        {
+            "Politics & Government": [
+                "Politics and Government",
+                "Politics & Government",
+                "Organizations"
+            ],
+            "Entertainment & Media": [
+                "Entertainment and Media",
+                "Entertainment & Media",
+                "Books & Literature"
+            ],
+            "Social Issues": [
+                "Social Issues",
+                "Emotions & Psychology",
+                "Daily Life"
+            ],
+            "Places & Locations": [
+                "Places and Locations",
+                "Places & Cities",
+                "Places & Locations",
+                "Architecture & Buildings"
+            ],
+            "Sports & Recreation": [
+                "Sports",
+                "Sports & Activities",
+                "Hobbies and Interests"
+            ],
+            "Business & Economy": [
+                "Economy & Finance",
+                "Work and Economy",
+                "Business & Work"
+            ],
+            "Culture & Lifestyle": [
+                "Art & Culture",
+                "Cultural Events and Traditions",
+                "Culture & Traditions",
+                "Religion and Culture",
+                "Lifestyle",
+                "Food & Drink",
+                "Holidays & Celebrations"
+            ],
+            "Health & Wellness": [
+                "Health and Wellness",
+                "Health & Medicine",
+                "Health & Medical"
+            ],
+            "Environment & Nature": [
+                "Nature and Environment",
+                "Nature & Environment",
+                "Weather and Climate"
+            ],
+            "Technology & Digital": [
+                "Technology",
+                "Social Media & Internet",
+                "Communication and Language"
+            ],
+            "Education & Science": [
+                "Education and Research",
+                "Books & Literature",
+                "Geography & Navigation"
+            ],
+            "Transportation": [
+                "Travel and Transportation",
+                "Transportation"
+            ],
+            "Animals & Nature": [
+                "Animals & Pets"
+            ],
+            "Personal Development": [
+                "Personal Development"
+            ],
+            "Family & Relationships": [
+                "Family & Relationships"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ]
+        },
+        {
+            "Entertainment & Media": [
+                "Entertainment",
+                "Entertainment & Media",
+                "News and Media"
+            ],
+            "Places & Locations": [
+                "Places and Locations",
+                "Places & Locations",
+                "Geography and Places",
+                "Locations"
+            ],
+            "Environment & Nature": [
+                "Natural Phenomena",
+                "Environmental",
+                "Nature & Environment",
+                "Nature and Environment"
+            ],
+            "Business & Economy": [
+                "Business & Retail",
+                "Business and Work",
+                "Consumer Related"
+            ],
+            "Social Issues": [
+                "Social Issues"
+            ],
+            "Transportation": [
+                "Transportation & Movement",
+                "Transportation",
+                "Transportation and Space"
+            ],
+            "Education & Science": [
+                "Education & Career"
+            ],
+            "Politics & Government": [
+                "Politics and Government",
+                "Legal & Government"
+            ],
+            "Sports & Recreation": [
+                "Sports",
+                "Sports & Activities",
+                "Sports and Recreation"
+            ],
+            "Health & Wellness": [
+                "Personal Care & Wellness",
+                "Medical and Health",
+                "Health & Medical"
+            ],
+            "Culture & Lifestyle": [
+                "Lifestyle",
+                "Lifestyle & Society"
+            ],
+            "People & Society": [
+                "People and Personalities",
+                "Personal & Relationships",
+                "Personal Status"
+            ],
+            "Events & Time": [
+                "Historical Events",
+                "Events",
+                "Current Events",
+                "History & Memory"
+            ],
+            "Food & Dining": [
+                "Food & Drink",
+                "Food and Drink"
+            ],
+            "Spirituality": [
+                "Spirituality & Philosophy"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ]
+        },
+        {
+            "Politics & Government": [
+                "Politics and Government",
+                "Legal and Political",
+                "Politics & Society"
+            ],
+            "Entertainment & Media": [
+                "Entertainment and Media",
+                "Social Media & Entertainment",
+                "Art & Media"
+            ],
+            "Technology & Digital": [
+                "Technology and Science",
+                "Technology & Digital",
+                "Social Media and Technology"
+            ],
+            "Business & Economy": [
+                "Business and Economy",
+                "Business and Commerce",
+                "Business & Economy"
+            ],
+            "Environment & Nature": [
+                "Environment",
+                "Climate and Environment",
+                "Natural Events and Environment"
+            ],
+            "Health & Wellness": [
+                "Health and Medical",
+                "Health & Wellness"
+            ],
+            "Social Issues": [
+                "Social Issues",
+                "Trends & Challenges"
+            ],
+            "Transportation": [
+                "Transportation"
+            ],
+            "Places & Locations": [
+                "Places and Cities",
+                "Places & Geography"
+            ],
+            "Animals & Nature": [
+                "Animals and Nature",
+                "Animals"
+            ],
+            "Culture & Lifestyle": [
+                "Historical and Cultural",
+                "Lifestyle and Relationships",
+                "Lifestyle & Home",
+                "Religion & Culture"
+            ],
+            "Sports & Recreation": [
+                "Sports and Olympics",
+                "Sports Personalities",
+                "Sports & Games"
+            ],
+            "Family & Relationships": [
+                "Family & Relationships"
+            ],
+            "Education & Science": [
+                "Education and Learning"
+            ],
+            "Food & Dining": [
+                "Food and Drink"
+            ],
+            "Law & Security": [
+                "Crime & Security",
+                "Terrorism & Conflict"
+            ],
+            "People & Society": [
+                "People and Personalities"
+            ],
+            "News & Communication": [
+                "News and Communication",
+                "News & Journalism"
+            ],
+            "Events & Time": [
+                "Time and Seasons"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous",
+                "Substances",
+                "Organizations and Brands"
+            ]
+        },
+        {
+            "Health & Wellness": [
+                "Health and Wellness",
+                "Health_Medicine",
+                "Health & Medical",
+                "Medical and Health"
+            ],
+            "Places & Locations": [
+                "Travel and Places",
+                "Places",
+                "Places & Geography",
+                "Turkish Geography"
+            ],
+            "Sports & Recreation": [
+                "Sports and Athletics",
+                "Sports",
+                "Sports & Athletics"
+            ],
+            "Culture & Lifestyle": [
+                "Fashion and Beauty",
+                "Lifestyle and Living"
+            ],
+            "Entertainment & Media": [
+                "Entertainment and Media",
+                "Media_Entertainment",
+                "Entertainment & Media",
+                "Media_Organizations",
+                "Social Media/Characters"
+            ],
+            "Transportation": [
+                "Transportation",
+                "Transportation",
+                "Transportation and Travel"
+            ],
+            "Law & Security": [
+                "Crime and Safety",
+                "Law_Enforcement"
+            ],
+            "Events & Time": [
+                "Events",
+                "Events & Activities",
+                "History and Memory"
+            ],
+            "Family & Relationships": [
+                "Family",
+                "Personal Relations"
+            ],
+            "Education & Science": [
+                "Education",
+                "Education & Society",
+                "Education and Learning",
+                "Science_Technology"
+            ],
+            "Business & Economy": [
+                "Money and Finance",
+                "Finance & Economy",
+                "Economy_Shopping",
+                "Companies and Organizations"
+            ],
+            "Social Issues": [
+                "Social Issues",
+                "Social_Issues"
+            ],
+            "Politics & Government": [
+                "Politics",
+                "Politics & Government",
+                "Government and Society"
+            ],
+            "Environment & Nature": [
+                "Nature & Environment",
+                "Nature and Environment"
+            ],
+            "Food & Dining": [
+                "Food and Dining",
+                "Food_Drink"
+            ],
+            "People & Society": [
+                "People and Personalities"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous",
+                "Miscellaneous",
+                "German Words"
+            ]
+        },
+        {
+            "Entertainment & Media": [
+                "Entertainment and Events",
+                "Entertainment and Culture",
+                "Entertainment and Media",
+                "Media and Broadcasting",
+                "Media and News"
+            ],
+            "Sports & Recreation": [
+                "Sports",
+                "Sports and Athletes",
+                "Sports and Competition",
+                "Activities and Experiences"
+            ],
+            "Health & Wellness": [
+                "Health and Medical",
+                "Health Hazards",
+                "Health and Wellness",
+                "Lifestyle and Wellness"
+            ],
+            "Transportation": [
+                "Transportation",
+                "Travel and Transportation",
+                "Vehicles and Transportation"
+            ],
+            "Environment & Nature": [
+                "Environmental Issues",
+                "Animals and Nature",
+                "Weather and Nature",
+                "Nature and Environment",
+                "Water-related"
+            ],
+            "Places & Locations": [
+                "Places and Institutions",
+                "Places and Regions",
+                "World and Global"
+            ],
+            "People & Society": [
+                "Personal Names",
+                "Social Issues",
+                "Social Issues and Activism",
+                "Personal Documents"
+            ],
+            "Business & Economy": [
+                "Financial and Economic",
+                "Economics and Business"
+            ],
+            "News & Communication": [
+                "Media and News"
+            ],
+            "Culture & Lifestyle": [
+                "German Words and Culture",
+                "Drinks and Food",
+                "Christmas"
+            ],
+            "Events & Time": [
+                "Historical and Time-related",
+                "Events and Ceremonies"
+            ],
+            "Law & Security": [
+                "Security and Crime",
+                "Military and Service"
+            ],
+            "Technology & Digital": [
+                "Technology"
+            ],
+            "Education & Science": [
+                "Knowledge and Wisdom",
+                "Numbers and References"
+            ],
+            "Animals & Nature": [
+                "Animals"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous",
+                "Colors and Conditions",
+                "Workshop and Work",
+                "Substances"
+            ],
+            "Public Services": [
+                "Public Services"
+            ],
+            "Housing": [
+                "Housing and Living"
+            ]
+        },
+        {
+            "Entertainment & Media": [
+                "Entertainment",
+                "Media & Entertainment",
+                "Entertainment & Media",
+                "Sports and Entertainment"
+            ],
+            "Technology & Digital": [
+                "Space and Technology",
+                "Technology and Digital",
+                "Social Media & Technology"
+            ],
+            "Politics & Government": [
+                "Politics and Elections",
+                "Politics and Government",
+                "US Politics & Elections",
+                "Politics & Society"
+            ],
+            "Health & Wellness": [
+                "Health and Medical",
+                "Health and Safety",
+                "Medical & Health",
+                "Emotions & Mental State"
+            ],
+            "Social Issues": [
+                "Social Issues",
+                "Identity & Gender"
+            ],
+            "Places & Locations": [
+                "Places and Regions",
+                "Travel and Adventure",
+                "Travel & Places",
+                "Travel & Tourism"
+            ],
+            "Law & Security": [
+                "Crime and Legal",
+                "Legal & Rights",
+                "Weapons and Restrictions"
+            ],
+            "Culture & Lifestyle": [
+                "Languages and Culture",
+                "Historical & Cultural",
+                "Lifestyle and Personal"
+            ],
+            "Business & Economy": [
+                "Finance and Business",
+                "Business and Commerce"
+            ],
+            "Environment & Nature": [
+                "Environment & Sustainability",
+                "Weather & Natural Events",
+                "Animals & Pets"
+            ],
+            "Education & Science": [
+                "Education & Academia",
+                "Prehistoric & Dinosaurs",
+                "UFO & Paranormal"
+            ],
+            "Transportation": [
+                "Transportation and Traffic",
+                "Moving & Change"
+            ],
+            "Family & Relationships": [
+                "Love and Emotions",
+                "Emotional & Personal"
+            ],
+            "Food & Dining": [
+                "Food & Beverages"
+            ],
+            "People & Society": [
+                "Names and Identity",
+                "Organizations & Institutions"
+            ],
+            "News & Communication": [
+                "Warnings and Alerts",
+                "Accusations and Claims"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous",
+                "Mystery & Crime"
+            ]
+        },
+        {
+            "Sports & Recreation": [
+                "Sports & Games",
+                "Sports",
+                "Sports & Activities",
+                "Sports and Athletics",
+                "Games",
+                "Games and Recreation",
+                "Outdoor Activities & Sports"
+            ],
+            "Entertainment & Media": [
+                "Entertainment & Media",
+                "Media & Communication",
+                "Movies & Shows",
+                "Music & Performance",
+                "Entertainment and Media",
+                "Social Media & Entertainment"
+            ],
+            "Places & Locations": [
+                "Geography & Places",
+                "Geographic Locations",
+                "Urban & Infrastructure",
+                "Urban and Planning"
+            ],
+            "Technology & Digital": [
+                "Technology & Communication",
+                "Social Media & Technology",
+                "Science and Technology"
+            ],
+            "Health & Wellness": [
+                "Health & Therapy",
+                "Health & Wellness",
+                "Health and Medical",
+                "Health & Body"
+            ],
+            "Environment & Nature": [
+                "Nature & Environment",
+                "Historical & Nature",
+                "Nature and Environment",
+                "Nature & Space"
+            ],
+            "Food & Dining": [
+                "Food & Dining",
+                "Food and Cuisine"
+            ],
+            "Business & Economy": [
+                "Work & Business",
+                "Companies & Brands"
+            ],
+            "Politics & Government": [
+                "Government and State",
+                "Social & Government"
+            ],
+            "News & Communication": [
+                "News & Media"
+            ],
+            "Transportation": [
+                "Transportation"
+            ],
+            "Family & Relationships": [
+                "Social & Family"
+            ],
+            "Events & Time": [
+                "Events & Celebrations"
+            ],
+            "People & Society": [
+                "People & Characters",
+                "Social Services"
+            ],
+            "Education & Science": [
+                "Education & Student Life"
+            ],
+            "Law & Security": [
+                "Legal & Justice",
+                "Military & Security"
+            ],
+            "Art & Culture": [
+                "Art & Personal Expression"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous",
+                "Miscellaneous",
+                "Miscellaneous",
+                "Miscellaneous"
+            ]
+        },
+        {
+            "Entertainment & Media": [
+                "Entertainment & Media",
+                "Media and Entertainment",
+                "TV & Entertainment",
+                "Games and Entertainment",
+                "Literature and Arts"
+            ],
+            "Health & Wellness": [
+                "Health & Beauty",
+                "Health & Medical",
+                "Medical & Health"
+            ],
+            "Places & Locations": [
+                "Places & Locations",
+                "Places & Regions",
+                "Places and Locations"
+            ],
+            "Transportation": [
+                "Transportation",
+                "Travel & Movement",
+                "Travel and Movement",
+                "Maritime"
+            ],
+            "Environment & Nature": [
+                "Nature & Animals",
+                "Winter & Snow"
+            ],
+            "People & Society": [
+                "People & Personalities",
+                "People and Personalities",
+                "Family & Society"
+            ],
+            "Education & Science": [
+                "Education",
+                "Education & Learning",
+                "Technology & Science"
+            ],
+            "Technology & Digital": [
+                "Technology"
+            ],
+            "Business & Economy": [
+                "Business and Commerce"
+            ],
+            "Food & Dining": [
+                "Food & Beverages",
+                "Food and Nutrition",
+                "Food & Cooking"
+            ],
+            "Sports & Recreation": [
+                "Sports and Activities",
+                "Chess Related"
+            ],
+            "Social Issues": [
+                "Social Issues",
+                "Social Issues & Reform",
+                "Social Causes & Movements"
+            ],
+            "Housing": [
+                "Home & Housing",
+                "Buildings & Facilities"
+            ],
+            "Politics & Government": [
+                "Government & Politics",
+                "Military and Defense"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous",
+                "Words Starting with 'Schrei'",
+                "Objects & Items"
+            ],
+            "Events & Time": [
+                "Time & Events",
+                "History and Heritage"
+            ],
+            "Emotions & Personal": [
+                "Emotions and Feelings"
+            ],
+            "Emergency Services": [
+                "Emergency and Rescue"
+            ]
+        },
+        {
+            "People & Society": [
+                "Names & People"
+            ],
+            "Environment & Nature": [
+                "Animals & Nature",
+                "Nature & Environment"
+            ],
+            "Transportation": [
+                "Transportation",
+                "Parking & Transportation"
+            ],
+            "Law & Security": [
+                "Crime & Security",
+                "Police & Law Enforcement"
+            ],
+            "Business & Economy": [
+                "Business & Reputation",
+                "Industry & Business",
+                "Consumer & Retail"
+            ],
+            "Health & Wellness": [
+                "Addictions & Health Risks",
+                "Health & Medical",
+                "Medical & Health"
+            ],
+            "Entertainment & Media": [
+                "Entertainment & Media",
+                "Media & Entertainment"
+            ],
+            "Places & Locations": [
+                "Places & Locations",
+                "Places & Travel",
+                "Geography & Places"
+            ],
+            "Technology & Digital": [
+                "Digital & Social Media",
+                "Technology & Digital"
+            ],
+            "Politics & Government": [
+                "Politics",
+                "Politics & Society",
+                "Political Organizations & Activities"
+            ],
+            "Sports & Recreation": [
+                "Sports & Athletes",
+                "Sports & Olympics"
+            ],
+            "Food & Dining": [
+                "Food & Dining"
+            ],
+            "Education & Science": [
+                "Education & Learning",
+                "Science & Space",
+                "Literature & Arts"
+            ],
+            "Culture & Lifestyle": [
+                "Cultural & Religious",
+                "Lifestyle & Personal"
+            ],
+            "Housing": [
+                "Housing & Property"
+            ],
+            "Spirituality": [
+                "Religion & Religious Figures"
+            ],
+            "Military & Defense": [
+                "Military & Conflict",
+                "Military & Defense"
+            ],
+            "Family & Relationships": [
+                "Relationships & Personal"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous",
+                "Personal Services",
+                "Paranormal & Psychology",
+                "History"
+            ]
+        },
+        {
+            "Food & Dining": [
+                "Food & Cooking",
+                "Food & Beverages"
+            ],
+            "Law & Security": [
+                "Government & Law",
+                "Law Enforcement",
+                "Crime and Investigation"
+            ],
+            "Sports & Recreation": [
+                "Sports & Athletics",
+                "Sports"
+            ],
+            "Places & Locations": [
+                "US Locations",
+                "Locations & Places",
+                "Places and Locations",
+                "Geographical Locations"
+            ],
+            "Entertainment & Media": [
+                "Entertainment & Media",
+                "Media Organizations",
+                "Music and Entertainment",
+                "Celebrities and Public Figures",
+                "Beauty Pageants"
+            ],
+            "Politics & Government": [
+                "Politics & Social Issues",
+                "Politics and Nationalism",
+                "Politics and Government",
+                "Social Issues"
+            ],
+            "Business & Economy": [
+                "Business & Work",
+                "Business and Economy",
+                "Organizations and Institutions",
+                "Organizations"
+            ],
+            "Environment & Nature": [
+                "Nature & Phenomena",
+                "Nature and Environment",
+                "Space and Celestial"
+            ],
+            "Health & Wellness": [
+                "Health & Medical",
+                "Medical Facilities",
+                "Health and Wellness"
+            ],
+            "Technology & Digital": [
+                "Technology & Digital",
+                "Media and Knowledge"
+            ],
+            "Events & Time": [
+                "Events & Occasions",
+                "Seasonal & Holidays",
+                "Holiday & Seasonal"
+            ],
+            "People & Society": [
+                "People and Identity",
+                "Family and Personal",
+                "Cultural and Mythological"
+            ],
+            "Transportation": [
+                "Automotive"
+            ],
+            "Science & Education": [
+                "Science and Biology",
+                "Basic Concepts"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous",
+                "Miscellaneous Names",
+                "Objects and Items",
+                "Creatures and Characters",
+                "Travel & Adventure"
+            ]
+        },
+        {
+            "Technology & Digital": [
+                "Technology and Science",
+                "Media & Technology",
+                "Social Media & Digital",
+                "Technology and Objects"
+            ],
+            "Entertainment & Media": [
+                "Celebrities & Entertainment",
+                "Entertainment & Media",
+                "Entertainment and Media"
+            ],
+            "Health & Wellness": [
+                "Health & Medicine",
+                "Health & Medical",
+                "Health and Medical",
+                "Medical and Health",
+                "Disease & Health Issues"
+            ],
+            "Business & Economy": [
+                "Brands and Companies",
+                "Business & Companies",
+                "Delivery and Service"
+            ],
+            "Places & Locations": [
+                "Places & Locations",
+                "Places & Cities",
+                "Places and Locations"
+            ],
+            "Sports & Recreation": [
+                "Sports & Achievement",
+                "Sports & Games",
+                "Sports and Athletics"
+            ],
+            "Education & Science": [
+                "Education & Science",
+                "Education and Learning"
+            ],
+            "Food & Dining": [
+                "Food & Beverages",
+                "Food and Nutrition"
+            ],
+            "People & Society": [
+                "People & Characters",
+                "Politics & Society",
+                "Politics and Society",
+                "Royal and Nobility",
+                "Historical & Notable Figures"
+            ],
+            "Environment & Nature": [
+                "Nature & Animals",
+                "Nature and Animals",
+                "Agriculture"
+            ],
+            "Art & Culture": [
+                "Arts & Culture"
+            ],
+            "Law & Security": [
+                "Safety and Security",
+                "Safety & Protection"
+            ],
+            "Transportation": [
+                "Automotive & Transportation",
+                "Transportation"
+            ],
+            "Personal Development": [
+                "Personal Development",
+                "Quality of Life"
+            ],
+            "Family & Relationships": [
+                "Love & Relationships",
+                "Love and Relationships"
+            ],
+            "Culture & Lifestyle": [
+                "Lifestyle & Living"
+            ],
+            "Social Issues": [
+                "Social Issues & Rights",
+                "Social Movements & Events"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ]
+        },
+        {
+            "Politics & Government": [
+                "Politics and Administration",
+                "Politics and Government",
+                "Politics_and_Government"
+            ],
+            "Health & Wellness": [
+                "Body and Health",
+                "Medical and Health",
+                "Health and Medicine",
+                "Health_and_Medicine"
+            ],
+            "Technology & Digital": [
+                "Technology and AI",
+                "Technology",
+                "Technology and Finance"
+            ],
+            "Entertainment & Media": [
+                "Media and Entertainment",
+                "Entertainment and Media",
+                "Entertainment_and_Games"
+            ],
+            "Places & Locations": [
+                "Places and Locations",
+                "Places and Venues",
+                "Places_and_Locations",
+                "Architecture_and_Buildings"
+            ],
+            "Business & Economy": [
+                "Finance and Economy",
+                "Finance_and_Economics",
+                "Shopping_and_Retail"
+            ],
+            "Law & Security": [
+                "Crime and Law",
+                "Criminal Justice",
+                "Legal_and_Justice"
+            ],
+            "Sports & Recreation": [
+                "Sports and Fitness",
+                "Sports and Athletes"
+            ],
+            "Environment & Nature": [
+                "Climate and Environment",
+                "Animals and Nature",
+                "Animals_and_Nature"
+            ],
+            "Food & Dining": [
+                "Food and Cuisine",
+                "Food_and_Drink"
+            ],
+            "Education & Science": [
+                "Education_and_Career",
+                "Youth and Education",
+                "Science and Space"
+            ],
+            "People & Society": [
+                "People and Personalities",
+                "People and Characters",
+                "People_Named_Kevin",
+                "Celebrities_and_Public_Figures",
+                "Social_Topics"
+            ],
+            "Family & Relationships": [
+                "Children and Family"
+            ],
+            "Art & Culture": [
+                "Arts and Culture"
+            ],
+            "Transportation": [
+                "Travel and Transportation"
+            ],
+            "Historical": [
+                "Historical_Terms"
+            ],
+            "Employment": [
+                "Employment and Career"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ]
+        },
+        {
+            "Places & Locations": [
+                "Places and Geography",
+                "Places & Locations",
+                "Places & Travel",
+                "Places_Locations"
+            ],
+            "Health & Wellness": [
+                "Medical & Health",
+                "Health & Wellness",
+                "Body Parts & Health",
+                "Mental Health & Conditions",
+                "Medical Plants & Healing"
+            ],
+            "Art & Culture": [
+                "Religion and Culture",
+                "Religious & Cultural",
+                "Religion & Spirituality"
+            ],
+            "Entertainment & Media": [
+                "Media & Entertainment",
+                "Entertainment & Media",
+                "Celebrities_Public_Figures"
+            ],
+            "Transportation": [
+                "Transportation",
+                "Transportation_Locations"
+            ],
+            "Social Issues": [
+                "Social Issues"
+            ],
+            "Science & Education": [
+                "Education & Institutions",
+                "Science & Research"
+            ],
+            "Business & Economy": [
+                "Economics & Business",
+                "Brands & Companies",
+                "Business & Finance"
+            ],
+            "Environment & Nature": [
+                "Natural Disasters",
+                "Nature & Animals",
+                "Animals & Pets"
+            ],
+            "Technology & Digital": [
+                "Internet & Technology"
+            ],
+            "Housing": [
+                "Buildings & Structures",
+                "Buildings & Infrastructure",
+                "Design & Architecture",
+                "Household_Related"
+            ],
+            "People & Society": [
+                "People & Personalities",
+                "Relationships & Personal",
+                "Personal Traits"
+            ],
+            "Politics & Government": [
+                "Politics & Security",
+                "Political & Historical"
+            ],
+            "Emergency Services": [
+                "Disasters & Emergencies",
+                "Conflict & Security"
+            ],
+            "Lifestyle & Culture": [
+                "Lifestyle & Living",
+                "Activities & Lifestyle"
+            ],
+            "Food & Dining": [
+                "Food & Dining"
+            ],
+            "Sports & Recreation": [
+                "Sports"
+            ],
+            "Communication": [
+                "Communication & Exchange"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ]
+        },
+        {
+            "Entertainment & Media": [
+                "Entertainment_Media",
+                "Entertainment and Media",
+                "Entertainment & Media"
+            ],
+            "Health & Wellness": [
+                "Health_Medical",
+                "Health and Medical",
+                "Health_Medical",
+                "Health and Wellness",
+                "Medical and Health Issues",
+                "Health & Medicine"
+            ],
+            "Environment & Nature": [
+                "Nature_Environment",
+                "Nature and Environment",
+                "Nature & Environment"
+            ],
+            "Technology & Digital": [
+                "Social_Media_Internet",
+                "Social Media and Internet"
+            ],
+            "Culture & Lifestyle": [
+                "Culture and Language",
+                "Fashion_Beauty",
+                "Fashion and Beauty"
+            ],
+            "Events & Time": [
+                "Celebrations_Holidays",
+                "Celebrations",
+                "Holiday & Celebrations"
+            ],
+            "Food & Dining": [
+                "Food_Drinks",
+                "Food & Beverages"
+            ],
+            "Law & Security": [
+                "Legal_Justice",
+                "Law and Society",
+                "Crime and Justice"
+            ],
+            "Education & Science": [
+                "Education and Basic Rights",
+                "Education and Development",
+                "Science and Math"
+            ],
+            "Sports & Recreation": [
+                "Sports",
+                "Sports & Games"
+            ],
+            "Places & Locations": [
+                "Places and Locations",
+                "Places & Locations"
+            ],
+            "People & Society": [
+                "Names and People",
+                "People & Names",
+                "Family and Relationships",
+                "Professions"
+            ],
+            "Social Issues": [
+                "Society and Social Issues",
+                "Social Issues"
+            ],
+            "Transportation": [
+                "Transportation"
+            ],
+            "Miscellaneous": [
+                "General_Terms",
+                "Miscellaneous"
+            ],
+            "Fiction & Horror": [
+                "Horror and Spooky",
+                "Fictional Characters"
+            ],
+            "Death & Memorial": [
+                "Death and Memorial"
+            ],
+            "Communication": [
+                "Communication and Language"
+            ],
+            "Wealth & Success": [
+                "Wealth and Success"
+            ]
+        },
+        {
+            "Entertainment & Media": [
+                "Media and Entertainment",
+                "Sports and Entertainment",
+                "Entertainment & Media"
+            ],
+            "Environment & Nature": [
+                "Environment and Geography",
+                "Nature and Environment",
+                "Environmental & Energy",
+                "Geography & Places",
+                "Animals & Nature",
+                "Winter & Ice"
+            ],
+            "Education & Science": [
+                "Education and Learning",
+                "Education & Institutions",
+                "Education & Learning",
+                "Science & Space"
+            ],
+            "Transportation": [
+                "Transportation",
+                "Transportation and Travel",
+                "Travel & Transportation",
+                "Aviation"
+            ],
+            "Food & Dining": [
+                "Food and Dining",
+                "Food & Dining"
+            ],
+            "Health & Wellness": [
+                "Health and Safety",
+                "Health and Medical",
+                "Health & Medical"
+            ],
+            "People & Society": [
+                "Social & Relationships",
+                "People and Names",
+                "People & Names",
+                "Social Issues",
+                "Family and Personal",
+                "Daily Activities"
+            ],
+            "Business & Economy": [
+                "Finance and Business",
+                "Industry and Business"
+            ],
+            "Law & Politics": [
+                "Legal & Political",
+                "European Union and Politics",
+                "Politics & Government",
+                "Crime & Law"
+            ],
+            "Sports & Recreation": [
+                "Sports and Combat",
+                "Sports & Events"
+            ],
+            "Lifestyle & Culture": [
+                "Fashion and Lifestyle",
+                "Personal Development"
+            ],
+            "Housing & Property": [
+                "Housing & Property"
+            ],
+            "Technology & Digital": [
+                "Digital & Technology"
+            ],
+            "Music & Arts": [
+                "Music & Bands"
+            ],
+            "Emergency Services": [
+                "Emergency Services"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ]
+        },
+        {
+            "Places & Locations": [
+                "Places & Locations",
+                "Places and Locations"
+            ],
+            "Entertainment & Media": [
+                "Entertainment & Media",
+                "Entertainment",
+                "Media and Entertainment"
+            ],
+            "Health & Wellness": [
+                "Medical & Health",
+                "Health & Medicine",
+                "Health and Medical"
+            ],
+            "Technology & Digital": [
+                "Technology & Digital",
+                "Social Media & Technology",
+                "Science & Technology"
+            ],
+            "Politics & Government": [
+                "Politics & Society",
+                "Government and Politics",
+                "Politics and Government"
+            ],
+            "Animals & Nature": [
+                "Animals",
+                "Environment & Climate",
+                "Science & Nature"
+            ],
+            "People & Society": [
+                "Names & People",
+                "Celebrities & People",
+                "People & Personalities",
+                "People and Characters"
+            ],
+            "Sports & Recreation": [
+                "Sports & Athletics",
+                "Sports & Games"
+            ],
+            "Food & Dining": [
+                "Food & Beverages",
+                "Food and Drink"
+            ],
+            "Culture & Lifestyle": [
+                "Activities and Lifestyle",
+                "Fashion and Brands",
+                "Historical and Cultural"
+            ],
+            "Social Issues": [
+                "Social Issues"
+            ],
+            "Transportation": [
+                "Transportation"
+            ],
+            "Business & Economy": [
+                "Business & Finance",
+                "Products & Shopping"
+            ],
+            "Law & Security": [
+                "Crime & Law Enforcement"
+            ],
+            "Education & Science": [
+                "Education & Learning"
+            ],
+            "Spirituality": [
+                "Religion & Holidays"
+            ],
+            "Organizations": [
+                "Organizations & Abbreviations"
+            ],
+            "German Related": [
+                "German Related"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ]
+        },
+        {
+            "Technology & Digital": [
+                "Technology and Digital",
+                "Technology & Digital",
+                "Technical and Statistical"
+            ],
+            "Places & Locations": [
+                "Places and Locations",
+                "Locations and Places",
+                "Places & Geography"
+            ],
+            "Culture & Lifestyle": [
+                "Culture and Traditions",
+                "Culture and Society",
+                "Fashion and Lifestyle",
+                "Beauty and Lifestyle"
+            ],
+            "Law & Security": [
+                "Security and Safety",
+                "Administrative and Legal"
+            ],
+            "Sports & Recreation": [
+                "Sports and Activities",
+                "Sports",
+                "Mountain and Outdoor"
+            ],
+            "Business & Economy": [
+                "Business and Commerce",
+                "Finance & Investment"
+            ],
+            "Environment & Nature": [
+                "Nature and Environment",
+                "Animals and Nature",
+                "Animals"
+            ],
+            "Food & Dining": [
+                "Food and Beverage"
+            ],
+            "Education & Science": [
+                "Education and Learning",
+                "Education and Career",
+                "Space & Astronomy"
+            ],
+            "Buildings & Infrastructure": [
+                "Buildings and Structures",
+                "Buildings and Construction",
+                "Infrastructure"
+            ],
+            "German Related": [
+                "Berlin Related",
+                "Bayern Related"
+            ],
+            "Spirituality": [
+                "Religious and Spiritual"
+            ],
+            "Health & Wellness": [
+                "Health and Body",
+                "Health and Medical",
+                "Health & Medicine"
+            ],
+            "Employment": [
+                "Professional and Work",
+                "Work and Activities",
+                "Work & Employment"
+            ],
+            "Entertainment & Media": [
+                "Social Media and Entertainment",
+                "Entertainment and Media",
+                "Entertainment & Media"
+            ],
+            "Politics & Government": [
+                "Politics and Government",
+                "Nuclear & Energy"
+            ],
+            "Family & Relationships": [
+                "Family and Life Events",
+                "Names and People"
+            ],
+            "Personal States": [
+                "Personal States"
+            ],
+            "Social Issues": [
+                "Social Issues"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ]
+        },
+        {
+            "Education & Science": [
+                "Education & Knowledge",
+                "Concepts_and_Rules"
+            ],
+            "Entertainment & Media": [
+                "Entertainment & Media",
+                "Media_and_Entertainment"
+            ],
+            "Music & Arts": [
+                "Art & Design"
+            ],
+            "People & Society": [
+                "People & Names",
+                "People & Celebrities"
+            ],
+            "Places & Locations": [
+                "Places & Locations",
+                "Geographic_Locations"
+            ],
+            "Technology & Digital": [
+                "Technology & AI",
+                "Technology"
+            ],
+            "Environment & Nature": [
+                "Nature & Animals"
+            ],
+            "Events & Time": [
+                "Age & Time"
+            ],
+            "Historical": [
+                "Historical_Years",
+                "Historical_Dates"
+            ],
+            "News & Communication": [
+                "Language & Communication"
+            ],
+            "Transportation": [
+                "Travel & Transportation",
+                "Roads_and_Highways"
+            ],
+            "Politics & Government": [
+                "Politics & Society",
+                "Political_and_Social"
+            ],
+            "Miscellaneous": [
+                "Miscellaneous"
+            ],
+            "Business & Economy": [
+                "Shopping & Commerce"
+            ],
+            "Sports & Recreation": [
+                "Sports_Teams"
+            ],
+            "Culture & Lifestyle": [
+                "Cultural_and_Beliefs"
+            ]
+        },
+        {
+            "Technology & Digital": [
+                "Technology",
+                "Technology",
+                "Technology"
+            ],
+            "Entertainment & Media": [
+                "Celebrity",
+                "Entertainment and Media",
+                "Media & Entertainment",
+                "Entertainment and Media",
+                "People and Characters"
+            ],
+            "Health & Wellness": [
+                "Health & Wellness",
+                "Health & Medical",
+                "Personal Development"
+            ],
+            "Sports & Recreation": [
+                "Sports & Recreation",
+                "Sports_and_Athletics"
+            ],
+            "Places & Locations": [
+                "Places and Locations",
+                "Travel and Leisure"
+            ],
+            "Politics & Government": [
+                "Government and Organizations",
+                "Activism & Protest",
+                "War and Conflict"
+            ],
+            "Law & Security": [
+                "Safety & Security"
+            ],
+            "Food & Dining": [
+                "Food and Beverages",
+                "Food & Dining"
+            ],
+            "Events & Time": [
+                "Time & Weather",
+                "History & Culture"
+            ],
+            "Objects & Items": [
+                "Personal Items",
+                "Everyday Items",
+                "Numbers_and_Measurements"
+            ],
+            "Environment & Nature": [
+                "Animals"
+            ]
+        },
+        {
+            "Transportation": [
+                "Transportation"
+            ]
+        }
+    ],
+    "cluster_in_groups": 394,
+    "groups": 24
+}

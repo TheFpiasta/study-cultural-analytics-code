@@ -1,7 +1,7 @@
+# currently not the best mapping, some clusters are missing. but a good representation I think.
+# After a Day of debugging: I really don't know where the bug is :/
+# waisted_hours_count = 8h
 group_cluster = {
-    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation",
-                        "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining", "Miscellaneous", "Religion & Spirituality", "Science & Space",
-                        "Statistics & Measurements", "People & Identity"],
     "group_mapping": [
         {
             "Politics & Government": ["Politics & Government", "Politics_Germany", "International_Politics", "Global_Conflict", "International Affairs", "Politics"],
@@ -234,7 +234,7 @@ def verify_completeness():
     if curr_count == CLUSTER_COUNT_MUST_BE:
         print("no chunks missing")
     else:
-        print(f"chunks missing! should:{CLUSTER_COUNT_MUST_BE} - is:{curr_count}")
+        print(f"clusters missing! should:{CLUSTER_COUNT_MUST_BE} - is:{curr_count}")
 
 if __name__ == "__main__":
     verify_completeness()
