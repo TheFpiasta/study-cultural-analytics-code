@@ -1,28 +1,81 @@
 import json
 import traceback
+import group_cluster as gc
 
 
-def extract_keys(input_file, output_file):
+def generate_mapping(input_file, output_file):
     try:
         # Read the input JSON file
         with open(input_file, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+            cluster_hashtags = json.load(f)
 
-        extracted_keys = []
-        # Extract keys and store them in an array
-        for cluster_run in data["data"]:
-            for cluster in cluster_run:
-                extracted_keys.append(list(cluster.keys())[0])
+        group_cluster_mapping = gc.group_cluster["group_mapping"]
 
-        # Create a dictionary with a single key containing the array of keys
-        output_data = {"count": len(extracted_keys), "keys": extracted_keys}
+        mapping_group_cluster_hashtag = {}
+        mapping_hashtag_cluster_group = {}
+        all_hashtags = {}
+        all_clusters = {}
+        all_groups = {}
 
-        # Write the keys array to a new JSON file
+        def find_hashtags_in_all_cluster(search_cluster):
+            array = cluster_hashtags["data"]
+            hashtags = []
+
+            # Iterate through the outer array
+            for subarray in array:
+                # Iterate through each dictionary in the subarray
+                for item in subarray:
+                    # Check if the search_key exists in the current dictionary
+                    if search_cluster in item:
+                        # Append the data associated with the key
+                        hashtags.extend(item[search_cluster])
+
+            return hashtags
+
+        def update_reversed_mapping(curr_hashtags, curr_cluster_name, curr_group_name):
+            for hashtag in curr_hashtags:
+                if hashtag not in mapping_hashtag_cluster_group:
+                    mapping_hashtag_cluster_group[hashtag] = {}
+                if curr_cluster_name not in mapping_hashtag_cluster_group[hashtag]:
+                    mapping_hashtag_cluster_group[hashtag][curr_cluster_name] = []
+
+                mapping_hashtag_cluster_group[hashtag][curr_cluster_name] = list(set(curr_group_name) | set(mapping_hashtag_cluster_group[hashtag][curr_cluster_name]))
+
+        def update_mapping(curr_hashtags, curr_cluster_name, curr_group_name):
+            if curr_group_name not in mapping_group_cluster_hashtag:
+                mapping_group_cluster_hashtag[curr_group_name] = {}
+            if curr_cluster_name not in mapping_group_cluster_hashtag[curr_group_name]:
+                mapping_group_cluster_hashtag[curr_group_name][curr_cluster_name] = []
+
+            mapping_group_cluster_hashtag[curr_group_name][curr_cluster_name] = list(set(curr_hashtags) | set(mapping_group_cluster_hashtag[curr_group_name][curr_cluster_name]))
+
+        for group_chunk in group_cluster_mapping:
+            for (group_name, clusters) in group_chunk:
+                all_groups[group_name] = True
+
+                if group_name not in mapping_group_cluster_hashtag:
+                    mapping_group_cluster_hashtag[group_name] = {}
+
+                for cluster_name in clusters:
+                    if cluster_name in all_clusters:
+                        all_clusters[cluster_name] += 1
+                    else:
+                        all_clusters[cluster_name] = 1
+
+                    if cluster_name not in mapping_group_cluster_hashtag[group_name]:
+                        mapping_group_cluster_hashtag[group_name][cluster_name] = []
+
+                    matching_hashtags = find_hashtags_in_all_cluster(cluster_name)
+                    update_reversed_mapping(matching_hashtags, cluster_name, group_name)
+                    update_mapping(matching_hashtags, cluster_name, group_name)
+
+        # Create result format
+        output_data = {"group_count": len([]), "cluster_count": len([]), "hashtag_count": len([]), "mapping": mapping_group_cluster_hashtag, "reversed_mapping": mapping_hashtag_cluster_group, "all_groups": all_groups, "all_clusters": all_clusters,
+                       "all_hashtags": all_hashtags}
+
+        # Write the mapping to a new JSON file
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(output_data, f, indent=4)
-
-        print(f"Successfully extracted {len(extracted_keys)} keys and saved to {output_file}")
-        return extracted_keys
 
     except FileNotFoundError:
         print(f"Error: Input file '{input_file}' not found")
@@ -36,9 +89,7 @@ def extract_keys(input_file, output_file):
 
 
 if __name__ == "__main__":
-    input_json = "AI-cluster_min-1_max-1_chunk-size-100.json"
-    output_json = "clustered-keys_min1_max1.json"
+    cluster_json = "AI-cluster-combined.json"
+    output_json = "mapping.json"
 
-    keys = extract_keys(input_json, output_json)
-    if keys:
-        print("Extracted keys:", keys)
+    generate_mapping(cluster_json, output_json)
