@@ -221,3 +221,20 @@ group_cluster = {
         }
     ]
 }
+
+CLUSTER_COUNT_MUST_BE = 1078
+
+def verify_completeness():
+    curr_count = 0
+
+    for group_chunk in group_cluster["group_mapping"]:
+        for group in group_chunk:
+            curr_count += len(group_chunk[group])
+
+    if curr_count == CLUSTER_COUNT_MUST_BE:
+        print("no chunks missing")
+    else:
+        print(f"chunks missing! should:{CLUSTER_COUNT_MUST_BE} - is:{curr_count}")
+
+if __name__ == "__main__":
+    verify_completeness()

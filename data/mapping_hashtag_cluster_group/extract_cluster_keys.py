@@ -36,8 +36,8 @@ def extract_keys(input_file, output_file):
 
 
 if __name__ == "__main__":
-    input_json = "AI-cluster_min-1_max-1_chunk-size-100.json"
-    output_json = "clustered-keys_min1_max1.json"
+    input_json = "AI-cluster-combined.json"
+    output_json = "AI-cluster-combined-keys.json"
 
     keys = extract_keys(input_json, output_json)
     if keys:

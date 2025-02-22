@@ -1,6 +1,6 @@
 import json
 import traceback
-import group_cluster as gc
+import AI_group_cluster as gc
 
 
 def generate_mapping(input_file, output_file):
