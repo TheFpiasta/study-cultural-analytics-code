@@ -19,7 +19,7 @@ def extract_keys(input_file, output_file):
 
         # Write the keys array to a new JSON file
         with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(output_data,f, indent=4)
+            json.dump(output_data, f, indent=4)
 
         print(f"Successfully extracted {len(extracted_keys)} keys and saved to {output_file}")
         return extracted_keys

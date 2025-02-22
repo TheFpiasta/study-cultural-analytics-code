@@ -1,0 +1,33 @@
+You will be given a list of strings and a list of group names. Your task is to cluster the strings into the given groups or create new groups if necessary. Here are the inputs:
+
+<string_list>
+{{STRING_LIST}}
+</string_list>
+
+<group_names>
+{{GROUP_NAMES}}
+</group_names>
+
+Follow these steps to complete the task:
+
+1. For each string in the string list, try to match it with one of the existing group names. Consider similarities in meaning, theme, or category when matching.
+
+2. If a string doesn't match any existing group name, create a new group name that appropriately describes the string.
+
+3. After processing all strings, you should have a final list of group names (including both original and newly created groups) with their associated strings.
+
+4. Format your output as a Python array of arrays, where each inner array represents a group. The first element of each inner array should be the group name, followed by the strings that belong to that group.
+
+Before providing your final answer, use the <scratchpad> tags to think through your clustering process and group assignments. Consider any ambiguous cases and justify your decisions.
+
+Provide your final answer within <answer> tags, formatted as a Python array of arrays. For example:
+
+<answer>
+{
+    "group1": ["string1, String2"],
+    "Group2": ["string4, string3"],
+    "NewGroup1":["string5"],
+}
+</answer>
+
+Make sure your output is a valid Python array and that all strings from the input list are included in the groupings. Output only the answer.

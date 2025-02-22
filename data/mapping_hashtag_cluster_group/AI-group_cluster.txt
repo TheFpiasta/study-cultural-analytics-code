@@ -1,0 +1,495 @@
+<scratchpad>
+Let me analyze the strings and group names:
+
+1. First, I'll identify main categories from the string list:
+- Politics & Government -> Maps to multiple existing groups like "Politics_Germany", "International_Politics"
+- Places & Locations -> Maps to "German_Cities", "European_Countries", "Places"
+- Entertainment & Media -> Maps to "Media_News", "Entertainment"
+- Health & Wellness -> Direct match exists
+- Environment & Nature -> Maps to "Weather_Environment", "Environment"
+- Social Issues -> Direct match exists
+- Family & Relationships -> Direct match exists
+- Sports & Recreation -> Maps to "Sports", "Sports_Entertainment"
+- Transportation -> Direct match exists
+- Law & Security -> Maps to "Law and Security"
+- Business & Economy -> Maps to "Economy_Finance", "Business & Finance"
+- Education & Career -> Maps to "Education_Research", "Career"
+- Technology & Digital -> Maps to "Technology"
+- Events & Time -> Maps to "Events & Seasons", "Media Events"
+
+I'll consolidate similar groups and maintain distinct categories where necessary.
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time"],
+    "Politics & Government": ["Politics & Government", "Politics_Germany", "International_Politics", "Global_Conflict", "International Affairs", "Politics"],
+    "Places & Locations": ["Places & Locations", "German_Cities", "European_Countries", "Places", "Places & Cities", "Locations"],
+    "Entertainment & Media": ["Entertainment & Media", "Media_News", "Entertainment", "Media Events", "Media & Entertainment", "Celebrities"],
+    "Health & Wellness": ["Health & Wellness", "Health & Medical", "Health", "Sleep"],
+    "Environment & Nature": ["Environment & Nature", "Weather_Environment", "Environment", "Environment & Climate", "Natural Disasters", "Animals"],
+    "Social Issues": ["Social Issues", "Society & Issues", "Social Issues & Activism", "Youth & Society", "Culture & Society", "Crisis & Disasters", "Charity"],
+    "Family & Relationships": ["Family & Relationships", "Family_Relationships", "Lifestyle & Relationships", "Family and Relationships"],
+    "Sports & Recreation": ["Sports & Recreation", "Sports_Entertainment", "Sports"],
+    "Transportation": ["Transportation", "Travel_Transportation", "Transportation & Infrastructure"],
+    "Law & Security": ["Law & Security", "Law_Security", "Crime & Safety", "Crime & Justice", "Law & Order", "Legal & Rights", "Law and Security"],
+    "Business & Economy": ["Business & Economy", "Economy_Finance", "Business & Finance", "Housing & Real Estate"],
+    "Education & Career": ["Education & Career", "Education_Research", "Career", "Science & Education", "Work & Living"],
+    "Technology & Digital": ["Technology & Digital", "Technology", "Technology & Companies", "Social_Media"],
+    "Events & Time": ["Events & Time", "Seasonal_Events", "Events & Seasons", "Life & Death"]
+}
+</answer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<scratchpad>
+Let me analyze the strings and group them:
+1. Many strings are variations of the same concept (e.g., "Health & Medical", "Health and Medicine", "Health & Wellness")
+2. Some strings clearly fit into existing groups (e.g., "Politics" → "Politics & Government")
+3. Need to add "Culture & Lifestyle" as new group for cultural/lifestyle items
+4. Need to add "Food & Dining" as new group
+5. "Miscellaneous" items need to be distributed to most relevant groups
+6. "Social Media & Internet" fits under "Technology & Digital"
+7. "Current Events" fits under "Events & Time"
+8. Some items like "Emotions & Psychology" can fit under "Health & Wellness"
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining"],
+    "Politics & Government": ["Politics & Government", "Politics", "Politics and Government", "Current Events & Politics", "Legal & Government"],
+    "Places & Locations": ["Global Regions & Countries", "Locations and Places", "Buildings and Infrastructure", "Places", "Places & Locations", "Places & Travel", "Geography & Navigation", "Places and Locations", "Places & Cities", "Architecture & Buildings", "Locations"],
+    "Entertainment & Media": ["Sports & Entertainment", "Entertainment and Culture", "Media & Entertainment", "Entertainment & Media", "Books & Literature", "Entertainment", "Celebrity", "News and Media"],
+    "Health & Wellness": ["Health & Medical", "Health and Medicine", "Health & Wellness", "Health Issues", "Health and Wellness", "Personal Care & Wellness", "Medical and Health", "Emotions & Mental States", "Emotions & Psychology", "Personal Development"],
+    "Environment & Nature": ["Environmental", "Nature and Animals", "Environment", "Nature & Environment", "Animals & Nature", "Natural Phenomena", "Nature and Environment", "Weather and Climate", "Animals & Pets"],
+    "Social Issues": ["Social Issues", "Serious Issues", "Social & Demographics", "Society & Culture", "Social Activities", "Social Media & Internet", "Communication & Language"],
+    "Family & Relationships": ["Family and Relationships", "Family & Relationships", "Personal & Lifestyle", "Personal & Relationships", "People & Personalities", "Notable People", "People and Personalities"],
+    "Sports & Recreation": ["Sports & Athletes", "Sports", "Sports & Activities", "Sports & Recreation", "Sports and Recreation", "Hobbies and Interests"],
+    "Transportation": ["Travel & Transportation", "Transportation", "Transportation & Movement", "Transportation and Space"],
+    "Law & Security": ["Law & Security", "Crime & Security", "Emergency & Safety", "Safety & Security"],
+    "Business & Economy": ["Business & Economy", "Business & Finance", "Economy & Finance", "Work & Career", "Work and Economy", "Business & Work", "Business & Retail", "Organizations", "Consumer Related"],
+    "Education & Career": ["Education and Learning", "Education", "Education and Research", "Education & Career"],
+    "Technology & Digital": ["Technology & Digital", "Technology and Digital", "Media & Technology", "Technology", "Social Media & Internet"],
+    "Events & Time": ["Current Events", "Special Events", "Time & Calendar", "Cultural Events and Traditions", "Holidays & Celebrations", "Events", "Historical Events", "History & Memory"],
+    "Culture & Lifestyle": ["Culture & Tradition", "Lifestyle & Culture", "Art & Culture", "Religion and Culture", "Culture & Traditions", "Lifestyle", "Lifestyle & Society", "Spirituality & Philosophy", "Daily Life"],
+    "Food & Dining": ["Food and Nutrition", "Food & Dining", "Food & Drink", "Food & Nutrition"]
+}
+</answer>
+
+
+
+
+
+
+<scratchpad>
+Let me analyze the strings and group them:
+1. Many strings are variations of the same category (e.g., "Food and Drink", "Food_Drink", "Food and Dining")
+2. Some categories appear with different separators (_, &, and, /)
+3. Some strings are more specific subcategories of main groups
+4. Need to consolidate similar themes:
+   - All food-related → "Food & Dining"
+   - All location/geography → "Places & Locations"
+   - All entertainment/media → "Entertainment & Media"
+   - All business/economy → "Business & Economy"
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining", "Miscellaneous"],
+    "Politics & Government": ["Politics and Government", "Politics & Government", "Politics & Society", "Legal and Political", "Politics"],
+    "Places & Locations": ["Geography and Places", "Places and Cities", "Places & Geography", "Travel and Places", "Places", "Turkish Geography", "Travel and Leisure"],
+    "Entertainment & Media": ["Entertainment and Media", "Social Media & Entertainment", "Art & Media", "Media_Entertainment", "Media_Organizations", "Entertainment & Media", "Social Media/Characters", "News and Communication", "News & Journalism"],
+    "Health & Wellness": ["Health and Medical", "Health & Wellness", "Health & Medical", "Health_Medicine", "Health and Wellness"],
+    "Environment & Nature": ["Animals and Nature", "Environment", "Climate and Environment", "Natural Events and Environment", "Nature & Environment", "Animals"],
+    "Social Issues": ["Social Issues", "Terrorism & Conflict", "Social_Issues"],
+    "Family & Relationships": ["Lifestyle and Relationships", "Family & Relationships", "Personal Relations", "Family"],
+    "Sports & Recreation": ["Sports and Olympics", "Sports Personalities", "Sports & Games", "Sports and Athletics", "Sports & Athletics", "Sports"],
+    "Transportation": ["Transportation"],
+    "Law & Security": ["Crime & Security", "Crime and Safety", "Law_Enforcement"],
+    "Business & Economy": ["Business and Work", "Business and Economy", "Business and Commerce", "Business & Economy", "Economy_Shopping", "Finance & Economy", "Money and Finance"],
+    "Education & Career": ["Education and Learning", "Education & Society", "Education"],
+    "Technology & Digital": ["Technology and Science", "Technology & Digital", "Science_Technology", "Social Media and Technology"],
+    "Events & Time": ["Time and Seasons", "Events", "Events & Activities"],
+    "Culture & Lifestyle": ["Historical and Cultural", "Religion & Culture", "Fashion and Beauty", "Lifestyle & Home", "History and Memory"],
+    "Food & Dining": ["Food and Drink", "Food_Drink", "Food and Dining", "Substances"],
+    "Miscellaneous": ["Miscellaneous", "German Words", "Organizations and Brands", "People and Personalities", "Trends & Challenges"]
+}
+</answer>
+
+
+
+
+
+
+
+
+<scratchpad>
+Let me analyze each string and match it to the most appropriate group:
+
+1. "Medical and Health" -> "Health & Wellness"
+2. "Education and Learning" -> "Education & Career"
+3. "Government and Society" -> "Politics & Government"
+4. "Companies and Organizations" -> "Business & Economy"
+5. "Lifestyle and Living" -> "Culture & Lifestyle"
+6. "Nature and Environment" -> "Environment & Nature"
+7. "Transportation and Travel" -> "Transportation"
+8. "Entertainment and Events" -> Split between "Entertainment & Media" and "Events & Time"
+9. "Personal Documents" -> New group needed: "Documents & Records"
+10. "Activities and Experiences" -> "Culture & Lifestyle"
+11. "Sports" -> "Sports & Recreation"
+12. "Numbers and References" -> "Miscellaneous"
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining", "Miscellaneous", "Documents & Records"],
+    "Health & Wellness": ["Medical and Health"],
+    "Education & Career": ["Education and Learning"],
+    "Politics & Government": ["Government and Society"],
+    "Business & Economy": ["Companies and Organizations"],
+    "Culture & Lifestyle": ["Lifestyle and Living", "Activities and Experiences"],
+    "Environment & Nature": ["Nature and Environment"],
+    "Transportation": ["Transportation and Travel"],
+    "Entertainment & Media": ["Entertainment and Events"],
+    "Documents & Records": ["Personal Documents"],
+    "Sports & Recreation": ["Sports"],
+    "Miscellaneous": ["Numbers and References"]
+}
+</answer>
+
+
+
+
+
+
+
+
+
+
+
+<scratchpad>
+Let me analyze the strings and group them:
+
+1. Many strings naturally fit into existing groups
+2. Some categories appear multiple times with slight variations (e.g., "Health and Medical", "Health and Wellness")
+3. Some strings could fit multiple categories - I'll choose the most specific match
+4. Need to consolidate similar categories (e.g., various entertainment-related ones)
+5. Some strings suggest new categories are needed (e.g., UFO & Paranormal)
+
+Main consolidations:
+- Combine all health-related into "Health & Wellness"
+- Merge all entertainment/media into "Entertainment & Media"
+- Group environmental/nature topics into "Environment & Nature"
+- Combine all transportation-related items
+- Merge business/finance/economic items
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining", "Miscellaneous", "Documents & Records", "Paranormal & Mystery"],
+    "Politics & Government": ["Politics and Elections", "Politics and Government", "US Politics & Elections", "Politics & Society"],
+    "Places & Locations": ["Places and Institutions", "Places and Regions", "Travel and Adventure", "Travel & Places", "Travel & Tourism", "World and Global"],
+    "Entertainment & Media": ["Media and Broadcasting", "Entertainment and Culture", "Entertainment and Media", "Entertainment", "Media and News", "Media & Entertainment", "Entertainment & Media"],
+    "Health & Wellness": ["Health and Medical", "Health Hazards", "Health and Wellness", "Lifestyle and Wellness", "Health and Safety", "Medical & Health"],
+    "Environment & Nature": ["Environmental Issues", "Animals and Nature", "Weather and Nature", "Nature and Environment", "Environment & Sustainability", "Weather & Natural Events", "Animals", "Animals & Pets", "Water-related"],
+    "Social Issues": ["Social Issues", "Social Issues and Activism", "Identity & Gender", "Social Media & Technology"],
+    "Family & Relationships": ["Personal Names", "Names and Identity", "Love and Emotions", "Emotional & Personal", "Emotions & Mental State"],
+    "Sports & Recreation": ["Sports and Athletes", "Sports and Competition", "Sports and Entertainment", "Sports & Recreation", "Sports & Games"],
+    "Transportation": ["Transportation", "Travel and Transportation", "Vehicles and Transportation", "Transportation and Traffic"],
+    "Law & Security": ["Security and Crime", "Crime and Legal", "Weapons and Restrictions", "Legal & Rights", "Mystery & Crime"],
+    "Business & Economy": ["Financial and Economic", "Economics and Business", "Finance and Business", "Business and Commerce"],
+    "Education & Career": ["Knowledge and Wisdom", "Education & Academia", "Workshop and Work"],
+    "Technology & Digital": ["Technology", "Space and Technology", "Technology and Digital"],
+    "Events & Time": ["Historical and Time-related", "Events and Ceremonies", "Historical & Cultural", "Prehistoric & Dinosaurs"],
+    "Culture & Lifestyle": ["German Words and Culture", "Languages and Culture", "Lifestyle and Personal", "Moving & Change"],
+    "Food & Dining": ["Drinks and Food", "Food & Beverages"],
+    "Miscellaneous": ["Miscellaneous", "Colors and Conditions", "Substances", "Accusations and Claims"],
+    "Documents & Records": ["Organizations & Institutions"],
+    "Paranormal & Mystery": ["UFO & Paranormal"]
+}
+</answer>
+
+
+
+
+
+
+
+
+
+
+<scratchpad>
+Let me analyze the strings and group them:
+
+1. Many strings are variations of similar categories (e.g., "Entertainment & Media", "Media & Entertainment")
+2. Some categories can be merged (e.g., "Health & Therapy", "Health & Wellness", "Health & Medical")
+3. Special categories like "Words Starting with 'Schrei'" and "Chess Related" can go to Miscellaneous
+4. "Maritime" related items can go under Transportation
+5. Need to consolidate similar themes:
+   - All place/geography related → Places & Locations
+   - All health related → Health & Wellness
+   - All entertainment/media → Entertainment & Media
+   - All sports/activities → Sports & Recreation
+   - All social/family → Family & Relationships
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining", "Miscellaneous"],
+    "Politics & Government": ["Government and State", "Social & Government", "Government & Politics"],
+    "Places & Locations": ["Geography & Places", "Geographic Locations", "Urban & Infrastructure", "Urban and Planning", "Places & Locations", "Places & Regions", "Places and Locations", "Buildings & Facilities"],
+    "Entertainment & Media": ["Entertainment & Media", "Movies & Shows", "Music & Performance", "News & Media", "Social Media & Entertainment", "Entertainment and Media", "TV & Entertainment", "Media and Entertainment", "Media & Entertainment", "Literature and Arts"],
+    "Health & Wellness": ["Health & Therapy", "Health & Wellness", "Health & Body", "Health & Beauty", "Health & Medical", "Health and Medical", "Medical & Health"],
+    "Environment & Nature": ["Nature & Environment", "Historical & Nature", "Nature and Environment", "Nature & Space", "Nature & Animals", "Winter & Snow"],
+    "Social Issues": ["Social Services", "Social Issues", "Social Causes & Movements", "Social Issues & Reform"],
+    "Family & Relationships": ["Social & Family", "Family & Society", "People & Characters", "People & Personalities", "Names & People", "Emotions and Feelings"],
+    "Sports & Recreation": ["Sports", "Sports & Activities", "Sports and Athletics", "Outdoor Activities & Sports", "Sports and Activities", "Games", "Games and Recreation", "Games and Entertainment"],
+    "Transportation": ["Transportation", "Travel & Movement", "Travel and Movement", "Maritime"],
+    "Law & Security": ["Legal & Justice", "Military & Security", "Military and Defense", "Emergency and Rescue"],
+    "Business & Economy": ["Companies & Brands", "Work & Business", "Business and Commerce"],
+    "Education & Career": ["Education & Student Life", "Education", "Education & Learning"],
+    "Technology & Digital": ["Technology & Communication", "Social Media & Technology", "Technology & Science", "Technology"],
+    "Events & Time": ["Events & Celebrations", "Time & Events", "History and Heritage"],
+    "Culture & Lifestyle": ["Art & Personal Expression", "Objects & Items", "Home & Housing"],
+    "Food & Dining": ["Food & Dining", "Food and Cuisine", "Food & Beverages", "Food and Nutrition", "Food & Cooking"],
+    "Miscellaneous": ["Miscellaneous", "Words Starting with 'Schrei'", "Chess Related"]
+}
+</answer>
+
+
+
+
+
+
+<scratchpad>
+Let me analyze the strings and group them:
+
+1. Many strings naturally fit into existing groups:
+- "Politics", "Politics & Society" -> "Politics & Government"
+- "Places & Locations", "Geography & Places" -> "Places & Locations"
+- "Entertainment & Media" matches exactly
+- "Health & Medical", "Medical & Health" -> "Health & Wellness"
+- "Animals & Nature", "Nature & Environment" -> "Environment & Nature"
+
+2. Some categories need slight adjustments:
+- "Crime & Security", "Police & Law Enforcement" -> "Law & Security"
+- "Digital & Social Media", "Technology & Digital" -> "Technology & Digital"
+- "Food & Dining", "Food & Beverages" -> "Food & Dining"
+
+3. New groups needed:
+- "Religion & Spirituality" for religious/cultural items
+- "Science & Space" for scientific topics
+
+Let me organize them systematically...
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining", "Miscellaneous", "Religion & Spirituality", "Science & Space"],
+    "Politics & Government": ["Politics", "Politics & Society", "Political Organizations & Activities", "Politics and Nationalism", "Politics and Government", "Government & Law"],
+    "Places & Locations": ["Places & Locations", "Geography & Places", "US Locations", "Locations & Places", "Places and Locations", "Geographical Locations"],
+    "Entertainment & Media": ["Entertainment & Media", "Media & Entertainment", "Entertainment and Media", "Music and Entertainment", "Media Organizations", "Media and Knowledge", "Literature & Arts"],
+    "Health & Wellness": ["Health & Medical", "Medical & Health", "Addictions & Health Risks", "Medical Facilities", "Health and Wellness"],
+    "Environment & Nature": ["Animals & Nature", "Nature & Environment", "Nature & Phenomena", "Nature and Environment"],
+    "Social Issues": ["Activism & Protest", "Cultural & Religious", "Social Issues"],
+    "Family & Relationships": ["Relationships & Personal", "Family and Personal", "People and Identity", "Personal Development"],
+    "Sports & Recreation": ["Sports & Athletes", "Sports & Olympics", "Sports & Athletics", "Sports"],
+    "Transportation": ["Transportation", "Parking & Transportation", "Automotive"],
+    "Law & Security": ["Crime & Security", "Police & Law Enforcement", "Law Enforcement", "Crime and Investigation"],
+    "Business & Economy": ["Business & Reputation", "Industry & Business", "Business & Work", "Business and Economy", "Consumer & Retail"],
+    "Education & Career": ["Education & Learning", "Personal Services"],
+    "Technology & Digital": ["Digital & Social Media", "Technology & Digital"],
+    "Events & Time": ["Events & Occasions", "Seasonal & Holidays", "Holiday & Seasonal"],
+    "Culture & Lifestyle": ["Cultural & Religious", "Lifestyle & Personal", "Beauty Pageants", "Cultural and Mythological"],
+    "Food & Dining": ["Food & Dining", "Food & Cooking", "Food & Beverages"],
+    "Religion & Spirituality": ["Religion & Religious Figures"],
+    "Science & Space": ["Science & Space", "Space and Celestial", "Science and Biology"],
+    "Miscellaneous": ["Miscellaneous", "Miscellaneous Names", "Basic Concepts", "Names & People", "Objects & Items", "Celebrities and Public Figures", "Creatures and Characters", "Organizations and Institutions"]
+}
+</answer>
+
+
+
+
+
+
+<scratchpad>
+Let me analyze the patterns and group the strings:
+
+1. Many strings are variations of the same concept (e.g., "Health & Medicine", "Health and Medical", "Medical and Health")
+2. The existing group names cover most categories, but some might need slight modifications
+3. Some strings appear multiple times (e.g., "Miscellaneous", "Food & Beverages")
+4. Need to standardize format (some use "&", others use "and", some use "_")
+
+Main grouping decisions:
+- Combine all health-related terms under "Health & Wellness"
+- Merge location-related terms under "Places & Locations"
+- Combine entertainment variations under "Entertainment & Media"
+- Group all technology-related items under "Technology & Digital"
+- Environmental and nature terms go under "Environment & Nature"
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining", "Miscellaneous", "Religion & Spirituality", "Science & Space"],
+    "Politics & Government": ["Politics & Society", "Politics and Society", "Politics and Administration", "Politics and Government", "Politics_and_Government"],
+    "Places & Locations": ["Places & Locations", "Places & Cities", "Places and Locations", "Places_and_Locations", "Places and Venues", "Architecture_and_Buildings"],
+    "Entertainment & Media": ["Celebrities & Entertainment", "Entertainment & Media", "Media & Technology", "Entertainment and Media", "Media and Entertainment", "Entertainment_and_Games", "Media and Entertainment"],
+    "Health & Wellness": ["Health & Medicine", "Disease & Health Issues", "Health & Medical", "Health and Medical", "Medical and Health", "Body and Health", "Health_and_Medicine", "Health and Medicine"],
+    "Environment & Nature": ["Nature & Animals", "Nature and Animals", "Animals and Nature", "Animals_and_Nature", "Climate and Environment"],
+    "Social Issues": ["Social Issues & Rights", "Social Movements & Events", "Social Topics"],
+    "Family & Relationships": ["Love & Relationships", "Love and Relationships", "Children and Family", "People and Characters", "People_Named_Kevin", "People and Personalities"],
+    "Sports & Recreation": ["Sports & Achievement", "Sports & Games", "Sports and Athletics", "Sports and Fitness", "Sports_and_Athletics", "Sports and Athletes"],
+    "Transportation": ["Automotive & Transportation", "Transportation", "Travel and Transportation"],
+    "Law & Security": ["Safety and Security", "Safety & Protection", "Crime and Law", "Criminal Justice", "Legal_and_Justice"],
+    "Business & Economy": ["Brands and Companies", "Business & Companies", "Finance and Economy", "Finance_and_Economics", "Shopping_and_Retail"],
+    "Education & Career": ["Education & Science", "Education and Learning", "Education_and_Career", "Youth and Education", "Employment and Career"],
+    "Technology & Digital": ["Technology and Science", "Social Media & Digital", "Technology and Objects", "Technology and AI", "Technology and Finance"],
+    "Culture & Lifestyle": ["Arts & Culture", "Arts and Culture", "Lifestyle & Living", "Royal and Nobility", "Historical_Terms", "Celebrities_and_Public_Figures"],
+    "Food & Dining": ["Food & Beverages", "Food and Nutrition", "Food and Cuisine", "Food_and_Drink"],
+    "Miscellaneous": ["Miscellaneous", "Personal Development", "Personal Items", "Quality of Life"],
+    "Science & Space": ["Science and Space"]
+}
+</answer>
+
+
+
+
+
+
+<scratchpad>
+Let me analyze the strings and group them:
+1. Many strings naturally fit into existing groups
+2. Some strings are duplicates (e.g., "Social Issues", "Transportation")
+3. Some categories can be merged:
+   - "Medical & Health", "Health & Wellness", "Body Parts & Health" → "Health & Wellness"
+   - "Places & Geography", "Places & Locations" → "Places & Locations"
+4. Some new groups might be needed but can be mapped to existing ones:
+   - "Fashion & Beauty" can go under "Culture & Lifestyle"
+   - "Brands & Companies" can go under "Business & Economy"
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining", "Miscellaneous", "Religion & Spirituality", "Science & Space"],
+    "Politics & Government": ["Politics & Security", "Political & Historical", "Government and Organizations"],
+    "Places & Locations": ["Places and Geography", "Places & Travel", "Places & Locations", "Places_Locations", "Transportation_Locations", "Buildings & Infrastructure", "Buildings & Structures", "Design & Architecture"],
+    "Entertainment & Media": ["Media & Entertainment", "Entertainment & Media", "Entertainment_Media", "Entertainment and Media", "Fictional Characters", "Celebrities_Public_Figures"],
+    "Health & Wellness": ["Medical & Health", "Health & Wellness", "Body Parts & Health", "Mental Health & Conditions", "Health_Medical", "Medical Plants & Healing", "Medical and Health Issues", "Health and Medical", "Health & Medicine"],
+    "Environment & Nature": ["Natural Disasters", "Nature & Animals", "Nature_Environment", "Nature and Environment", "Animals & Pets", "Disasters & Emergencies"],
+    "Social Issues": ["Social Issues", "Society and Social Issues"],
+    "Family & Relationships": ["Personal Traits", "Relationships & Personal", "Family and Relationships", "Names and People", "People & Names", "People & Personalities"],
+    "Sports & Recreation": ["Sports", "Activities & Lifestyle"],
+    "Transportation": ["Transportation"],
+    "Law & Security": ["Legal_Justice", "Law and Society", "Crime and Justice", "Conflict & Security"],
+    "Business & Economy": ["Economics & Business", "Business & Finance", "Brands & Companies", "Wealth and Success"],
+    "Education & Career": ["Education & Institutions", "Education and Basic Rights", "Education and Development", "Professions"],
+    "Technology & Digital": ["Technology", "Internet & Technology", "Social_Media_Internet", "Social Media and Internet"],
+    "Events & Time": ["Celebrations_Holidays", "Celebrations", "Holiday & Celebrations"],
+    "Culture & Lifestyle": ["Religion and Culture", "Religious & Cultural", "Culture and Language", "Fashion_Beauty", "Fashion and Beauty", "Lifestyle & Living"],
+    "Food & Dining": ["Food & Dining", "Food_Drinks", "Food & Beverages"],
+    "Miscellaneous": ["Miscellaneous", "General_Terms", "Household_Related"],
+    "Religion & Spirituality": ["Religion & Spirituality"],
+    "Science & Space": ["Science & Research", "Science and Math", "Communication & Exchange", "Communication and Language"]
+}
+</answer>
+
+
+
+
+
+
+
+
+
+
+
+<scratchpad>
+Let me analyze the strings and group them:
+
+1. Many strings are variations of the same concept (e.g., "Nature & Environment", "Environment and Geography", "Environmental & Energy")
+2. Some strings appear multiple times with slight variations
+3. Most strings can fit into the existing group names
+4. I'll need to standardize similar categories under one group name
+5. Main ambiguous cases:
+   - "Winter & Ice" -> Environment & Nature
+   - "German Related" -> Culture & Lifestyle
+   - "Organizations & Abbreviations" -> Miscellaneous
+   - "Music & Bands" -> Entertainment & Media
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining", "Miscellaneous", "Religion & Spirituality", "Science & Space"],
+    "Politics & Government": ["Legal & Political", "European Union and Politics", "Politics & Government", "Government and Politics"],
+    "Places & Locations": ["Places and Locations", "Places & Locations", "Geography & Places"],
+    "Entertainment & Media": ["Media and Entertainment", "Entertainment & Media", "Music & Bands", "Entertainment", "Entertainment", "Entertainment & Media"],
+    "Health & Wellness": ["Health and Safety", "Health and Medical", "Health & Medical", "Medical & Health", "Health & Medicine"],
+    "Environment & Nature": ["Nature & Environment", "Environment and Geography", "Nature and Environment", "Environmental & Energy", "Animals & Nature", "Winter & Ice", "Environment & Climate", "Science & Nature", "Animals"],
+    "Social Issues": ["Social & Relationships", "Social Issues", "Social Issues", "Social Issues", "Politics & Society"],
+    "Family & Relationships": ["Family and Personal", "People and Names", "People & Names", "Names & People", "Celebrities & People", "People & Personalities", "People and Characters"],
+    "Sports & Recreation": ["Sports & Games", "Sports and Combat", "Sports and Entertainment", "Sports & Events", "Sports & Athletics", "Sports & Games"],
+    "Transportation": ["Transportation", "Transportation", "Transportation and Travel", "Aviation", "Travel & Transportation", "Transportation"],
+    "Law & Security": ["Crime & Law", "Crime & Law Enforcement", "Emergency Services"],
+    "Business & Economy": ["Finance and Business", "Industry and Business", "Business & Finance", "Products & Shopping"],
+    "Education & Career": ["Education and Learning", "Education & Institutions", "Education & Learning", "Education & Learning", "Personal Development"],
+    "Technology & Digital": ["Digital & Technology", "Technology & Digital", "Social Media & Technology", "Science & Technology"],
+    "Events & Time": ["Time & Weather"],
+    "Culture & Lifestyle": ["Fashion and Lifestyle", "Daily Activities", "Activities and Lifestyle", "Fashion and Brands", "Historical and Cultural", "History & Culture", "German Related"],
+    "Food & Dining": ["Food and Dining", "Food and Dining", "Food & Dining", "Food & Beverages", "Food and Drink"],
+    "Miscellaneous": ["Miscellaneous", "Miscellaneous", "Miscellaneous", "Miscellaneous", "Miscellaneous", "Miscellaneous", "Miscellaneous", "Everyday Items", "Organizations & Abbreviations"],
+    "Religion & Spirituality": ["Religion & Holidays"],
+    "Science & Space": ["Science & Space"]
+}
+</answer>
+
+
+
+
+
+<scratchpad>
+Let me analyze the strings and group them:
+1. Many strings are variations of the same concept (e.g., "Health and Medical", "Health & Medicine", "Health & Medical")
+2. Some strings are very specific (e.g., "Berlin Related", "Bayern Related") and might need to be grouped under broader categories
+3. Some categories have different formatting ("&" vs "and") but mean the same thing
+4. Some strings might fit into multiple categories, but I'll choose the most relevant one
+5. I notice some categories like "Numbers_and_Measurements" that don't fit existing groups and might need a new group
+</scratchpad>
+
+<answer>
+{
+    "all_group_names": ["Politics & Government", "Places & Locations", "Entertainment & Media", "Health & Wellness", "Environment & Nature", "Social Issues", "Family & Relationships", "Sports & Recreation", "Transportation", "Law & Security", "Business & Economy", "Education & Career", "Technology & Digital", "Events & Time", "Culture & Lifestyle", "Food & Dining", "Miscellaneous", "Religion & Spirituality", "Science & Space", "Statistics & Measurements"],
+    "Politics & Government": ["Politics and Government", "Politics & Society", "Political_and_Social", "Administrative and Legal"],
+    "Places & Locations": ["Places and Locations", "Locations and Places", "Places & Geography", "Geographic_Locations", "Berlin Related", "Bayern Related"],
+    "Entertainment & Media": ["Media and Entertainment", "Entertainment & Media", "Social Media and Entertainment", "Media_and_Entertainment"],
+    "Health & Wellness": ["Health and Medical", "Health & Medicine", "Health & Medical", "Health and Body"],
+    "Environment & Nature": ["Nature and Environment", "Mountain and Outdoor", "Animals and Nature", "Nature & Animals"],
+    "Social Issues": ["Social Issues", "Cultural_and_Beliefs", "Language & Communication"],
+    "Sports & Recreation": ["Sports and Activities", "Sports", "Sports_Teams", "Work and Activities"],
+    "Transportation": ["Transportation", "Travel & Transportation", "Roads_and_Highways", "Infrastructure"],
+    "Law & Security": ["Security and Safety", "Concepts_and_Rules"],
+    "Business & Economy": ["Business and Commerce", "Finance & Investment", "Shopping & Commerce", "Professional and Work"],
+    "Education & Career": ["Education and Learning", "Education & Knowledge", "Education and Career", "Work & Employment"],
+    "Technology & Digital": ["Technology and Digital", "Technology & Digital", "Technology & AI", "Technology", "Technical and Statistical"],
+    "Events & Time": ["Historical_Years", "Historical_Dates", "Age & Time", "Family and Life Events"],
+    "Culture & Lifestyle": ["Culture and Traditions", "Culture and Society", "Fashion and Lifestyle", "Beauty and Lifestyle", "Art & Design"],
+    "Food & Dining": ["Food and Beverage", "Food & Dining"],
+    "Miscellaneous": ["Miscellaneous", "Personal States"],
+    "Religion & Spirituality": ["Religious and Spiritual"],
+    "Science & Space": ["Space & Astronomy", "Nuclear & Energy"],
+    "Statistics & Measurements": ["Numbers_and_Measurements"],
+    "Places & Infrastructure": ["Buildings and Structures", "Buildings and Construction"],
+    "People & Identity": ["Names and People", "People & Names", "People & Celebrities"]
+}
+</answer>
