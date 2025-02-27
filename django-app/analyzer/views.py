@@ -4,6 +4,13 @@ import easyocr
 import numpy as np
 import json
 
+import plotly.express as px
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+import io
+import base64
+
 from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 from django.shortcuts import render
@@ -15,9 +22,59 @@ from django.utils import timezone  # For timestamp
 from analyzer.services.image_processor import process_images
 
 from analyzer.models import AnalyzerResult  # Import the model
+from scraper.models import ScrapeData
 
 # Define the base path where images are stored
 IMAGE_FOLDER_PATH = os.path.join(settings.BASE_DIR, 'data', 'images')
+
+def analyze_view(request):
+    scrape_data = ScrapeData.objects.all()[:300]
+    plot_data = []
+
+    for scrape in scrape_data:
+        try:
+            analyzer = AnalyzerResult.objects.get(img_name=scrape.img_name)
+            try:
+                sentiment_data = json.loads(analyzer.textstimmung)
+                polarity = sentiment_data.get('polarity', 0)
+            except (json.JSONDecodeError, TypeError):
+                polarity = 0
+
+            plot_data.append({
+                'likes_count': scrape.likes_count,
+                'polarity': polarity,
+                'img_name': scrape.img_name
+            })
+        except AnalyzerResult.DoesNotExist:
+            continue
+
+    if plot_data:
+        fig = {
+            'data': [{
+                'x': [item['polarity'] for item in plot_data],
+                'y': [item['likes_count'] for item in plot_data],
+                'customdata': [[item['img_name']] for item in plot_data],
+                'type': 'scatter',
+                'mode': 'markers',
+                'hovertemplate': '%{customdata[0]}<br>Polarity: %{x}<br>Likes: %{y}'
+            }],
+            'layout': {
+                'title': 'Likes Count vs Polarity',
+                'xaxis': {'title': 'Polarity (-1 to 1)'},
+                'yaxis': {'title': 'Likes Count'},
+                'template': 'seaborn'
+            }
+        }
+        plot_json = json.dumps(fig)
+    else:
+        plot_json = json.dumps({"data": [], "layout": {}})
+
+    context = {
+        'plot_json': plot_json,
+        'data_count': len(plot_data),
+    }
+
+    return render(request, 'start_ocr.html', context)
 
 def list_images(request, folder_name=None):
     # Get all subfolders in 'data/images'
@@ -44,9 +101,10 @@ def list_images(request, folder_name=None):
                         'text': anylyzer_result.ocr_text,
                         'avg_color': anylyzer_result.hintergrundfarben,
                         'text_boxes': anylyzer_result.box_cord,
-                        'text_colors': json.dumps(anylyzer_result.textfarben) if anylyzer_result.textfarben else "[]",  # Convert to JSON string
+                        'text_colors': json.dumps(anylyzer_result.textfarben) if anylyzer_result.textfarben else "[]",
+                        'font_size': json.dumps(anylyzer_result.font_size) if anylyzer_result.font_size else "[]",
+                        'text_sentiment': anylyzer_result.textstimmung if anylyzer_result.textstimmung else "{}",
                     })
-
 
                 except AnalyzerResult.DoesNotExist:
                     image_data.append({
@@ -55,6 +113,8 @@ def list_images(request, folder_name=None):
                         'avg_color': None,
                         'text_boxes': None,
                         'text_colors': None,
+                        'font_size': None,
+                        'text_sentiment': None,
                     })
                 
             return render(request, 'analyzer/image_gallery.html', {
@@ -99,8 +159,8 @@ def ocr_process_stream(request):
         yield "data: 🚀 Analyzing process started...\n\n"
 
         # Clear previous results
-        # AnalyzerResult.objects.using("analyzer_db").all().delete()
-        # yield "data: 🗑 Cleared previous results from DB...\n\n"
+        AnalyzerResult.objects.using("analyzer_db").all().delete()
+        yield "data: 🗑 Cleared previous results from DB...\n\n"
 
         # Start image processing (passing the function as a callback)
         for message in process_images(yield_event):  

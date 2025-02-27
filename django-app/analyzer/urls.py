@@ -9,4 +9,5 @@ urlpatterns = [
     path('explorer/', views.list_images, name='folder_list'),
     path('explorer/folder/<str:folder_name>/', views.list_images, name='folder_images'),
     path('explorer/images/<str:folder_name>/<str:image_name>/', views.serve_image, name='serve_image'),  # New URL for serving images
+    path('analyze/', views.analyze_view, name='analyze'),
 ]

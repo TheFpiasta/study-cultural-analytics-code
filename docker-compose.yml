@@ -8,6 +8,7 @@ services:
       - ./data/log:/app/log
       - ./data/database/sqlite:/app/sqlite
       - ./django-app/scraper/migrations:/app/scraper/migrations
+      - ./django-app/analyzer/migrations:/app/analyzer/migrations
       - ./data:/app/data
     environment:
       - PYTHONUNBUFFERED=${PYTHONUNBUFFERED}
