@@ -3,10 +3,6 @@
 {% block title %}Start OCR Process{% endblock %}
 
 {% block content %}
-
-<script src="https://cdn.jsdelivr.net/npm/plotly.js@2.20.0/dist/plotly.min.js"></script>
-
-
     <style>
         /* Reset some basic styles */
         body {
@@ -109,29 +105,6 @@
         <!-- Progress Area -->
         <div id="progress" class="progress-box mt-4"></div>
     </div>
-
-    <form action="{% url 'analyze' %}" method="get">
-        <button type="submit" onclick="location.reload();">Start Analysis</button>
-    </form>
-
-    <div id="plotly-chart"></div>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            try {
-                var plotData = {{ plot_json|safe }};
-                console.log("Plot Data:", plotData);
-                if (plotData.data && plotData.data.length > 0) {
-                    Plotly.newPlot('plotly-chart', plotData.data, plotData.layout);
-                } else {
-                    console.warn("No data available for the chart.");
-                    document.getElementById("plotly-chart").innerHTML = "<p>No data to display.</p>";
-                }
-            } catch (e) {
-                console.error("Error parsing plot JSON:", e);
-            }
-        });
-    </script>
 
     <script>
         function startOcrProcess() {

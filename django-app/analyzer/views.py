@@ -4,10 +4,6 @@ import easyocr
 import numpy as np
 import json
 
-import plotly.express as px
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 import io
 import base64
 
@@ -26,55 +22,6 @@ from scraper.models import ScrapeData
 
 # Define the base path where images are stored
 IMAGE_FOLDER_PATH = os.path.join(settings.BASE_DIR, 'data', 'images')
-
-def analyze_view(request):
-    scrape_data = ScrapeData.objects.all()[:300]
-    plot_data = []
-
-    for scrape in scrape_data:
-        try:
-            analyzer = AnalyzerResult.objects.get(img_name=scrape.img_name)
-            try:
-                sentiment_data = json.loads(analyzer.textstimmung)
-                polarity = sentiment_data.get('polarity', 0)
-            except (json.JSONDecodeError, TypeError):
-                polarity = 0
-
-            plot_data.append({
-                'likes_count': scrape.likes_count,
-                'polarity': polarity,
-                'img_name': scrape.img_name
-            })
-        except AnalyzerResult.DoesNotExist:
-            continue
-
-    if plot_data:
-        fig = {
-            'data': [{
-                'x': [item['polarity'] for item in plot_data],
-                'y': [item['likes_count'] for item in plot_data],
-                'customdata': [[item['img_name']] for item in plot_data],
-                'type': 'scatter',
-                'mode': 'markers',
-                'hovertemplate': '%{customdata[0]}<br>Polarity: %{x}<br>Likes: %{y}'
-            }],
-            'layout': {
-                'title': 'Likes Count vs Polarity',
-                'xaxis': {'title': 'Polarity (-1 to 1)'},
-                'yaxis': {'title': 'Likes Count'},
-                'template': 'seaborn'
-            }
-        }
-        plot_json = json.dumps(fig)
-    else:
-        plot_json = json.dumps({"data": [], "layout": {}})
-
-    context = {
-        'plot_json': plot_json,
-        'data_count': len(plot_data),
-    }
-
-    return render(request, 'start_ocr.html', context)
 
 def list_images(request, folder_name=None):
     # Get all subfolders in 'data/images'

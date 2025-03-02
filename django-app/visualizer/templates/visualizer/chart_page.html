@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Data Visualization{% endblock %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/plotly.js@2.20.0/dist/plotly.min.js"></script>
+
+<style>
+    button {
+        background-color: #722222;
+        border: none;
+        color: white;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        border-radius: 8px;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 20px;
+    }
+    button:hover {
+        background-color: #9e1212;
+    }
+    select {
+        padding: 10px;
+        font-size: 1em;
+        margin: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+<form action="{% url 'analyze' %}" method="get">
+    <label for="x_field">X-Axis Field:</label>
+    <select name="x_field" id="x_field">
+        <!-- ScrapeData fields -->
+        <option value="scrape.likes_count">Likes Count</option>
+        <option value="scrape.comment_count">Comment Count</option>
+        <option value="scrape.taken_at_timestamp">Timestamp</option>
+        <option value="scrape.display_height">Display Height</option>
+        <option value="scrape.display_width">Display Width</option>
+        <!-- AnalyzerResult fields -->
+        <option value="analyzer.polarity">Polarity</option>
+        <option value="analyzer.font_size">Font Size</option>
+    </select>
+
+    <label for="y_field">Y-Axis Field:</label>
+    <select name="y_field" id="y_field">
+        <!-- ScrapeData fields -->
+        <option value="scrape.likes_count">Likes Count</option>
+        <option value="scrape.comment_count">Comment Count</option>
+        <option value="scrape.taken_at_timestamp">Timestamp</option>
+        <option value="scrape.display_height">Display Height</option>
+        <option value="scrape.display_width">Display Width</option>
+        <!-- AnalyzerResult fields -->
+        <option value="analyzer.polarity">Polarity</option>
+        <option value="analyzer.font_size">Font Size</option>
+    </select>
+
+    <button type="submit">Generate Chart</button>
+</form>
+
+<p>Note: Chart type will adjust based on whether fields are numeric or non-numeric.</p>
+
+<!-- <div id="plotly-chart"></div> -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        try {
+            var plotData = {{ plot_json|safe }};
+            console.log("Plot Data:", plotData);
+            if (plotData.data && plotData.data.length > 0) {
+                Plotly.newPlot('plotly-chart', plotData.data, plotData.layout);
+            } else {
+                console.warn("No data available for the chart.");
+                document.getElementById("plotly-chart").innerHTML = "<p>No data to display.</p>";
+            }
+        } catch (e) {
+            console.error("Error parsing plot JSON:", e);
+        }
+    });
+</script>
+
+{% endblock %}

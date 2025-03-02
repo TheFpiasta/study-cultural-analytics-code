@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block title %}Data Visualization{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+        margin: 0;
+    }
+    .chat-container {
+        width: 100%;
+        max-width: 600px;
+        max-height: 520px;
+        color: white;
+        background: rgb(20, 20, 20);
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    #chatbox {
+        color: black;
+        width: 100%;
+        height: 300px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        overflow-y: auto;
+        background: #fff;
+        margin-bottom: 10px;
+    }
+    #user_input {
+        width: 90%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1em;
+        outline: none;
+        margin-bottom: 20px;
+    }
+    button {
+        background-color: #722222;
+        border: none;
+        color: white;
+        padding: 12px;
+        font-size: 1em;
+        border-radius: 8px;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    button:hover {
+        background-color: #9e1212;
+    }
+</style>
+
+<!-- Chat Section -->
+<div class="chat-container">
+    <h2>Chat with LLM</h2>
+    <div id="chatbox"></div>
+    <input type="text" id="user_input" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+    <p id="warningMessage" style="color: red; display: none;">⚠️ Chatbot is offline!</p> <!-- Warning Message -->
+</div>
+
+<script>
+    let chatbotOnline = false;  // Tracks LLM server status
+
+    // Function to check if LLM is online
+    function checkLLMStatus() {
+        fetch("{% url 'chat_with_llm' %}", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: "ping" })  // Simple test message
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.response) {
+                chatbotOnline = true;
+                document.getElementById("warningMessage").style.display = "none";  // Hide warning
+            } else {
+                chatbotOnline = false;
+                document.getElementById("warningMessage").style.display = "block"; // Show warning
+            }
+        })
+        .catch(error => {
+            chatbotOnline = false;
+            document.getElementById("warningMessage").style.display = "block"; // Show warning
+        });
+    }
+
+    // Check LLM status on page load
+    checkLLMStatus();
+
+    function sendMessage() {
+        if (!chatbotOnline) {
+            alert("Chatbot is offline! Please try again later."); // Extra alert
+            return;
+        }
+
+        let userInput = document.getElementById("user_input").value;
+        let chatbox = document.getElementById("chatbox");
+
+        if (!userInput.trim()) return;
+
+        // Show user message
+        chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+        document.getElementById("user_input").value = "";
+
+        // Add "Thinking..." feedback
+        let loadingMessage = document.createElement("p");
+        loadingMessage.innerHTML = `<strong>AI:</strong> <em>Thinking...</em>`;
+        loadingMessage.id = "loadingMessage";
+        chatbox.appendChild(loadingMessage);
+
+        // Auto-scroll
+        chatbox.scrollTop = chatbox.scrollHeight;
+
+        fetch("{% url 'chat_with_llm' %}", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userInput })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Remove "Thinking..."
+            let loadingMsg = document.getElementById("loadingMessage");
+            if (loadingMsg) loadingMsg.remove();
+
+            let aiResponse = data.response || "No response from AI";
+            chatbox.innerHTML += `<p><strong>AI:</strong> ${aiResponse}</p>`;
+
+            // Auto-scroll
+            chatbox.scrollTop = chatbox.scrollHeight;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            loadingMessage.innerHTML = `<strong>AI:</strong> <em>Error: Could not get response.</em>`;
+            chatbotOnline = false;
+            document.getElementById("warningMessage").style.display = "block"; // Show warning
+        });
+    }
+</script>
+
+
+{% endblock %}
