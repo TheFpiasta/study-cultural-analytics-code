@@ -4,10 +4,11 @@ services:
     restart: on-failure
     volumes:
       - ./data/images:/app/images
-      - ./data/annotated_images:/app/annotated_images  # Mount this so you can see changes
+      - ./data/annotated_images:/app/annotated_images
       - ./data/log:/app/log
       - ./data/database/sqlite:/app/sqlite
       - ./django-app/scraper/migrations:/app/scraper/migrations
+      - ./django-app/analyser/migrations:/app/analyser/migrations
       - ./django-app/analyzer/migrations:/app/analyzer/migrations
       - ./data:/app/data
     environment:
@@ -27,9 +28,13 @@ services:
           ignore:
             - "*.pyc"
             - "__pycache__"
-            - "migrations/"
             - "sqlite/"
+            - "scraper/migrations/"
             - "scraper/models.py"
+            - "scraper/migrations/"
+            - "scraper/models.py"
+            - "analyser/migrations/"
+            - "analyser/models.py"
         - action: rebuild
           path: ./django-app/requirements.txt
 
