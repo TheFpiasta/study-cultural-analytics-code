@@ -15,6 +15,9 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse, StreamingHttpResponse
 from django.utils import timezone  # For timestamp
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 from analyzer.services.image_processor import process_images
 
 from analyzer.models import AnalyzerResult  # Import the model
@@ -100,9 +103,20 @@ def yield_event(message):
 def ocr_process_stream(request):
     """Handles OCR streaming response."""
     
+    # Retrieve selected analysis options from the session
+    analysis_config = request.session.get("analysis_config", {
+        "ocr": True,  # Default values
+        "color_analysis": True,
+        "sentiment_analysis": True,
+        "font_size": True,
+        "llm_sentiment": False,  # Default to VADER sentiment
+    })
+
     def event_stream():
         start_time = time.time()  # Start the timer
-        
+        # Convert dictionary to string before yielding
+        yield "data: config: " + json.dumps(analysis_config) + "\n\n"
+
         yield "data: 🚀 Analyzing process started...\n\n"
 
         # Clear previous results
@@ -110,9 +124,9 @@ def ocr_process_stream(request):
         yield "data: 🗑 Cleared previous results from DB...\n\n"
 
         # Start image processing (passing the function as a callback)
-        for message in process_images(yield_event):  
+        for message in process_images(yield_event, analysis_config):  
             yield message  # Directly yield the processed message
-        
+
         # Calculate and print the elapsed time
         elapsed_time = time.time() - start_time
         yield f"data: ⏱️ Processing complete! Elapsed time: {elapsed_time:.2f} seconds.\n\n"
@@ -124,6 +138,12 @@ def ocr_process_stream(request):
 # Start OCR process triggered by the button click
 def start_ocr_process(request):
     if request.method == 'POST':
+        # Parse the JSON request body
+        body_data = json.loads(request.body)
+
+        # Store selected options in session (or another method like a database)
+        request.session["analysis_config"] = body_data 
+
         return JsonResponse({'status': 'success', 'message': 'OCR process started successfully'})
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
 

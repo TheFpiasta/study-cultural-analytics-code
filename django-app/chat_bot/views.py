@@ -1,7 +1,6 @@
 import json
 import requests
 import re
-import traceback  # Add this for better error logging
 
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -33,15 +32,10 @@ def chat_with_llm(request):
             # Sending request to LM Studio API
             response = requests.post(LM_STUDIO_API, json=payload)
 
-            # DEBUG: Print raw API response
-            print(f"RAW API RESPONSE: {response.text}")  
-
             response_data = response.json()
 
             # Extracting the full message
             full_response = response_data.get("choices", [{}])[0].get("message", {}).get("content", "")
-
-            print(f"User: {full_response}")  # DEBUG: Check the full AI response
 
             try:
                 # Extract everything after "Answer:"
@@ -52,16 +46,14 @@ def chat_with_llm(request):
                 else:
                     ai_message = full_response  # Fallback if "Answer:" isn't found
 
-                print(f"Extracted AI Message: {ai_message}")  # DEBUG: Check extracted message
-
                 return JsonResponse({"response": ai_message})
 
             except Exception as e:
-                print(f"ERROR extracting AI message: {traceback.format_exc()}")
+
                 return JsonResponse({"error": "Failed to extract answer"}, status=500)
 
         except Exception as e:
-            print(f"ERROR in main function: {traceback.format_exc()}")
+
             return JsonResponse({"error": "Internal server error"}, status=500)
 
     return JsonResponse({"error": "Invalid request"}, status=400)
