@@ -9,7 +9,6 @@ services:
       - ./data/database/sqlite:/app/sqlite
       - ./django-app/scraper/migrations:/app/scraper/migrations
       - ./django-app/analyser/migrations:/app/analyser/migrations
-      - ./django-app/analyzer/migrations:/app/analyzer/migrations
       - ./data:/app/data
     environment:
       - PYTHONUNBUFFERED=${PYTHONUNBUFFERED}
