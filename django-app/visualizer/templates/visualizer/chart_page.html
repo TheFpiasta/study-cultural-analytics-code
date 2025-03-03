@@ -17,6 +17,56 @@
         max-width: 1200px;
         margin: 40px auto;
         padding: 20px;
+        background-color: #1b1b1b;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #722222;
+        margin-bottom: 30px;
+    }
+
+    form {
+        display: grid;
+        gap: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    label {
+        font-weight: bold;
+        font-size: 1.1em;
+        color: #333;
+    }
+
+    select {
+        padding: 12px 15px;
+        font-size: 1em;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        width: 100%;
+        background-color: #fafafa;
+        transition: border-color 0.3s ease;
+    }
+
+    select:focus {
+        border-color: #722222;
+        outline: none;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
         background-color: #fff;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
@@ -63,14 +113,38 @@
         font-size: 1.2em;
         border-radius: 8px;
         border: none;
+        border: none;
         width: 100%;
         cursor: pointer;
         transition: all 0.3s ease;
     }
 
+
     button:hover {
         background-color: #9e1212;
     }
+
+    .note {
+        font-size: 0.9em;
+        color: #888;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #plotly-chart {
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styling for Error Message */
+    .error-message {
+        color: red;
+        font-size: 1.1em;
+        text-align: center;
 
     .note {
         font-size: 0.9em;
@@ -130,12 +204,36 @@
                 <option value="analyzer.font_size">Font Size</option>
             </select>
         </div>
+        <div>
+            <label for="y_field">Y-Axis Field:</label>
+            <select name="y_field" id="y_field">
+                <!-- ScrapeData fields -->
+                <option value="scrape.likes_count">Likes Count</option>
+                <option value="scrape.comment_count">Comment Count</option>
+                <option value="scrape.taken_at_timestamp">Timestamp</option>
+                <option value="scrape.display_height">Display Height</option>
+                <option value="scrape.display_width">Display Width</option>
+                <!-- AnalyzerResult fields -->
+                <option value="analyzer.polarity">Polarity</option>
+                <option value="analyzer.font_size">Font Size</option>
+            </select>
+        </div>
 
+        <button type="submit">Generate Chart</button>
+    </form>
         <button type="submit">Generate Chart</button>
     </form>
 
     <p class="note">Note: Chart type will adjust based on whether fields are numeric or non-numeric.</p>
+    <p class="note">Note: Chart type will adjust based on whether fields are numeric or non-numeric.</p>
 
+    <div id="plotly-chart">
+        <!-- Plotly chart will be rendered here -->
+    </div>
+
+    <!-- Error message (if any) -->
+    <p class="error-message" id="error-message" style="display: none;">There was an issue with the data. Please try again.</p>
+</div>
     <div id="plotly-chart">
         <!-- Plotly chart will be rendered here -->
     </div>
