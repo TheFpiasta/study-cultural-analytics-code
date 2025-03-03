@@ -145,6 +145,7 @@
         color: red;
         font-size: 1.1em;
         text-align: center;
+    }
 
     .note {
         font-size: 0.9em;
@@ -204,36 +205,12 @@
                 <option value="analyzer.font_size">Font Size</option>
             </select>
         </div>
-        <div>
-            <label for="y_field">Y-Axis Field:</label>
-            <select name="y_field" id="y_field">
-                <!-- ScrapeData fields -->
-                <option value="scrape.likes_count">Likes Count</option>
-                <option value="scrape.comment_count">Comment Count</option>
-                <option value="scrape.taken_at_timestamp">Timestamp</option>
-                <option value="scrape.display_height">Display Height</option>
-                <option value="scrape.display_width">Display Width</option>
-                <!-- AnalyzerResult fields -->
-                <option value="analyzer.polarity">Polarity</option>
-                <option value="analyzer.font_size">Font Size</option>
-            </select>
-        </div>
 
-        <button type="submit">Generate Chart</button>
-    </form>
         <button type="submit">Generate Chart</button>
     </form>
 
     <p class="note">Note: Chart type will adjust based on whether fields are numeric or non-numeric.</p>
-    <p class="note">Note: Chart type will adjust based on whether fields are numeric or non-numeric.</p>
 
-    <div id="plotly-chart">
-        <!-- Plotly chart will be rendered here -->
-    </div>
-
-    <!-- Error message (if any) -->
-    <p class="error-message" id="error-message" style="display: none;">There was an issue with the data. Please try again.</p>
-</div>
     <div id="plotly-chart">
         <!-- Plotly chart will be rendered here -->
     </div>
