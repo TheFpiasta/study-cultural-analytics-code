@@ -10,8 +10,9 @@ class AnalyzerResult(models.Model):
     font_sizes = models.TextField(null=True, blank=True)  # Renamed from font_size
     background_color = models.CharField(max_length=10, null=True, blank=True)  # Renamed from hintergrundfarben
     
-    sentiment_vader = models.TextField(null=True, blank=True)  # VADER Sentiment
-    sentiment_deepseek = models.TextField(null=True, blank=True)  # DeepSeek Coder Sentiment
+    # Store sentiment as JSON (both score and category)
+    sentiment_vader = models.JSONField(null=True, blank=True)  # Example: {"score": 0.8, "category": "positive"}
+    sentiment_deepseek = models.JSONField(null=True, blank=True)  # Example: {"score": -0.4, "category": "negative"}
 
     processing_status = models.CharField(
         max_length=20,

@@ -28,7 +28,7 @@ def process_images(yield_event, analysis_config):
         if not os.path.isdir(folder_path):
             continue
 
-        image_files = [f for f in os.listdir(folder_path) if f.lower().endswith(('.jpg', '.jpeg'))][:2]
+        image_files = [f for f in os.listdir(folder_path) if f.lower().endswith(('.jpg', '.jpeg'))][:1]
 
         if not image_files:
             yield yield_event(f"❌ No images found in {folder_name}")
@@ -81,32 +81,27 @@ def process_single_image(image_path, image_file, yield_event, reader, analysis_c
         if extracted_text:
             cleaned_text = " ".join(extracted_text.splitlines())
 
-            vader_polarity, vader_sentiment = None, None
-            llm_polarity, llm_sentiment = None, None
+            vader_result = None
+            deepseek_result = None
 
             yield yield_event(f"📝 Analyzing sentiment for: {cleaned_text}")
-                              
+                                
             if analysis_config.get("sentiment_analysis", True):
                 vader_polarity, vader_sentiment = analyze_text_sentiment_vader(cleaned_text)
-                yield yield_event(f"📊 Vader Sentiment result: {vader_sentiment}")
-            
+                vader_result = {"score": vader_polarity, "category": vader_sentiment}  # Store as JSON
+                yield yield_event(f"📊 VADER Sentiment result: {vader_result}")
+
             if analysis_config.get("llm_sentiment", False):
-                llm_sentiment = analyze_text_sentiment_llm(cleaned_text)
-                yield yield_event(f"📊 LLM Sentiment result: {llm_sentiment}")
-                    
+                llm_polarity, llm_sentiment = analyze_text_sentiment_llm(cleaned_text)
+                deepseek_result = {"score": llm_polarity, "category": llm_sentiment}  # Store as JSON
+                yield yield_event(f"📊 LLM Sentiment result: {deepseek_result}")
 
 
-
-        # if extracted_text and analysis_config.get("sentiment_analysis", True):
-        #     cleaned_text = " ".join(extracted_text.splitlines())
-
-        #     yield yield_event(f"📝 Analyzing sentiment for: {cleaned_text}")
-
-        #     if analysis_config.get("llm_sentiment", False):
-        #         sentiment_llm = analyze_text_sentiment_llm(cleaned_text)
-        #         yield yield_event(f"📊 LLM Sentiment result: {sentiment_llm}")
-        #     else:
-        #         polarity, sentiment_vader = analyze_text_sentiment_vader(cleaned_text)
+            # Create a structured JSON object for sentiment results
+            # text_sentiment = {
+            #     "vader": {"score": vader_polarity, "sentiment": vader_sentiment} if vader_polarity is not None else None,
+            #     "llm": {"score": llm_polarity, "sentiment": llm_sentiment} if llm_polarity is not None else None
+            # }
 
         # Font size estimation
         if bounding_boxes and analysis_config.get("font_size", True):
@@ -119,8 +114,8 @@ def process_single_image(image_path, image_file, yield_event, reader, analysis_c
             existing_entry.background_color = avg_color_hex or existing_entry.background_color
             existing_entry.text_colors = json.dumps(text_colors) if text_colors else existing_entry.text_colors
             existing_entry.font_sizes = json.dumps(font_sizes) if font_sizes else existing_entry.font_sizes
-            existing_entry.sentiment_vader = sentiment_vader or existing_entry.sentiment_vader
-            existing_entry.sentiment_deepseek = sentiment_llm or existing_entry.sentiment_deepseek
+            existing_entry.sentiment_vader = vader_result or existing_entry.sentiment_vader
+            existing_entry.sentiment_deepseek = deepseek_result or existing_entry.sentiment_deepseek
             existing_entry.processing_status = "completed"
             existing_entry.save(using="analyzer_db")
         else:
@@ -132,10 +127,11 @@ def process_single_image(image_path, image_file, yield_event, reader, analysis_c
                 background_color=avg_color_hex if avg_color_hex else None,
                 text_colors=json.dumps(text_colors) if text_colors else None,
                 font_sizes=json.dumps(font_sizes) if font_sizes else None,
-                sentiment_vader=sentiment_vader if sentiment_vader else None,
-                sentiment_deepseek=sentiment_llm if sentiment_llm else None,
+                sentiment_vader=vader_result if vader_result else None,
+                sentiment_deepseek=deepseek_result if deepseek_result else None,
                 processing_status="completed"
             )
+
 
         yield yield_event(f"✅ {image_file} analyzed successfully.")
 
