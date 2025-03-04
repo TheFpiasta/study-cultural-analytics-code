@@ -97,14 +97,12 @@
         <!-- Checkboxes for Selecting Analysis Steps -->
         <div class="form-group">
             <label style="display: none;"><input type="checkbox" id="ocr" checked> Texterkennung und Boxen</label><br>
-            <label><input type="checkbox" id="color_analysis" checked> Analyze Colors</label><br>
-            <label><input type="checkbox" id="sentiment_analysis" checked> Sentiment Analysis</label><br>
-            <label><input type="checkbox" id="font_size" checked> Detect Font Sizes</label><br>
+            <label><input type="checkbox" id="ocr" checked> Texterkennung und Boxen</label><br>
+            <label><input type="checkbox" id="color_analysis" checked> Farbanalyse</label><br>
+            <label><input type="checkbox" id="sentiment_analysis" checked> Sentiment Analyse</label><br>
+            <label><input type="checkbox" id="font_size" checked> Schriftgröße Analyse</label>
+            <label><input type="checkbox" id="llm-sentiment-checkbox"> Use LLM for Sentiment Analysis</label>
         </div>
-
-        <label>
-            <input type="checkbox" id="llm-sentiment-checkbox"> Use LLM for Sentiment Analysis
-        </label>
 
         <button onclick="startOcrProcess()" class="">Start EasyOCR zur Texterkennung aller Bilder</button>
         

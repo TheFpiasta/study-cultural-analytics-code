@@ -103,37 +103,33 @@ def yield_event(message):
 def ocr_process_stream(request):
     """Handles OCR streaming response."""
     
-    # Retrieve selected analysis options from the session
     analysis_config = request.session.get("analysis_config", {
-        "ocr": True,  # Default values
+        "ocr": True,
         "color_analysis": True,
         "sentiment_analysis": True,
         "font_size": True,
-        "llm_sentiment": False,  # Default to VADER sentiment
+        "llm_sentiment": False,
     })
 
     def event_stream():
-        start_time = time.time()  # Start the timer
-        # Convert dictionary to string before yielding
+        start_time = time.time()
         yield "data: config: " + json.dumps(analysis_config) + "\n\n"
-
         yield "data: 🚀 Analyzing process started...\n\n"
 
         # Clear previous results
         AnalyzerResult.objects.using("analyzer_db").all().delete()
         yield "data: 🗑 Cleared previous results from DB...\n\n"
+        
+        # Start image processing
+        for message in process_images(yield_event, analysis_config):
+            yield message  
 
-        # Start image processing (passing the function as a callback)
-        for message in process_images(yield_event, analysis_config):  
-            yield message  # Directly yield the processed message
-
-        # Calculate and print the elapsed time
         elapsed_time = time.time() - start_time
         yield f"data: ⏱️ Processing complete! Elapsed time: {elapsed_time:.2f} seconds.\n\n"
-
         yield "data: 🎉 Analyzing processing complete!\n\n"
 
     return StreamingHttpResponse(event_stream(), content_type='text/event-stream')
+
 
 # Start OCR process triggered by the button click
 def start_ocr_process(request):
@@ -204,56 +200,3 @@ def ocr_view(request):
         form = ImageUploadForm()
 
     return render(request, 'easyocr_app/upload.html', {'form': form})
-
-    """
-    Function to process OCR for all pending jobs and update the database.
-    This is the same logic that was previously in the Command class.
-    """
-    print("Starting OCR processing...")
-
-    # Get pending OCR jobs
-    pending_jobs = OCRProcess.objects.filter(status="pending")
-
-    if not pending_jobs.exists():
-        print("No pending OCR jobs found.")
-        return
-
-    # Initialize EasyOCR reader
-    reader = easyocr.Reader(["en"])  # Add more languages if needed
-
-    for job in pending_jobs:
-        try:
-            image_path = job.original_image_path
-
-            # Check if image file exists
-            if not os.path.exists(image_path):
-                job.status = "failed"
-                job.error_msg = f"File not found: {image_path}"
-                job.save()
-                print(f"Image not found: {image_path}")
-                continue
-
-            # Run OCR
-            print(f"Processing: {image_path}")
-            results = reader.readtext(image_path, detail=1)  # detail=1 returns bounding boxes & confidence
-
-            # Extract text and confidence scores
-            extracted_text = "\n".join([result[1] for result in results])
-            avg_confidence = sum([result[2] for result in results]) / len(results) if results else 0.0
-
-            # Update the database
-            job.recognized_text = extracted_text
-            job.avg_confidence = avg_confidence
-            job.status = "success"
-            job.created_at = now()  # Timestamp
-            job.save()
-
-            print(f"✔ Processed: {image_path} (Confidence: {avg_confidence:.2f})")
-
-        except Exception as e:
-            job.status = "failed"
-            job.error_msg = str(e)
-            job.save()
-            print(f"Failed processing {image_path}: {e}")
-
-    print("OCR processing complete!")
