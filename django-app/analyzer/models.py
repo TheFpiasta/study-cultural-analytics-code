@@ -13,7 +13,8 @@ class AnalyzerResult(models.Model):
     # Store sentiment as JSON (both score and category)
     sentiment_vader = models.JSONField(null=True, blank=True)  # Example: {"score": 0.8, "category": "positive"}
     sentiment_deepseek = models.JSONField(null=True, blank=True)  # Example: {"score": -0.4, "category": "negative"}
-
+    owner_id = models.IntegerField(null=True, blank=True)  # New field to store
+     
     processing_status = models.CharField(
         max_length=20,
         choices=[

@@ -117,8 +117,8 @@ def ocr_process_stream(request):
         yield "data: 🚀 Analyzing process started...\n\n"
 
         # Clear previous results
-        AnalyzerResult.objects.using("analyzer_db").all().delete()
-        yield "data: 🗑 Cleared previous results from DB...\n\n"
+        # AnalyzerResult.objects.using("analyzer_db").all().delete()
+        # yield "data: 🗑 Cleared previous results from DB...\n\n"
         
         # Start image processing
         for message in process_images(yield_event, analysis_config):
