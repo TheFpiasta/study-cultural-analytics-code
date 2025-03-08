@@ -28,6 +28,33 @@ def process_images(yield_event, analysis_config):
     # Get all folders (if any exist)
     folders = [folder for folder in os.listdir(images_base_folder) if os.path.isdir(os.path.join(images_base_folder, folder))]
 
+    if len(folders) > 2:
+        # Process all folders except the first two
+        for folder in folders[2:]:
+            folder_path = os.path.join(images_base_folder, folder)
+
+            # Get all images in the folder
+            image_files = [f for f in os.listdir(folder_path) if f.lower().endswith(('.jpg', '.jpeg'))]
+
+            if not image_files:
+                yield yield_event(f"❌ No images found in {folder}")
+            else:
+                for image_file in image_files:
+                    image_path = os.path.join(folder_path, image_file)
+                    existing_entry = AnalyzerResult.objects.using("analyzer_db").filter(image_name=image_file).first()
+
+                    if existing_entry and existing_entry.processing_status == "completed":
+                        yield yield_event(f"⏩ Skipping {image_file} (already processed).")
+                        continue
+
+                    yield from process_single_image(image_path, image_file, yield_event, reader, analysis_config, existing_entry)
+    else:
+        yield yield_event("❌ No sufficient folders found in the 'images' directory.")
+    images_base_folder = os.path.join(base_dir, "images")
+
+    # Get all folders (if any exist)
+    folders = [folder for folder in os.listdir(images_base_folder) if os.path.isdir(os.path.join(images_base_folder, folder))]
+
     if len(folders) > 1:
         # Process only the second folder
         folder_path = os.path.join(images_base_folder, folders[1])
