@@ -200,8 +200,11 @@
                         '{{ image_info.avg_color|escapejs }}', 
                         this.src,
                         '{{ image_info.text_boxes|escapejs }}',
-                        '{{ image_info.text_colors|escapejs }}'
+                        '{{ image_info.text_colors|escapejs }}',
+                        '{{ image_info.font_size|escapejs }}',
+                        '{{ image_info.text_sentiment|escapejs }}'
                     )" />
+               
                
                 </div>
             {% endfor %}
@@ -250,85 +253,88 @@
                     <div id="modalColor" class="color-box">
                         <span id="modalColorText"></span>
                     </div>
-                </div>                
+                </div>    
+                <div>
+                    <p>Font Sizes:</p>
+                    <div id="modalFontSize"></div>
+                </div>
+                <div>
+                    <p>Text Sentiment:</p>
+                    <div id="modalSentiment"></div>
+                </div>
+                
+                
             </div>
             <button class="close-btn" onclick="closeModal()">Close</button>
         </div>
     </div>
 
-
     <script>
-        function openModal(imageName, text, color, imageSrc, text_boxes, textColors) {
-
+        function openModal(imageName, text, color, imageSrc, text_boxes, textColors, fontSize, textSentiment) {
             document.getElementById("modalImageName").innerText = imageName;
             document.getElementById("modalText").innerText = text ? text : "No text found.";
             document.getElementById("modalColorText").innerText = color ? color : "No color data available.";
-            document.getElementById("modalColor").style.backgroundColor = color || "#ddd"; // Default gray
+            document.getElementById("modalColor").style.backgroundColor = color || "#ddd";
         
             document.getElementById("modalImage").src = imageSrc;
-
-            console.log("Text Boxes:", text_boxes);
-
-            // Ensure textBoxes is valid JSON
-            /*
-            let boxesArray = [];
-            try {
-                boxesArray = JSON.parse(text_boxes);
-            } catch (error) {
-                console.error("Error parsing textBoxes:", error);
-            }
-            */
-
-            //console.log("Parsed Bounding Boxes:", boxesArray);
-
-            // Show the modal
-            //document.getElementById("imageModal").style.display = "flex";
-
-            // Draw bounding boxes
-            //drawBoundingBoxes(imageSrc, boxesArray);
-
         
-            // Ensure textColors is valid JSON
-            let colorsArray = [];
-
+            // Ensure fontSize is parsed correctly
+            let fontSizeArray = [];
             try {
-                // If textColors is a string containing another JSON string, parse twice
-                let firstParse = JSON.parse(textColors);
-
+                let firstParse = JSON.parse(fontSize);
                 if (typeof firstParse === "string") {
-                    colorsArray = JSON.parse(firstParse); // Second parse
+                    fontSizeArray = JSON.parse(firstParse); // Double parse if needed
                 } else if (Array.isArray(firstParse)) {
-                    colorsArray = firstParse; // It's already an array
-                } else {
-                    console.error("Unexpected format after first parse:", firstParse);
+                    fontSizeArray = firstParse;
                 }
             } catch (error) {
-                console.error("Error parsing textColors:", error);
+                console.error("Error parsing fontSize:", error);
             }
-
-            console.log("Parsed Colors Array:", colorsArray);  // Check in console
-
-            let textColorsContainer = document.getElementById("modalTextColors");
-            textColorsContainer.innerHTML = ""; // Clear previous content
-
-            if (colorsArray.length > 0) {
-                colorsArray.forEach(color => {
-                    let colorBox = document.createElement("span");
-                    colorBox.style.backgroundColor = color;
-                    colorBox.style.display = "inline-block";
-                    colorBox.style.width = "20px";
-                    colorBox.style.height = "20px";
-                    colorBox.style.margin = "2px";
-                    colorBox.style.border = "1px solid #000";
-                    textColorsContainer.appendChild(colorBox);
+        
+            let fontSizeContainer = document.getElementById("modalFontSize");
+            fontSizeContainer.innerHTML = ""; // Clear previous content
+        
+            if (Array.isArray(fontSizeArray) && fontSizeArray.length > 0) {
+                fontSizeArray.forEach(size => {
+                    let fontSizeBox = document.createElement("div");
+                    fontSizeBox.innerText = `Font Size: ${size}px`;
+                    fontSizeBox.style.margin = "5px";
+                    fontSizeContainer.appendChild(fontSizeBox);
                 });
             } else {
-                textColorsContainer.innerText = "No text color data available.";
+                fontSizeContainer.innerText = "No font size data available.";
             }
-
+        
+            // ✅ Parse textSentiment
+            let sentimentData = {};
+            try {
+                sentimentData = JSON.parse(textSentiment);
+            } catch (error) {
+                console.error("Error parsing textSentiment:", error);
+            }
+        
+            let sentimentContainer = document.getElementById("modalSentiment");
+            sentimentContainer.innerHTML = ""; // Clear previous content
+        
+            if (sentimentData.polarity !== undefined && sentimentData.sentiment !== undefined) {
+                // ✅ Choose color based on sentiment
+                let sentimentColor = "#ccc"; // Default gray
+                if (sentimentData.sentiment === "positive") sentimentColor = "green";
+                else if (sentimentData.sentiment === "negative") sentimentColor = "red";
+                else if (sentimentData.sentiment === "neutral") sentimentColor = "blue";
+        
+                sentimentContainer.innerHTML = `<p>Polarity: ${sentimentData.polarity.toFixed(4)}</p>
+                                                <p style="color: ${sentimentColor}; font-weight: bold;">
+                                                    Sentiment: ${sentimentData.sentiment}
+                                                </p>`;
+            } else {
+                sentimentContainer.innerText = "No sentiment data available.";
+            }
+        
             document.getElementById("imageModal").style.display = "flex";
-
-        }    
+        }
+          
+        
         
         function closeModal() {
             document.getElementById("imageModal").style.display = "none";

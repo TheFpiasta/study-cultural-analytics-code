@@ -93,6 +93,17 @@
     </style>
     <div class="container animate-in">
         <h1 class="">Processing Images</h1>
+
+        <!-- Checkboxes for Selecting Analysis Steps -->
+        <div class="form-group">
+            <label style="display: none;"><input type="checkbox" id="ocr" checked> Texterkennung und Boxen</label><br>
+            <label><input type="checkbox" id="ocr" checked> Texterkennung und Boxen</label><br>
+            <label><input type="checkbox" id="color_analysis" checked> Farbanalyse</label><br>
+            <label><input type="checkbox" id="sentiment_analysis" checked> Sentiment Analyse</label><br>
+            <label><input type="checkbox" id="font_size" checked> Schriftgröße Analyse</label>
+            <label><input type="checkbox" id="llm-sentiment-checkbox"> Use LLM for Sentiment Analysis</label>
+        </div>
+
         <button onclick="startOcrProcess()" class="">Start EasyOCR zur Texterkennung aller Bilder</button>
         
         <!-- <div class="mt-4">
@@ -109,7 +120,7 @@
     <script>
         function startOcrProcess() {
             // Get the checkbox value (true or false)
-            <!-- const saveAnnotatedImages = document.getElementById('save_annotated_images').checked; -->
+            // const saveAnnotatedImages = document.getElementById('save_annotated_images').checked;
         
             fetch('/analyzer/start-ocr/', {
                 method: 'POST',
@@ -119,6 +130,11 @@
                 },
                 body: JSON.stringify({
                     //save_annotated_images: saveAnnotatedImages 
+                    ocr: document.getElementById('ocr').checked,
+                    color_analysis: document.getElementById('color_analysis').checked,
+                    sentiment_analysis: document.getElementById('sentiment_analysis').checked,
+                    font_size: document.getElementById('font_size').checked,
+                    llm_sentiment: document.getElementById('llm-sentiment-checkbox').checked
                 })
             })
             .then(response => response.json())

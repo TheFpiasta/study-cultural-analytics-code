@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %}Data Visualization{% endblock %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/plotly.js@2.20.0/dist/plotly.min.js"></script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #722222;
+        margin-bottom: 30px;
+    }
+
+    .button-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-color: #722222;
+        color: white;
+        padding: 10px 20px;
+        font-size: 1em;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #9e1212;
+    }
+
+    .note {
+        font-size: 0.9em;
+        color: #888;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #plotly-chart {
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .error-message {
+        color: red;
+        font-size: 1.1em;
+        text-align: center;
+    }
+</style>
+
+<div class="container">
+    <h2>Data Visualization</h2>
+
+    <div class="button-container">
+        <!-- <a href="{% url 'likes_vs_sentiment' %}"><button>Likes vs Sentiment</button></a>
+
+        <a href="{% url 'background_color_vs_sentiment' %}"><button>Background Color vs Sentiment</button></a>
+        <a href="{% url 'text_color_vs_background_color' %}"><button>Text Color vs Background Color</button></a>
+        <a href="{% url 'likes_over_time' %}"><button>Likes Over Time</button></a>
+        <a href="{% url 'sentiment_over_time' %}"><button>Sentiment Over Time</button></a>
+        <a href="{% url 'background_color_over_time' %}"><button>Background Color Over Time</button></a>
+        <a href="{% url 'top_hashtags_over_time' %}"><button>Top Hashtags Over Time</button></a>
+ 
+        <a href="{% url 'font_size_per_portal' %}"><button>Font Size Per Portal</button></a> -->
+
+        <a href="{% url 'sentiment_per_portal_over_time' %}"><button>Sentiment Per Portal Over Time</button></a>
+        <a href="{% url 'likes_per_portal_over_time' %}"><button>Likes Per Portal Over Time</button></a>
+        <a href="{% url 'hashtag_group_usage' %}"><button>Hashtag Group Usage</button></a>
+        <a href="{% url 'hashtag_group_percentage' %}"><button>Hashtag Group Percentage</button></a>
+        <a href="{% url 'avg_likes_per_hashtag_group' %}"><button>Avg Likes Per Hashtag Group</button></a>
+        <a href="{% url 'comment_count_per_hashtag_group' %}"><button>Comment Count Per Hashtag Group</button></a>
+        <a href="{% url 'sentiment_radial' %}"><button>Sentiment Radial (ZDF)</button></a>
+        <a href="{% url 'sentiment_radial_bild' %}"><button>Sentiment Radial (Bild)</button></a>
+        <a href="{% url 'sentiment_radial_sz' %}"><button>Sentiment Radial (SZ)</button></a>
+    </div>
+
+    <p class="note">
+        <!-- {% if chart_type == 'likes_vs_sentiment' %}
+            Showing Likes Count vs Sentiment Polarity for up to 300 data points.
+        {% elif chart_type == 'likes_vs_hashtag_groups' %}
+            Showing Average Likes by Hashtag Group for up to 300 data points.
+        {% elif chart_type == 'background_color_vs_sentiment' %}
+            Showing Average Sentiment (VADER & DeepSeek) by Background Color for up to 300 data points.
+        {% elif chart_type == 'text_color_vs_background_color' %}
+            Showing Most Dominant Text Color by Background Color for up to 300 data points.
+        {% elif chart_type == 'likes_over_time' %}
+            Showing Total Likes Over Time (aggregated by day) for up to 300 days.
+        {% elif chart_type == 'sentiment_over_time' %}
+            Showing Average Sentiment Over Time (aggregated by day) for up to 300 days.
+        {% elif chart_type == 'background_color_over_time' %}
+            Showing Average Background Color Over Time (aggregated by day) for up to 300 days.
+        {% elif chart_type == 'top_hashtags_over_time' %}
+            Showing Top Hashtags Over Time (aggregated by day) for up to 300 days.
+        {% elif chart_type == 'likes_per_portal_over_time' %}
+            Showing Likes Per Portal Over Time (aggregated by day) for up to 300 days.
+        {% elif chart_type == 'font_size_per_portal' %}
+            Showing Font Size Per Portal for up to 300 data points.
+        {% else %}
+            Showing Data Visualization for up to 300 data points.
+        {% endif %} -->
+
+        {% if chart_type == 'sentiment_per_portal_over_time' %}
+            Showing Sentiment Per Portal Over Time (aggregated by day)
+        {% else %}
+            Showing Data Visualization
+        {% endif %}
+        
+    </p>
+
+    <div id="plotly-chart" style="height: 100%;">
+        <!-- Plotly chart will be rendered here -->
+    </div>
+
+    <p class="error-message" id="error-message" style="display: none;">There was an issue with the data. Please try again.</p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        try {
+            var plotData = {{ plot_json|safe }};
+            console.log("Plot Data:", plotData);
+            if (plotData.data && plotData.data.length > 0) {
+                Plotly.newPlot('plotly-chart', plotData.data, plotData.layout);
+            } else {
+                console.warn("No data available for the chart.");
+                document.getElementById("plotly-chart").innerHTML = "<p>No data to display.</p>";
+            }
+        } catch (e) {
+            console.error("Error parsing plot JSON:", e);
+            document.getElementById("error-message").style.display = "block";
+        }
+    });
+</script>
+
+{% endblock %}

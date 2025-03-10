@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "debug_toolbar",
     'analyzer',
+    'visualizer',
+    'chat_bot',
 ]
 
 MIDDLEWARE = [

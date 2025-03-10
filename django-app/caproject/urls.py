@@ -21,8 +21,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('chat_bot/', include('chat_bot.urls')),
     path('analyzer/', include('analyzer.urls')),
     path("scraper/", include("scraper.urls")),
+    path("visualizer/", include("visualizer.urls")),
     path("admin/", admin.site.urls),
 ]
 
