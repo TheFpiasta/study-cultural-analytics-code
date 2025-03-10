@@ -4,6 +4,9 @@ import os
 import re
 import statistics
 import math
+import colorsys
+import numpy as np
+import matplotlib.colors as mcolors
 
 from collections import defaultdict, Counter
 from django.conf import settings
@@ -978,81 +981,6 @@ def sentiment_radial_sz_view(request):
     }
     return render(request, 'visualizer/chart_page.html', context)
 
-class FromUnixTimestamp(Func):
-    function = "DATETIME"
-    template = "%(function)s(%(expressions)s, 'unixepoch')"
-
-def font_size_per_portal_view(request):
-    """Visualize average font sizes per portal"""
-    # Fetch data, linking ScrapeData and AnalyzerResult
-    scrape_data = ScrapeData.objects.filter(
-        img_name__isnull=False,
-        owner_id__in=VALID_PORTAL_IDS
-    )
-    analyzer_data = AnalyzerResult.objects.filter(
-        image_name__isnull=False,
-        font_sizes__isnull=False
-    )
-
-    if not scrape_data.exists() or not analyzer_data.exists():
-        fig = {"data": [], "layout": {"title": "No Data Available"}}
-        context = {
-            'plot_json': json.dumps(fig),
-            'data_count': 0,
-            'chart_type': 'font_size_per_portal'
-        }
-        return render(request, 'visualizer/chart_page.html', context)
-
-    # Link image_name to owner_id and compute average font size per image
-    owner_id_map = {entry.img_name: entry.owner_id for entry in scrape_data}
-    font_sizes_by_portal = {pid: [] for pid in VALID_PORTAL_IDS}
-
-    for entry in analyzer_data:
-        if entry.image_name in owner_id_map:
-            owner_id = owner_id_map[entry.image_name]
-            # Parse font_sizes (could be list or JSON string)
-            font_sizes = entry.font_sizes if isinstance(entry.font_sizes, list) else json.loads(entry.font_sizes)
-            if font_sizes:  # Ensure it’s not empty
-                avg_font_size = statistics.mean(font_sizes)  # Average per image
-                font_sizes_by_portal[owner_id].append(avg_font_size)
-
-    # Prepare data for Plotly box plot
-    traces = []
-    colors = ['#1f77b4', '#ff7f0e', '#2ca02c']  # ZDF, Bild, SZ
-
-    for i, portal_id in enumerate(VALID_PORTAL_IDS):
-        sizes = font_sizes_by_portal[portal_id]
-        if sizes:  # Only include portals with data
-            portal_name = PORTAL_MAPPING[portal_id]
-            traces.append({
-                "y": sizes,
-                "type": "box",
-                "name": portal_name,
-                "marker": {"color": colors[i]},
-                "boxpoints": "outliers",  # Show outliers
-                "jitter": 0.3,  # Spread points for visibility
-                "pointpos": -1.8  # Position points to the left
-            })
-
-    # Create Plotly box plot
-    fig = {
-        "data": traces,
-        "layout": {
-            "title": "Font Size Distribution Per Portal",
-            "xaxis": {"title": "Portal"},
-            "yaxis": {"title": "Average Font Size (pixels)"},
-            "template": "seaborn",
-            "hovermode": "closest",
-        }
-    }
-
-    context = {
-        'plot_json': json.dumps(fig),
-        'data_count': sum(len(sizes) for sizes in font_sizes_by_portal.values()),
-        'chart_type': 'font_size_per_portal'
-    }
-    return render(request, 'visualizer/chart_page.html', context)
-
 def top_hashtags_over_time_view(request):
     """Visualize the top 10 hashtags over time"""
     # Load hashtag data
@@ -1125,6 +1053,1074 @@ def top_hashtags_over_time_view(request):
         'plot_json': json.dumps(fig),
         'data_count': len(dates),
         'chart_type': 'top_hashtags_over_time'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+
+def dominant_background_colors_view(request):
+    """Visualize the top 10 dominant background colors per portal"""
+    # Fetch data from AnalyzerResult and ScrapeData
+    analyzer_results = AnalyzerResult.objects.filter(background_color__isnull=False)
+    scrape_data = ScrapeData.objects.filter(img_name__in=[result.image_name for result in analyzer_results])
+
+    # Map image names to portals (owner_id)
+    image_to_portal = {data.img_name: data.owner_id for data in scrape_data}
+
+    # Group background colors by portal
+    portal_background_colors = defaultdict(list)
+    for result in analyzer_results:
+        if result.image_name in image_to_portal:
+            portal_id = image_to_portal[result.image_name]
+            portal_background_colors[portal_id].append(result.background_color)
+
+    # Count the top 10 background colors for each portal
+    portal_color_data = []
+    for portal_id, colors in portal_background_colors.items():
+        if portal_id in PORTAL_MAPPING:
+            portal_name = PORTAL_MAPPING[portal_id]['name']
+            color_counts = Counter(colors)
+            top_10_colors = color_counts.most_common(10)  # Get the top 10 colors
+            for color, count in top_10_colors:
+                portal_color_data.append({
+                    'portal': portal_name,
+                    'color': color,
+                    'count': count
+                })
+
+    # Sort data by portal and then by count (descending)
+    portal_color_data.sort(key=lambda x: (x['portal'], -x['count']))
+
+    # Create a Plotly bar chart
+    fig = {
+        "data": [
+            {
+                "x": [entry['portal'] for entry in portal_color_data],  # Group by portal
+                "y": [entry['count'] for entry in portal_color_data],  # Count of each color
+                "type": "bar",
+                "marker": {"color": [entry['color'] for entry in portal_color_data]},  # Color bars by background color
+                "name": "Background Colors",
+                "hovertext": [f"Color: {entry['color']}<br>Count: {entry['count']}" for entry in portal_color_data],
+                "hovertemplate": "%{hovertext}<extra></extra>"
+            }
+        ],
+        "layout": {
+            "title": "Top 10 Dominant Background Colors per Portal",
+            "xaxis": {"title": "Portal", "categoryorder": "category ascending"},  # Sort portals alphabetically
+            "yaxis": {"title": "Count"},
+            "barmode": "group",
+            "showlegend": False
+        }
+    }
+
+    # Convert the chart to JSON
+    plot_json = json.dumps(fig)
+
+    # Pass the chart to the template
+    context = {
+        'plot_json': plot_json,
+        'chart_type': 'dominant_background_colors'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+
+def text_space_usage_view(request):
+    """Visualize average percentage of text space usage per portal"""
+    # Fetch data from AnalyzerResult and ScrapeData
+    analyzer_results = AnalyzerResult.objects.filter(bounding_boxes__isnull=False)
+    scrape_data = ScrapeData.objects.filter(img_name__in=[result.image_name for result in analyzer_results])
+
+    # Map image names to portals (owner_id) and image dimensions
+    image_to_portal = {}
+    image_to_dimensions = {}
+    for data in scrape_data:
+        image_to_portal[data.img_name] = data.owner_id
+        image_to_dimensions[data.img_name] = (data.display_height, data.display_width)
+
+    # Calculate text space usage for each image
+    portal_space_data = defaultdict(lambda: {'total_text_area': 0, 'total_image_area': 0, 'count': 0})
+    for result in analyzer_results:
+        if result.image_name in image_to_portal and result.image_name in image_to_dimensions:
+            portal_id = image_to_portal[result.image_name]
+            height, width = image_to_dimensions[result.image_name]
+            total_image_area = height * width
+
+            # Parse bounding_boxes (assuming it's a JSON list of {"text": "...", "bbox": [[x1,y1], [x2,y2], [x3,y3], [x4,y4]]})
+            bounding_boxes = json.loads(result.bounding_boxes)
+            total_text_area = 0
+            for box in bounding_boxes:
+                bbox = box['bbox']  # Get the bounding box coordinates
+                # Extract the four corner points
+                x_coords = [point[0] for point in bbox]
+                y_coords = [point[1] for point in bbox]
+                # Calculate width and height of the bounding box
+                box_width = max(x_coords) - min(x_coords)
+                box_height = max(y_coords) - min(y_coords)
+                # Calculate area of the bounding box
+                total_text_area += box_width * box_height
+
+            # Update portal data
+            portal_space_data[portal_id]['total_text_area'] += total_text_area
+            portal_space_data[portal_id]['total_image_area'] += total_image_area
+            portal_space_data[portal_id]['count'] += 1
+
+    # Calculate average percentage of text space usage for each portal
+    portal_avg_data = []
+    for portal_id, data in portal_space_data.items():
+        if portal_id in PORTAL_MAPPING:
+            portal_name = PORTAL_MAPPING[portal_id]['name']
+            portal_color = PORTAL_MAPPING[portal_id]['color']
+            avg_proportion = (data['total_text_area'] / data['total_image_area']) * 100  # As percentage
+
+            portal_avg_data.append({
+                'portal': portal_name,
+                'avg_proportion': avg_proportion,
+                'color': portal_color
+            })
+
+    # Sort data by portal name
+    portal_avg_data.sort(key=lambda x: x['portal'])
+
+    # Create a Plotly bar chart
+    fig = {
+        "data": [
+            {
+                "x": [entry['portal'] for entry in portal_avg_data],
+                "y": [entry['avg_proportion'] for entry in portal_avg_data],
+                "type": "bar",
+                "marker": {"color": [entry['color'] for entry in portal_avg_data]},  # Use portal colors
+                "name": "Average Text Space Usage (%)",
+                "hovertext": [f"Portal: {entry['portal']}<br>Avg Text Space: {entry['avg_proportion']:.2f}%" for entry in portal_avg_data],
+                "hovertemplate": "%{hovertext}<extra></extra>"
+            }
+        ],
+        "layout": {
+            "title": "Average Percentage of Text Space Usage per Portal",
+            "xaxis": {"title": "Portal", "categoryorder": "category ascending"},
+            "yaxis": {"title": "Average Text Space Usage (%)"},
+            "showlegend": False
+        }
+    }
+
+    # Convert the chart to JSON
+    plot_json = json.dumps(fig)
+
+    # Pass the chart to the template
+    context = {
+        'plot_json': plot_json,
+        'chart_type': 'text_space_usage'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+
+def background_color_radial_view(request, portal_id):
+    """Radial bar chart of background color distribution for a specific portal"""
+    # Validate portal_id
+    if portal_id not in PORTAL_MAPPING:
+        fig = {"data": [], "layout": {"title": "Invalid Portal ID"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'background_color_radial'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Fetch data for the specified portal
+    scrape_data = ScrapeData.objects.filter(owner_id=portal_id)
+    analyzer_data = AnalyzerResult.objects.filter(image_name__in=[data.img_name for data in scrape_data], background_color__isnull=False)
+
+    if not analyzer_data.exists():
+        fig = {"data": [], "layout": {"title": "No Data Available"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'background_color_radial'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Count occurrences of each background color
+    color_counts = Counter()
+    for entry in analyzer_data:
+        color = entry.background_color
+        if color and color.startswith("#") and len(color) == 7:  # Ensure valid hex color
+            color_counts[color] += 1
+
+    if not color_counts:
+        fig = {"data": [], "layout": {"title": "No Valid Background Colors Found"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'background_color_radial'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Prepare data for Plotly
+    colors = list(color_counts.keys())
+    counts = list(color_counts.values())
+
+    # Map colors to angles (0° to 360°)
+    angle_step = 360 / len(colors)  # Equal spacing for each color
+    angles = [i * angle_step for i in range(len(colors))]
+
+    # Hover texts
+    hover_texts = [f"Color: {color}<br>Count: {count}" for color, count in zip(colors, counts)]
+
+    # Create Plotly radial bar chart
+    fig = {
+        "data": [
+            {
+                "r": counts,
+                "theta": angles,
+                "type": "barpolar",
+                "name": "Background Colors",
+                "marker": {"color": colors},  # Use the actual colors for the bars
+                "text": hover_texts,
+                "hovertemplate": "%{text}",
+                "opacity": 0.8
+            }
+        ],
+        "layout": {
+            "title": f"Background Color Distribution for {PORTAL_MAPPING[portal_id]['name']}",
+            "polar": {
+                "radialaxis": {"title": "Count of Posts", "visible": True},
+                "angularaxis": {
+                    "title": "Color",
+                    "direction": "clockwise",
+                    "tickmode": "array",
+                    "tickvals": angles,  # Use the calculated angles
+                    "ticktext": colors,  # Use the actual colors as labels
+                    "rotation": 90  # Rotate labels for better readability
+                }
+            },
+            "template": "seaborn",
+            "hovermode": "closest",
+            "legend": {"title": "Colors", "x": 1, "y": 1}
+        }
+    }
+
+    context = {
+        'plot_json': json.dumps(fig),
+        'data_count': len(analyzer_data),
+        'chart_type': 'background_color_radial'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+
+def text_color_usage_radial_view(request):
+    """Radial bar chart of text color usage frequency across all bounding boxes"""
+    # Fetch data
+    scrape_data = ScrapeData.objects.filter(
+        img_name__isnull=False,
+        owner_id__in=VALID_PORTAL_IDS
+    )
+    analyzer_data = AnalyzerResult.objects.filter(
+        image_name__isnull=False,
+        text_colors__isnull=False,
+        bounding_boxes__isnull=False
+    )
+
+    if not scrape_data.exists() or not analyzer_data.exists():
+        fig = {"data": [], "layout": {"title": "No Data Available"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'text_color_usage_radial'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Link image_name to owner_id
+    image_to_owner = {entry.img_name: entry.owner_id for entry in scrape_data}
+
+    # Count colors per portal
+    color_counts_by_portal = {pid: Counter() for pid in VALID_PORTAL_IDS}
+    for entry in analyzer_data:
+        if entry.image_name in image_to_owner:
+            portal_id = image_to_owner[entry.image_name]
+            colors = json.loads(entry.text_colors) if isinstance(entry.text_colors, str) else entry.text_colors
+            boxes = json.loads(entry.bounding_boxes) if isinstance(entry.bounding_boxes, str) else entry.bounding_boxes
+            if len(colors) != len(boxes):
+                continue  # Skip if mismatch
+            for color in colors:
+                color_counts_by_portal[portal_id][color.lower()] += 1
+
+    # Get all unique colors
+    all_colors = set().union(*[set(c.keys()) for c in color_counts_by_portal.values()])
+    if not all_colors:
+        fig = {"data": [], "layout": {"title": "No Text Colors Found"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'text_color_usage_radial'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Map colors to angles based on hue
+    def hex_to_hue(hex_color):
+        hex_color = hex_color.lstrip('#')
+        rgb = tuple(int(hex_color[i:i+2], 16) / 255.0 for i in (0, 2, 4))
+        h, _, _ = colorsys.rgb_to_hsv(*rgb)
+        return h * 360  # Hue in degrees (0-360)
+
+    color_angles = {color: hex_to_hue(color) for color in all_colors}
+    sorted_colors = sorted(all_colors, key=lambda c: color_angles[c])
+
+    # Prepare traces for each portal
+    traces = []
+    for portal_id in VALID_PORTAL_IDS:
+        counts = [color_counts_by_portal[portal_id].get(color, 0) for color in sorted_colors]
+        hover_texts = [f"Color: {c}<br>Portal: {PORTAL_MAPPING[portal_id]['name']}<br>Count: {cnt}" 
+                       for c, cnt in zip(sorted_colors, counts)]
+        traces.append({
+            "r": counts,
+            "theta": [color_angles[c] for c in sorted_colors],
+            "type": "barpolar",
+            "name": PORTAL_MAPPING[portal_id]["name"],
+            "marker": {
+                "color": sorted_colors,  # Bars use the actual text colors
+                "line": {"width": 1, "color": PORTAL_MAPPING[portal_id]["color"]}  # Outline in portal color
+            },
+            "text": hover_texts,
+            "hovertemplate": "%{text}",
+            "opacity": 0.7
+        })
+
+    # Create Plotly radial bar chart
+    fig = {
+        "data": traces,
+        "layout": {
+            "title": "Text Color Usage Frequency Across Bounding Boxes",
+            "polar": {
+                "radialaxis": {"title": "Count of Uses"},
+                "angularaxis": {
+                    "title": "Color (Hue)",
+                    "direction": "clockwise",
+                    "tickmode": "array",
+                    "tickvals": [0, 60, 120, 180, 240, 300, 360],
+                    "ticktext": ["Red", "Yellow", "Green", "Cyan", "Blue", "Magenta", "Red"]
+                }
+            },
+            "template": "seaborn",
+            "hovermode": "closest",
+            "legend": {"title": "Portals", "x": 1, "y": 1}
+        }
+    }
+
+    context = {
+        'plot_json': json.dumps(fig),
+        'data_count': sum(sum(c.values()) for c in color_counts_by_portal.values()),
+        'chart_type': 'text_color_usage_radial'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+
+def text_color_usage_bar_view(request):
+    """Stacked horizontal bar chart of text color usage frequency across bounding boxes"""
+    # Fetch data
+    scrape_data = ScrapeData.objects.filter(
+        img_name__isnull=False,
+        owner_id__in=VALID_PORTAL_IDS
+    )
+    analyzer_data = AnalyzerResult.objects.filter(
+        image_name__isnull=False,
+        text_colors__isnull=False,
+        bounding_boxes__isnull=False
+    )
+
+    if not scrape_data.exists() or not analyzer_data.exists():
+        fig = {"data": [], "layout": {"title": "No Data Available"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'text_color_usage_bar'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Link image_name to owner_id
+    image_to_owner = {entry.img_name: entry.owner_id for entry in scrape_data}
+
+    # Count colors per portal
+    color_counts_by_portal = {pid: Counter() for pid in VALID_PORTAL_IDS}
+    for entry in analyzer_data:
+        if entry.image_name in image_to_owner:
+            portal_id = image_to_owner[entry.image_name]
+            colors = json.loads(entry.text_colors) if isinstance(entry.text_colors, str) else entry.text_colors
+            boxes = json.loads(entry.bounding_boxes) if isinstance(entry.bounding_boxes, str) else entry.bounding_boxes
+            if len(colors) != len(boxes):
+                continue  # Skip if mismatch
+            for color in colors:
+                color_counts_by_portal[portal_id][color.lower()] += 1
+
+    # Get all unique colors and total counts
+    total_counts = Counter()
+    for counter in color_counts_by_portal.values():
+        total_counts.update(counter)
+    if not total_counts:
+        fig = {"data": [], "layout": {"title": "No Text Colors Found"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'text_color_usage_bar'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Sort colors by total frequency (top 20 for readability)
+    top_colors = [color for color, _ in total_counts.most_common(100)]
+
+    # Prepare traces for each portal
+    traces = []
+    for portal_id in VALID_PORTAL_IDS:
+        counts = [color_counts_by_portal[portal_id].get(color, 0) for color in top_colors]
+        hover_texts = [f"Color: {c}<br>Portal: {PORTAL_MAPPING[portal_id]['name']}<br>Count: {cnt}" 
+                       for c, cnt in zip(top_colors, counts)]
+        traces.append({
+            "x": counts,
+            "y": top_colors,
+            "type": "bar",
+            "name": PORTAL_MAPPING[portal_id]["name"],
+            "orientation": "h",
+            "marker": {
+                "color": top_colors,  # Bars use the actual text colors
+                "line": {"width": 1, "color": PORTAL_MAPPING[portal_id]["color"]}  # Outline in portal color
+            },
+            "text": hover_texts,
+            "hovertemplate": "%{text}",
+            "opacity": 0.8
+        })
+
+    # Create Plotly stacked bar chart
+    fig = {
+        "data": traces,
+        "layout": {
+            "title": "Text Color Usage Frequency Across Bounding Boxes (Top 20)",
+            "xaxis": {
+                "title": "Number of Uses (Log Scale)",
+                "type": "log",
+                "autorange": True
+            },
+            "yaxis": {
+                "title": "Text Color (Hex)",
+                "tickmode": "array",
+                "tickvals": top_colors,
+                "ticktext": [f"{c} ({total_counts[c]})" for c in top_colors]
+            },
+            "barmode": "stack",
+            "template": "seaborn",
+            "hovermode": "closest",
+            "legend": {"title": "Portals", "x": 1, "y": 1},
+            "height": max(600, len(top_colors) * 30)  # Dynamic height
+        }
+    }
+
+    context = {
+        'plot_json': json.dumps(fig),
+        'data_count': sum(total_counts.values()),
+        'chart_type': 'text_color_usage_bar'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+
+def hashtag_group_usage_radial_bild_view(request):
+    """Radial bar chart of hashtag group usage frequency for Bild"""
+    # Fetch data for Bild only (owner_id = 8537434)
+    portal_id = 8537434  # Bild
+    scrape_data = ScrapeData.objects.filter(
+        extracted_hashtags__isnull=False,
+        owner_id=portal_id
+    )
+
+    if not scrape_data.exists():
+        fig = {"data": [], "layout": {"title": "No Data Available for Bild"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'hashtag_group_usage_radial_bild'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Load hashtag group mapping
+    with open(MAPPING_FILE_PATH, 'r') as f:
+        mapping = json.load(f)["mapping"]
+
+    # Create a hashtag-to-group lookup
+    hashtag_to_group = {}
+    for group, clusters in mapping.items():
+        for cluster, hashtags in clusters.items():
+            for hashtag in hashtags:
+                hashtag_to_group[hashtag.lower()] = group
+
+    # Count group occurrences for Bild
+    group_counts = Counter()
+    for entry in scrape_data:
+        hashtags = entry.extracted_hashtags if isinstance(entry.extracted_hashtags, list) else json.loads(entry.extracted_hashtags)
+        unique_groups = set(hashtag_to_group.get(tag.lower()) for tag in hashtags if tag.lower() in hashtag_to_group)
+        group_counts.update(unique_groups)
+
+    if not group_counts:
+        fig = {"data": [], "layout": {"title": "No Hashtag Groups Found for Bild"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'hashtag_group_usage_radial_bild'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Prepare data for radial chart
+    groups = list(group_counts.keys())
+    counts = [group_counts[group] for group in groups]
+    theta = [i * (360 / len(groups)) for i in range(len(groups))]  # Evenly spaced angles
+    hover_texts = [f"Group: {g}<br>Count: {c}" for g, c in zip(groups, counts)]
+
+    short_groups = [g[:15] + "..." if len(g) > 15 else g for g in groups]
+
+    # Create Plotly radial bar chart
+    fig = {
+        "data": [{
+            "r": counts,
+            "theta": theta,
+            "type": "barpolar",
+            "marker": {"color": PORTAL_MAPPING[portal_id]["color"]},  # Bild orange
+            "text": hover_texts,
+            "hovertemplate": "%{text}",
+            "opacity": 0.8
+        }],
+        "layout": {
+            "title": f"Hashtag Group Usage Frequency for {PORTAL_MAPPING[portal_id]['name']}",
+            "polar": {
+                "radialaxis": {"title": "Number of Posts"},
+                "angularaxis": {
+                    "title": "Hashtag Group",
+                    "direction": "clockwise",
+                    "tickmode": "array",
+                    "tickvals": theta,
+                    "ticktext": short_groups
+                }
+            },
+            "template": "seaborn",
+            "hovermode": "closest"
+        }
+    }
+
+    context = {
+        'plot_json': json.dumps(fig),
+        'data_count': scrape_data.count(),
+        'chart_type': 'hashtag_group_usage_radial_bild'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+
+def hashtag_group_usage_radial_zdf_view(request):
+    """Radial bar chart of hashtag group usage frequency for ZDF with short labels"""
+    # Fetch data for ZDF only (owner_id = 1383406462)
+    portal_id = 1383406462  # ZDF
+    scrape_data = ScrapeData.objects.filter(
+        extracted_hashtags__isnull=False,
+        owner_id=portal_id
+    )
+
+    if not scrape_data.exists():
+        fig = {"data": [], "layout": {"title": "No Data Available for ZDF"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'hashtag_group_usage_radial_zdf'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Load hashtag group mapping
+    with open(MAPPING_FILE_PATH, 'r') as f:
+        mapping = json.load(f)["mapping"]
+
+    # Create a hashtag-to-group lookup
+    hashtag_to_group = {}
+    for group, clusters in mapping.items():
+        for cluster, hashtags in clusters.items():
+            for hashtag in hashtags:
+                hashtag_to_group[hashtag.lower()] = group
+
+    # Count group occurrences for ZDF
+    group_counts = Counter()
+    for entry in scrape_data:
+        hashtags = entry.extracted_hashtags if isinstance(entry.extracted_hashtags, list) else json.loads(entry.extracted_hashtags)
+        unique_groups = set(hashtag_to_group.get(tag.lower()) for tag in hashtags if tag.lower() in hashtag_to_group)
+        group_counts.update(unique_groups)
+
+    if not group_counts:
+        fig = {"data": [], "layout": {"title": "No Hashtag Groups Found for ZDF"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'hashtag_group_usage_radial_zdf'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Prepare data for radial chart
+    groups = list(group_counts.keys())
+    counts = [group_counts[group] for group in groups]
+    theta = [i * (360 / len(groups)) for i in range(len(groups))]  # Evenly spaced angles
+    short_groups = [g[:15] + "..." if len(g) > 15 else g for g in groups]  # Shorten labels
+    hover_texts = [f"Group: {g}<br>Count: {c}" for g, c in zip(groups, counts)]
+
+    # Create Plotly radial bar chart
+    fig = {
+        "data": [{
+            "r": counts,
+            "theta": theta,
+            "type": "barpolar",
+            "marker": {"color": PORTAL_MAPPING[portal_id]["color"]},  # ZDF blue
+            "text": hover_texts,
+            "hovertemplate": "%{text}",
+            "opacity": 0.8
+        }],
+        "layout": {
+            "title": f"Hashtag Group Usage Frequency for {PORTAL_MAPPING[portal_id]['name']}",
+            "polar": {
+                "radialaxis": {"title": "Number of Posts"},
+                "angularaxis": {
+                    "title": "Hashtag Group",
+                    "direction": "clockwise",
+                    "tickmode": "array",
+                    "tickvals": theta,
+                    "ticktext": short_groups  # Use shortened labels
+                }
+            },
+            "template": "seaborn",
+            "hovermode": "closest"
+        }
+    }
+
+    context = {
+        'plot_json': json.dumps(fig),
+        'data_count': scrape_data.count(),
+        'chart_type': 'hashtag_group_usage_radial_zdf'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+
+def hashtag_group_usage_radial_sz_view(request):
+    """Radial bar chart of hashtag group usage frequency for SZ with short labels"""
+    # Fetch data for SZ only (owner_id = 1647208845)
+    portal_id = 1647208845  # SZ
+    scrape_data = ScrapeData.objects.filter(
+        extracted_hashtags__isnull=False,
+        owner_id=portal_id
+    )
+
+    if not scrape_data.exists():
+        fig = {"data": [], "layout": {"title": "No Data Available for SZ"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'hashtag_group_usage_radial_sz'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Load hashtag group mapping
+    with open(MAPPING_FILE_PATH, 'r') as f:
+        mapping = json.load(f)["mapping"]
+
+    # Create a hashtag-to-group lookup
+    hashtag_to_group = {}
+    for group, clusters in mapping.items():
+        for cluster, hashtags in clusters.items():
+            for hashtag in hashtags:
+                hashtag_to_group[hashtag.lower()] = group
+
+    # Count group occurrences for SZ
+    group_counts = Counter()
+    for entry in scrape_data:
+        hashtags = entry.extracted_hashtags if isinstance(entry.extracted_hashtags, list) else json.loads(entry.extracted_hashtags)
+        unique_groups = set(hashtag_to_group.get(tag.lower()) for tag in hashtags if tag.lower() in hashtag_to_group)
+        group_counts.update(unique_groups)
+
+    if not group_counts:
+        fig = {"data": [], "layout": {"title": "No Hashtag Groups Found for SZ"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'hashtag_group_usage_radial_sz'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Prepare data for radial chart
+    groups = list(group_counts.keys())
+    counts = [group_counts[group] for group in groups]
+    theta = [i * (360 / len(groups)) for i in range(len(groups))]  # Evenly spaced angles
+    short_groups = [g[:15] + "..." if len(g) > 15 else g for g in groups]  # Shorten labels
+    hover_texts = [f"Group: {g}<br>Count: {c}" for g, c in zip(groups, counts)]
+
+    # Create Plotly radial bar chart
+    fig = {
+        "data": [{
+            "r": counts,
+            "theta": theta,
+            "type": "barpolar",
+            "marker": {"color": PORTAL_MAPPING[portal_id]["color"]},  # SZ green
+            "text": hover_texts,
+            "hovertemplate": "%{text}",
+            "opacity": 0.8
+        }],
+        "layout": {
+            "title": f"Hashtag Group Usage Frequency for {PORTAL_MAPPING[portal_id]['name']}",
+            "polar": {
+                "radialaxis": {"title": "Number of Posts"},
+                "angularaxis": {
+                    "title": "Hashtag Group",
+                    "direction": "clockwise",
+                    "tickmode": "array",
+                    "tickvals": theta,
+                    "ticktext": short_groups  # Use shortened labels
+                }
+            },
+            "template": "seaborn",
+            "hovermode": "closest"
+        }
+    }
+
+    context = {
+        'plot_json': json.dumps(fig),
+        'data_count': scrape_data.count(),
+        'chart_type': 'hashtag_group_usage_radial_sz'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+
+def rgb_to_luminance(rgb_array):
+    # Normalize RGB to 0-1 range
+    rgb_normalized = rgb_array / 255.0
+    # Weights based on human perception of brightness
+    weights = np.array([0.299, 0.587, 0.114])
+    # Calculate luminance
+    return np.sum(rgb_normalized * weights)
+
+def hex_to_rgb(hex_color):
+    hex_color = hex_color.lstrip('#')
+    return np.array([int(hex_color[i:i+2], 16) for i in (0, 2, 4)])
+
+def text_vs_background_luminance_view(request):
+    """Scatter plot of text color luminance vs. background color luminance"""
+    # Fetch data
+    scrape_data = ScrapeData.objects.filter(
+        img_name__isnull=False,
+        owner_id__in=VALID_PORTAL_IDS
+    )
+    analyzer_data = AnalyzerResult.objects.filter(
+        image_name__isnull=False,
+        text_colors__isnull=False,
+        bounding_boxes__isnull=False,
+        background_color__isnull=False
+    )
+
+    if not scrape_data.exists() or not analyzer_data.exists():
+        fig = {"data": [], "layout": {"title": "No Data Available"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'text_vs_background_luminance'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Link image_name to owner_id
+    image_to_owner = {entry.img_name: entry.owner_id for entry in scrape_data}
+
+    # Collect luminance data per portal
+    data_by_portal = {pid: {'text_lum': [], 'bg_lum': [], 'colors': []} for pid in VALID_PORTAL_IDS}
+    for entry in analyzer_data:
+        if entry.image_name in image_to_owner:
+            portal_id = image_to_owner[entry.image_name]
+            colors = json.loads(entry.text_colors) if isinstance(entry.text_colors, str) else entry.text_colors
+            boxes = json.loads(entry.bounding_boxes) if isinstance(entry.bounding_boxes, str) else entry.bounding_boxes
+            if len(colors) != len(boxes):
+                continue  # Skip if mismatch
+            bg_color = entry.background_color
+            bg_rgb = hex_to_rgb(bg_color)
+            bg_lum = rgb_to_luminance(bg_rgb)
+
+            for color in colors:
+                text_rgb = hex_to_rgb(color.lower())
+                text_lum = rgb_to_luminance(text_rgb)
+                data_by_portal[portal_id]['text_lum'].append(text_lum)
+                data_by_portal[portal_id]['bg_lum'].append(bg_lum)
+                data_by_portal[portal_id]['colors'].append(color.lower())
+
+    # Check if there's data
+    total_points = sum(len(d['text_lum']) for d in data_by_portal.values())
+    if total_points == 0:
+        fig = {"data": [], "layout": {"title": "No Valid Color Data Found"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'text_vs_background_luminance'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Prepare traces for each portal
+    traces = []
+    for portal_id in VALID_PORTAL_IDS:
+        text_lum = data_by_portal[portal_id]['text_lum']
+        bg_lum = data_by_portal[portal_id]['bg_lum']
+        if not text_lum:
+            continue
+
+        # Hover texts
+        hover_texts = [f"Text Color: {c}<br>Text Lum: {t:.2f}<br>BG Lum: {b:.2f}<br>Portal: {PORTAL_MAPPING[portal_id]['name']}" 
+                       for c, t, b in zip(data_by_portal[portal_id]['colors'], text_lum, bg_lum)]
+
+        traces.append({
+            "x": text_lum,
+            "y": bg_lum,
+            "type": "scatter",
+            "mode": "markers",
+            "name": PORTAL_MAPPING[portal_id]["name"],
+            "marker": {
+                "color": PORTAL_MAPPING[portal_id]["color"],  # Use portal color for dots
+                "size": 8,  # Uniform size
+                "line": {"width": 1, "color": "#000000"}  # Black outline
+            },
+            "text": hover_texts,
+            "hovertemplate": "%{text}",
+            "opacity": 0.7
+        })
+
+    # Create colored ticks for the axes
+    tick_values = [i * 0.1 for i in range(11)]  # Ticks at 0.0, 0.1, ..., 1.0
+    tick_colors = [f"hsl(0, 0%, {int(lum * 100)}%)" for lum in tick_values]  # Grayscale colors for ticks
+
+    # Create Plotly scatter chart
+    fig = {
+        "data": traces,
+        "layout": {
+            "title": "Text Color Luminance vs. Background Color Luminance",
+            "xaxis": {
+                "title": "Text Color Luminance (0-1)",
+                "range": [0, 1],
+                "tickvals": tick_values,
+                "ticktext": [f"{lum:.1f}" for lum in tick_values],
+                "tickcolor": tick_colors,  # Color ticks
+                "ticklen": 10,  # Length of ticks
+                "tickwidth": 2  # Width of ticks
+            },
+            "yaxis": {
+                "title": "Background Color Luminance (0-1)",
+                "range": [0, 1],
+                "tickvals": tick_values,
+                "ticktext": [f"{lum:.1f}" for lum in tick_values],
+                "tickcolor": tick_colors,  # Color ticks
+                "ticklen": 10,  # Length of ticks
+                "tickwidth": 2  # Width of ticks
+            },
+            "template": "seaborn",
+            "hovermode": "closest",
+            "legend": {"title": "Portals", "x": 1, "y": 1}
+        }
+    }
+
+    context = {
+        'plot_json': json.dumps(fig),
+        'data_count': total_points,
+        'chart_type': 'text_vs_background_luminance'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+
+
+def text_vs_background_color_view(request):
+    """Scatter plot of text color luminance vs. background color gradient"""
+    # Fetch data
+    scrape_data = ScrapeData.objects.filter(
+        img_name__isnull=False,
+        owner_id__in=VALID_PORTAL_IDS
+    )
+    analyzer_data = AnalyzerResult.objects.filter(
+        image_name__isnull=False,
+        text_colors__isnull=False,
+        bounding_boxes__isnull=False,
+        background_color__isnull=False
+    )
+
+    if not scrape_data.exists() or not analyzer_data.exists():
+        fig = {"data": [], "layout": {"title": "No Data Available"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'text_vs_background_color'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Link image_name to owner_id
+    image_to_owner = {entry.img_name: entry.owner_id for entry in scrape_data}
+
+    # Collect data per portal
+    data_by_portal = {pid: {'text_lum': [], 'bg_rgb': [], 'colors': []} for pid in VALID_PORTAL_IDS}
+    for entry in analyzer_data:
+        if entry.image_name in image_to_owner:
+            portal_id = image_to_owner[entry.image_name]
+            colors = json.loads(entry.text_colors) if isinstance(entry.text_colors, str) else entry.text_colors
+            boxes = json.loads(entry.bounding_boxes) if isinstance(entry.bounding_boxes, str) else entry.bounding_boxes
+            if len(colors) != len(boxes):
+                continue
+            bg_rgb = hex_to_rgb(entry.background_color)
+            bg_y = int(np.mean(bg_rgb))  # Convert to int after mean
+
+            for color in colors:
+                text_rgb = hex_to_rgb(color.lower())
+                text_lum = rgb_to_luminance(np.array(text_rgb))  # Convert to np.array only here
+                data_by_portal[portal_id]['text_lum'].append(text_lum)
+                data_by_portal[portal_id]['bg_rgb'].append(bg_y)
+                data_by_portal[portal_id]['colors'].append(color.lower())
+
+    total_points = sum(len(d['text_lum']) for d in data_by_portal.values())
+    if total_points == 0:
+        fig = {"data": [], "layout": {"title": "No Valid Color Data Found"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'text_vs_background_color'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Create gradient background (white to black via rainbow)
+    y_vals = np.linspace(0, 255, 256).tolist()  # Convert to list
+    x_vals = [0, 1]  # Already a list
+    z = [[y for y in y_vals] for _ in range(2)]  # Create 2D list manually
+    colorscale = [
+        [0.0, '#ffffff'],  # White
+        [0.2, '#ff0000'],  # Red
+        [0.4, '#ffff00'],  # Yellow
+        [0.6, '#00ff00'],  # Green
+        [0.8, '#0000ff'],  # Blue
+        [1.0, '#000000']   # Black
+    ]
+
+    # Prepare traces
+    traces = [
+        {
+            "z": z,
+            "x": x_vals,
+            "y": y_vals,
+            "type": "heatmap",
+            "colorscale": colorscale,
+            "showscale": False,
+            "opacity": 0.5
+        }
+    ]
+
+    # Add scatter points for each portal
+    for portal_id in VALID_PORTAL_IDS:
+        text_lum = data_by_portal[portal_id]['text_lum']
+        bg_y = data_by_portal[portal_id]['bg_rgb']
+        colors = data_by_portal[portal_id]['colors']
+        if not text_lum:
+            continue
+
+        point_counts = Counter(zip(text_lum, bg_y))
+        sizes = [5 + 10 * point_counts[(t, b)] for t, b in zip(text_lum, bg_y)]
+        hover_texts = [f"Text Color: {c}<br>Text Lum: {t:.2f}<br>BG Color (mean RGB): {b}<br>Portal: {PORTAL_MAPPING[portal_id]['name']}" 
+                       for c, t, b in zip(colors, text_lum, bg_y)]
+
+        traces.append({
+            "x": text_lum,
+            "y": bg_y,
+            "type": "scatter",
+            "mode": "markers",
+            "name": PORTAL_MAPPING[portal_id]["name"],
+            "marker": {
+                "color": colors,
+                "size": sizes,
+                "line": {"width": 1, "color": PORTAL_MAPPING[portal_id]["color"]}
+            },
+            "text": hover_texts,
+            "hovertemplate": "%{text}",
+            "opacity": 0.7
+        })
+
+    # Create Plotly chart
+    fig = {
+        "data": traces,
+        "layout": {
+            "title": "Text Color Luminance vs. Background Color Gradient",
+            "xaxis": {
+                "title": "Text Color Luminance (0-1)",
+                "range": [0, 1]
+            },
+            "yaxis": {
+                "title": "Background Color (Gradient)",
+                "range": [0, 255],
+                "tickvals": [0, 64, 128, 192, 255],
+                "ticktext": ["White", "Light", "Medium", "Dark", "Black"]
+            },
+            "template": "seaborn",
+            "hovermode": "closest",
+            "legend": {"title": "Portals", "x": 1, "y": 1}
+        }
+    }
+
+    context = {
+        'plot_json': json.dumps(fig),
+        'data_count': total_points,
+        'chart_type': 'text_vs_background_color'
+    }
+    return render(request, 'visualizer/chart_page.html', context)
+class FromUnixTimestamp(Func):
+    function = "DATETIME"
+    template = "%(function)s(%(expressions)s, 'unixepoch')"
+
+def font_size_per_portal_view(request):
+    """Visualize average font sizes per portal"""
+    # Fetch data, linking ScrapeData and AnalyzerResult
+    scrape_data = ScrapeData.objects.filter(
+        img_name__isnull=False,
+        owner_id__in=VALID_PORTAL_IDS
+    )
+    analyzer_data = AnalyzerResult.objects.filter(
+        image_name__isnull=False,
+        font_sizes__isnull=False
+    )
+
+    if not scrape_data.exists() or not analyzer_data.exists():
+        fig = {"data": [], "layout": {"title": "No Data Available"}}
+        context = {
+            'plot_json': json.dumps(fig),
+            'data_count': 0,
+            'chart_type': 'font_size_per_portal'
+        }
+        return render(request, 'visualizer/chart_page.html', context)
+
+    # Link image_name to owner_id and compute average font size per image
+    owner_id_map = {entry.img_name: entry.owner_id for entry in scrape_data}
+    font_sizes_by_portal = {pid: [] for pid in VALID_PORTAL_IDS}
+
+    for entry in analyzer_data:
+        if entry.image_name in owner_id_map:
+            owner_id = owner_id_map[entry.image_name]
+            # Parse font_sizes (could be list or JSON string)
+            font_sizes = entry.font_sizes if isinstance(entry.font_sizes, list) else json.loads(entry.font_sizes)
+            if font_sizes:  # Ensure it’s not empty
+                avg_font_size = statistics.mean(font_sizes)  # Average per image
+                font_sizes_by_portal[owner_id].append(avg_font_size)
+
+    # Prepare data for Plotly box plot
+    traces = []
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c']  # ZDF, Bild, SZ
+
+    for i, portal_id in enumerate(VALID_PORTAL_IDS):
+        sizes = font_sizes_by_portal[portal_id]
+        if sizes:  # Only include portals with data
+            portal_name = PORTAL_MAPPING[portal_id]
+            traces.append({
+                "y": sizes,
+                "type": "box",
+                "name": portal_name,
+                "marker": {"color": colors[i]},
+                "boxpoints": "outliers",  # Show outliers
+                "jitter": 0.3,  # Spread points for visibility
+                "pointpos": -1.8  # Position points to the left
+            })
+
+    # Create Plotly box plot
+    fig = {
+        "data": traces,
+        "layout": {
+            "title": "Font Size Distribution Per Portal",
+            "xaxis": {"title": "Portal"},
+            "yaxis": {"title": "Average Font Size (pixels)"},
+            "template": "seaborn",
+            "hovermode": "closest",
+        }
+    }
+
+    context = {
+        'plot_json': json.dumps(fig),
+        'data_count': sum(len(sizes) for sizes in font_sizes_by_portal.values()),
+        'chart_type': 'font_size_per_portal'
     }
     return render(request, 'visualizer/chart_page.html', context)
 
