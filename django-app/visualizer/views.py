@@ -1458,7 +1458,8 @@ def text_color_usage_bar_view(request):
         return render(request, 'visualizer/chart_page.html', context)
 
     # Sort colors by total frequency (top 20 for readability)
-    top_colors = [color for color, _ in total_counts.most_common(100)]
+    top_colors = [color for color, _ in total_counts.most_common(5)]
+    # top_colors.reverse()
 
     # Prepare traces for each portal
     traces = []
@@ -1472,12 +1473,13 @@ def text_color_usage_bar_view(request):
             "type": "bar",
             "name": PORTAL_MAPPING[portal_id]["name"],
             "orientation": "h",
+            # "width" : 0.25,
             "marker": {
                 "color": top_colors,  # Bars use the actual text colors
-                "line": {"width": 1, "color": PORTAL_MAPPING[portal_id]["color"]}  # Outline in portal color
+                "line": {"width": 2, "color": PORTAL_MAPPING[portal_id]["color"]}  # Outline in portal color
             },
-            "text": hover_texts,
-            "hovertemplate": "%{text}",
+            "text":  [f"{cnt}" for c, cnt in zip(top_colors, counts)],
+            "hovertemplate": hover_texts,
             "opacity": 0.8
         })
 
@@ -1485,7 +1487,7 @@ def text_color_usage_bar_view(request):
     fig = {
         "data": traces,
         "layout": {
-            "title": "Text Color Usage Frequency Across Bounding Boxes (Top 20)",
+            "title": "Text Color Usage Frequency Across Bounding Boxes (Top 5)",
             "xaxis": {
                 "title": "Number of Uses (Log Scale)",
                 "type": "log",
@@ -1495,13 +1497,13 @@ def text_color_usage_bar_view(request):
                 "title": "Text Color (Hex)",
                 "tickmode": "array",
                 "tickvals": top_colors,
-                "ticktext": [f"{c} ({total_counts[c]})" for c in top_colors]
+                # "ticktext": [f"{c} ({total_counts[c]})" for c in top_colors]
             },
             "barmode": "stack",
             "template": "seaborn",
             "hovermode": "closest",
             "legend": {"title": "Portals", "x": 1, "y": 1},
-            "height": max(600, len(top_colors) * 30)  # Dynamic height
+            "height": max(300, len(top_colors) * 30)  # Dynamic height
         }
     }
 
@@ -1862,9 +1864,10 @@ def text_vs_background_luminance_view(request):
             "mode": "markers",
             "name": PORTAL_MAPPING[portal_id]["name"],
             "marker": {
-                "color": PORTAL_MAPPING[portal_id]["color"],  # Use portal color for dots
-                "size": 8,  # Uniform size
-                "line": {"width": 1, "color": "#000000"}  # Black outline
+                # "color": [entry['color'] for entry in data_by_portal],  # Use portal colors
+                "color": data_by_portal[portal_id]["colors"],  # Use portal color for dots
+                "size": 2.5,  # Uniform size
+                # "line": {"width": 0.1, "color": "#000000"}  # Black outline
             },
             "text": hover_texts,
             "hovertemplate": "%{text}",

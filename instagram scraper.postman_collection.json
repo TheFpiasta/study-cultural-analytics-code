@@ -1,0 +1,340 @@
+{
+	"info": {
+		"name": "instagram scraper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+	},
+	"item": [
+		{
+			"name": "graphql zdfheute get 10posts next page via after",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-ig-app-id",
+						"value": "936619743392459",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://www.instagram.com/graphql/query/?query_id=17888483320059182&variables=%7B%22id%22%3A%221383406462%22%2C%22first%22%3A10%2C%22after%22%3A%22%22%7D",
+					"protocol": "https",
+					"host": [
+						"www",
+						"instagram",
+						"com"
+					],
+					"path": [
+						"graphql",
+						"query",
+						""
+					],
+					"query": [
+						{
+							"key": "query_id",
+							"value": "17888483320059182"
+						},
+						{
+							"key": "variables",
+							"value": "%7B%22id%22%3A%221383406462%22%2C%22first%22%3A10%2C%22after%22%3A%22%22%7D"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new graphql API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.instagram.com/graphql/query/?doc_id=7950326061742207&variables=%7B%22id%22%3A%221383406462%22%2C%22after%22%3A%22%22%2C%22first%22%3A12%7D",
+					"protocol": "https",
+					"host": [
+						"www",
+						"instagram",
+						"com"
+					],
+					"path": [
+						"graphql",
+						"query",
+						""
+					],
+					"query": [
+						{
+							"key": "doc_id",
+							"value": "7950326061742207"
+						},
+						{
+							"key": "variables",
+							"value": "%7B%22id%22%3A%221383406462%22%2C%22after%22%3A%22%22%2C%22first%22%3A12%7D",
+							"description": "{\"id\":\"1383406462\",\"after\":\"\",\"first\":12}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "zdfheute post get more meta data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.instagram.com/p/DCSTZlFMx2j/?__a=1&__d=dis",
+					"protocol": "https",
+					"host": [
+						"www",
+						"instagram",
+						"com"
+					],
+					"path": [
+						"p",
+						"DCSTZlFMx2j",
+						""
+					],
+					"query": [
+						{
+							"key": "__a",
+							"value": "1"
+						},
+						{
+							"key": "__d",
+							"value": "dis"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scraper zdfheute",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"zdfheute 4k 20npb v1 start\",\r\n    \"profile_id\": 1383406462,\r\n    \"scrape_max_nodes\": 4000,\r\n    \"scrape_nodes_per_batch\": 20,\r\n    \"start_cursor\": \"\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/scraper/start/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"scraper",
+						"start",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scraper sz",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"sz 4k 20npb v1 start\",\r\n    \"profile_id\": 1647208845,\r\n    \"scrape_max_nodes\": 4000,\r\n    \"scrape_nodes_per_batch\": 20,\r\n    \"start_cursor\": \"\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/scraper/start/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"scraper",
+						"start",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Scraper bild",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"bild 4k 200b 20npb v1-2\",\r\n    \"profile_id\": 8537434,\r\n    \"scrape_max_nodes\": 4000,\r\n    \"scrape_nodes_per_batch\": 20,\r\n    \"scrape_max_batches\": 78,\r\n    \"start_cursor\": \"QVFDeTBrRlZXLU1ZOGN1cWhfUTdhSkVoWDBYLUdRbDRqaXZ2UGlkVXBzcEpDVWp1ZFBIZzIwcDFxU0dtbFU5TXNabWh6QnlMZ0ZmcmdBR3NpTVA4Q3M3Tw==\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/scraper/start/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"scraper",
+						"start",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://instagram.com/_u/bild/",
+					"protocol": "https",
+					"host": [
+						"instagram",
+						"com"
+					],
+					"path": [
+						"_u",
+						"bild",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8000/scraper/generate-tags?ids=[30]",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ids\":[30]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/scraper/generate-tags",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"scraper",
+						"generate-tags"
+					],
+					"query": [
+						{
+							"key": "ids",
+							"value": "[30]",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_hashtag_list",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/scraper/get-hashtags/?min-count=1&chunk-size=100&max-count=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"scraper",
+						"get-hashtags",
+						""
+					],
+					"query": [
+						{
+							"key": "min-count",
+							"value": "1"
+						},
+						{
+							"key": "chunk-size",
+							"value": "100"
+						},
+						{
+							"key": "max-count",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_chunked_hashtag_list",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/scraper/get-chunked/?min-count=1&chunk-size=100&max-count=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"scraper",
+						"get-chunked",
+						""
+					],
+					"query": [
+						{
+							"key": "min-count",
+							"value": "1"
+						},
+						{
+							"key": "chunk-size",
+							"value": "100"
+						},
+						{
+							"key": "max-count",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
