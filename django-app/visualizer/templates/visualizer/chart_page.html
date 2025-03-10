@@ -83,7 +83,6 @@
         <a href="{% url 'likes_over_time' %}"><button>Likes Over Time</button></a>
         <a href="{% url 'sentiment_over_time' %}"><button>Sentiment Over Time</button></a>
         <a href="{% url 'background_color_over_time' %}"><button>Background Color Over Time</button></a>
-        <a href="{% url 'top_hashtags_over_time' %}"><button>Top Hashtags Over Time</button></a>
  
         <a href="{% url 'font_size_per_portal' %}"><button>Font Size Per Portal</button></a> -->
 
@@ -96,6 +95,19 @@
         <a href="{% url 'sentiment_radial' %}"><button>Sentiment Radial (ZDF)</button></a>
         <a href="{% url 'sentiment_radial_bild' %}"><button>Sentiment Radial (Bild)</button></a>
         <a href="{% url 'sentiment_radial_sz' %}"><button>Sentiment Radial (SZ)</button></a>
+        <a href="{% url 'top_hashtags_over_time' %}"><button>Top Hashtags Over Time</button></a>
+        <a href="{% url 'dominant_background_colors' %}"><button>Top 10 Background Colors per Portal</button></a>
+        <a href="{% url 'text_space_usage' %}"><button>Text Space Usage per Portal</button></a>
+        <!-- <a href="{% url 'background_color_radial' portal_id=8537434 %}"><button>Background Colors (Bild)</button></a>
+        <a href="{% url 'background_color_radial' portal_id=1647208845 %}"><button>Background Colors (SZ)</button></a>
+        <a href="{% url 'background_color_radial' portal_id=1383406462 %}"><button>Background Colors (ZDF)</button></a> -->
+        <!-- <a href="{% url 'text_color_usage_radial' %}"><button>Text Color Usage Radial</button></a> -->
+        <a href="{% url 'text_color_usage_bar' %}"><button>Text Color Usage Bar</button></a>
+        <a href="{% url 'hashtag_group_usage_radial_bild' %}"><button>Hashtag Group Usage Radial (Bild)</button></a>
+        <a href="{% url 'hashtag_group_usage_radial_zdf' %}"><button>Hashtag Group Usage Radial (ZDF)</button></a>
+        <a href="{% url 'hashtag_group_usage_radial_sz' %}"><button>Hashtag Group Usage Radial (SZ)</button></a>
+        <a href="{% url 'text_vs_background_luminance' %}"><button>Text vs Background Luminance</button></a>
+        <!-- <a href="{% url 'text_vs_background_color' %}"><button>Text vs Background Color</button></a> -->
     </div>
 
     <p class="note">
