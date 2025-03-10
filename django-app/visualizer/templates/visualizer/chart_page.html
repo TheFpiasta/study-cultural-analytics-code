@@ -17,56 +17,6 @@
         max-width: 1200px;
         margin: 40px auto;
         padding: 20px;
-        background-color: #1b1b1b;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-    }
-
-    h2 {
-        text-align: center;
-        color: #722222;
-        margin-bottom: 30px;
-    }
-
-    form {
-        display: grid;
-        gap: 20px;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    label {
-        font-weight: bold;
-        font-size: 1.1em;
-        color: #333;
-    }
-
-    select {
-        padding: 12px 15px;
-        font-size: 1em;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        width: 100%;
-        background-color: #fafafa;
-        transition: border-color 0.3s ease;
-    }
-
-    select:focus {
-        border-color: #722222;
-        outline: none;
-    }
-
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f9;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 20px;
         background-color: #fff;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
@@ -78,47 +28,22 @@
         margin-bottom: 30px;
     }
 
-    form {
-        display: grid;
-        gap: 20px;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    label {
-        font-weight: bold;
-        font-size: 1.1em;
-        color: #333;
-    }
-
-    select {
-        padding: 12px 15px;
-        font-size: 1em;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        width: 100%;
-        background-color: #fafafa;
-        transition: border-color 0.3s ease;
-    }
-
-    select:focus {
-        border-color: #722222;
-        outline: none;
+    .button-container {
+        text-align: center;
+        margin-bottom: 20px;
     }
 
     button {
         background-color: #722222;
         color: white;
-        padding: 15px 30px;
-        font-size: 1.2em;
+        padding: 10px 20px;
+        font-size: 1em;
         border-radius: 8px;
         border: none;
-        border: none;
-        width: 100%;
         cursor: pointer;
+        margin: 0 10px;
         transition: all 0.3s ease;
     }
-
 
     button:hover {
         background-color: #9e1212;
@@ -140,30 +65,6 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    /* Styling for Error Message */
-    .error-message {
-        color: red;
-        font-size: 1.1em;
-        text-align: center;
-    }
-
-    .note {
-        font-size: 0.9em;
-        color: #888;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    #plotly-chart {
-        margin-top: 40px;
-        padding: 20px;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Styling for Error Message */
     .error-message {
         color: red;
         font-size: 1.1em;
@@ -174,48 +75,66 @@
 <div class="container">
     <h2>Data Visualization</h2>
 
-    <form action="{% url 'analyze' %}" method="get">
-        <div>
-            <label for="x_field">X-Axis Field:</label>
-            <select name="x_field" id="x_field">
-                <option value="hashtag_groups">Hashtag Groups</option>
-                <!-- ScrapeData fields -->
-                <option value="scrape.likes_count">Likes Count</option>
-                <option value="scrape.comment_count">Comment Count</option>
-                <option value="scrape.taken_at_timestamp">Timestamp</option>
-                <option value="scrape.display_height">Display Height</option>
-                <option value="scrape.display_width">Display Width</option>
-                <!-- AnalyzerResult fields -->
-                <option value="analyzer.polarity">Polarity</option>
-                <option value="analyzer.font_size">Font Size</option>
-            </select>
-        </div>
+    <div class="button-container">
+        <!-- <a href="{% url 'likes_vs_sentiment' %}"><button>Likes vs Sentiment</button></a>
 
-        <div>
-            <label for="y_field">Y-Axis Field:</label>
-            <select name="y_field" id="y_field">
-                <!-- ScrapeData fields -->
-                <option value="scrape.likes_count">Likes Count</option>
-                <option value="scrape.comment_count">Comment Count</option>
-                <option value="scrape.taken_at_timestamp">Timestamp</option>
-                <option value="scrape.display_height">Display Height</option>
-                <option value="scrape.display_width">Display Width</option>
-                <!-- AnalyzerResult fields -->
-                <option value="analyzer.polarity">Polarity</option>
-                <option value="analyzer.font_size">Font Size</option>
-            </select>
-        </div>
+        <a href="{% url 'background_color_vs_sentiment' %}"><button>Background Color vs Sentiment</button></a>
+        <a href="{% url 'text_color_vs_background_color' %}"><button>Text Color vs Background Color</button></a>
+        <a href="{% url 'likes_over_time' %}"><button>Likes Over Time</button></a>
+        <a href="{% url 'sentiment_over_time' %}"><button>Sentiment Over Time</button></a>
+        <a href="{% url 'background_color_over_time' %}"><button>Background Color Over Time</button></a>
+        <a href="{% url 'top_hashtags_over_time' %}"><button>Top Hashtags Over Time</button></a>
+ 
+        <a href="{% url 'font_size_per_portal' %}"><button>Font Size Per Portal</button></a> -->
 
-        <button type="submit">Generate Chart</button>
-    </form>
+        <a href="{% url 'sentiment_per_portal_over_time' %}"><button>Sentiment Per Portal Over Time</button></a>
+        <a href="{% url 'likes_per_portal_over_time' %}"><button>Likes Per Portal Over Time</button></a>
+        <a href="{% url 'hashtag_group_usage' %}"><button>Hashtag Group Usage</button></a>
+        <a href="{% url 'hashtag_group_percentage' %}"><button>Hashtag Group Percentage</button></a>
+        <a href="{% url 'avg_likes_per_hashtag_group' %}"><button>Avg Likes Per Hashtag Group</button></a>
+        <a href="{% url 'comment_count_per_hashtag_group' %}"><button>Comment Count Per Hashtag Group</button></a>
+        <a href="{% url 'sentiment_radial' %}"><button>Sentiment Radial (ZDF)</button></a>
+        <a href="{% url 'sentiment_radial_bild' %}"><button>Sentiment Radial (Bild)</button></a>
+        <a href="{% url 'sentiment_radial_sz' %}"><button>Sentiment Radial (SZ)</button></a>
+    </div>
 
-    <p class="note">Note: Chart type will adjust based on whether fields are numeric or non-numeric.</p>
+    <p class="note">
+        <!-- {% if chart_type == 'likes_vs_sentiment' %}
+            Showing Likes Count vs Sentiment Polarity for up to 300 data points.
+        {% elif chart_type == 'likes_vs_hashtag_groups' %}
+            Showing Average Likes by Hashtag Group for up to 300 data points.
+        {% elif chart_type == 'background_color_vs_sentiment' %}
+            Showing Average Sentiment (VADER & DeepSeek) by Background Color for up to 300 data points.
+        {% elif chart_type == 'text_color_vs_background_color' %}
+            Showing Most Dominant Text Color by Background Color for up to 300 data points.
+        {% elif chart_type == 'likes_over_time' %}
+            Showing Total Likes Over Time (aggregated by day) for up to 300 days.
+        {% elif chart_type == 'sentiment_over_time' %}
+            Showing Average Sentiment Over Time (aggregated by day) for up to 300 days.
+        {% elif chart_type == 'background_color_over_time' %}
+            Showing Average Background Color Over Time (aggregated by day) for up to 300 days.
+        {% elif chart_type == 'top_hashtags_over_time' %}
+            Showing Top Hashtags Over Time (aggregated by day) for up to 300 days.
+        {% elif chart_type == 'likes_per_portal_over_time' %}
+            Showing Likes Per Portal Over Time (aggregated by day) for up to 300 days.
+        {% elif chart_type == 'font_size_per_portal' %}
+            Showing Font Size Per Portal for up to 300 data points.
+        {% else %}
+            Showing Data Visualization for up to 300 data points.
+        {% endif %} -->
 
-    <div id="plotly-chart">
+        {% if chart_type == 'sentiment_per_portal_over_time' %}
+            Showing Sentiment Per Portal Over Time (aggregated by day)
+        {% else %}
+            Showing Data Visualization
+        {% endif %}
+        
+    </p>
+
+    <div id="plotly-chart" style="height: 100%;">
         <!-- Plotly chart will be rendered here -->
     </div>
 
-    <!-- Error message (if any) -->
     <p class="error-message" id="error-message" style="display: none;">There was an issue with the data. Please try again.</p>
 </div>
 
