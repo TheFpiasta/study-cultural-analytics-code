@@ -137,7 +137,7 @@ def sentiment_per_portal_over_time_view(request):
                 "type": "scatter",
                 "mode": "markers",
                 "name": f"{portal_name} (VADER)",
-                "marker": {"size": 8, "color": color},
+                "marker": {"size": 4, "color": color},
                 "text": vader_hover,
                 "hovertemplate": "%{text}",
             })
@@ -152,7 +152,7 @@ def sentiment_per_portal_over_time_view(request):
                 "type": "scatter",
                 "mode": "markers",
                 "name": f"{portal_name} (DeepSeek)",
-                "marker": {"size": 8, "color": color},
+                "marker": {"size": 4, "color": color},
                 "text": deepseek_hover,
                 "hovertemplate": "%{text}",
             })
@@ -296,8 +296,8 @@ def hashtag_group_usage_view(request):
             "type": "bar",
             "name": portal_name,
             "marker": {"color": color},
-            "text": hover_texts,
-            "hovertemplate": "%{text}",
+            # "text": [f"{c}" for g, c in zip(all_groups, counts)],
+            "hovertemplate": hover_texts,
         })
 
     # Create Plotly stacked bar chart
@@ -1458,7 +1458,7 @@ def text_color_usage_bar_view(request):
         return render(request, 'visualizer/chart_page.html', context)
 
     # Sort colors by total frequency (top 20 for readability)
-    top_colors = [color for color, _ in total_counts.most_common(5)]
+    top_colors = [color for color, _ in total_counts.most_common(10)]
     # top_colors.reverse()
 
     # Prepare traces for each portal
@@ -1487,7 +1487,7 @@ def text_color_usage_bar_view(request):
     fig = {
         "data": traces,
         "layout": {
-            "title": "Text Color Usage Frequency Across Bounding Boxes (Top 5)",
+            "title": "Text Color Usage Frequency Across Bounding Boxes (Top 20)",
             "xaxis": {
                 "title": "Number of Uses (Log Scale)",
                 "type": "log",
@@ -1815,7 +1815,7 @@ def text_vs_background_luminance_view(request):
     image_to_owner = {entry.img_name: entry.owner_id for entry in scrape_data}
 
     # Collect luminance data per portal
-    data_by_portal = {pid: {'text_lum': [], 'bg_lum': [], 'colors': []} for pid in VALID_PORTAL_IDS}
+    data_by_portal = {pid: {'text_lum': [], 'bg_lum': [], 'colors': [], 'colors-bg': []} for pid in VALID_PORTAL_IDS}
     for entry in analyzer_data:
         if entry.image_name in image_to_owner:
             portal_id = image_to_owner[entry.image_name]
@@ -1833,6 +1833,7 @@ def text_vs_background_luminance_view(request):
                 data_by_portal[portal_id]['text_lum'].append(text_lum)
                 data_by_portal[portal_id]['bg_lum'].append(bg_lum)
                 data_by_portal[portal_id]['colors'].append(color.lower())
+                data_by_portal[portal_id]['colors-bg'].append(bg_color.lower())
 
     # Check if there's data
     total_points = sum(len(d['text_lum']) for d in data_by_portal.values())
@@ -1854,8 +1855,8 @@ def text_vs_background_luminance_view(request):
             continue
 
         # Hover texts
-        hover_texts = [f"Text Color: {c}<br>Text Lum: {t:.2f}<br>BG Lum: {b:.2f}<br>Portal: {PORTAL_MAPPING[portal_id]['name']}" 
-                       for c, t, b in zip(data_by_portal[portal_id]['colors'], text_lum, bg_lum)]
+        hover_texts = [f"Text Color: {c}<br>BG Color: {C}<br>Text Lum: {t:.2f}<br>BG Lum: {b:.2f}<br>Portal: {PORTAL_MAPPING[portal_id]['name']}"
+                       for c, t, b, C in zip(data_by_portal[portal_id]['colors'], text_lum, bg_lum, data_by_portal[portal_id]['colors-bg'])]
 
         traces.append({
             "x": text_lum,
