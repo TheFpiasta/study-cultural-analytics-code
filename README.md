@@ -1,6 +1,6 @@
 # study-cultural-analytics-code
 
-This repository contains code for the course Cultural Analytics at the University Leipzig.
+This repository contains code and data for the course Cultural Analytics at the University Leipzig.
 
 ## Requirements
 
